@@ -1,0 +1,16 @@
+[
+    {
+        "model": "creativescienceapp.Role",
+        "pk": "1",
+        "fields": {
+            "name": "ROOT"
+        }
+    },
+    {
+        "model": "creativescienceapp.Role",
+        "pk": "2",
+        "fields": {
+            "name": "ADMIN"
+        }
+    }
+]
