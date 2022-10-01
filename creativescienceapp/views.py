@@ -14,13 +14,16 @@ def login(request):
         user=User.objects.get(email=request.POST['email'],password=request.POST['password'])
         #user=User.objects.get(username=request.POST['email'],password=request.POST['password'])
     except:
-        return render(request,'creativescienceapp/index.html')            
+        return render(request,'creativescienceapp/index.html')   
+    request.session['username'] = user.complete_name  
+    request.session['profile_image'] = user.profile_image.url 
+    
     if not user.verified:       
         f_send_mail(user)
         user.verified=True
         user.save()
         return verificate(request,user)
-    return render(request,'creativescienceapp/home.html',{"user":user})
+    return render(request,'creativescienceapp/home.html',{'request':request})
 
 def verificate(request,user):
     return render(request, 'creativescienceapp/verificate.html',{ "user":user})
