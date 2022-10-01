@@ -18,12 +18,12 @@ from django.conf.urls.static import static
 from django.contrib import admin
 from django.urls import path
 from django.contrib.staticfiles.urls import staticfiles_urlpatterns
-from creativescienceapp import views
+from creativescienceapp.views import user
 urlpatterns = [
     path("admin/", admin.site.urls),
-    path('', views.index),
-    path('home/',views.login),
-    path('verificate/',views.verificate),
+    path('', user.index),
+    path('home/',user.login),
+    path('verificate/',user.verificate),
 ]
 
 urlpatterns+=staticfiles_urlpatterns()

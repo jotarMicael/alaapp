@@ -1,3 +1,11 @@
-<p>HELLO {{request.session.username}}</p>
 
-<img src='{{request.session.profile_image}}'>
+{% extends 'creativescienceapp/base/base.html' %}
+
+{% block title %} Home {% endblock %}
+
+{% block content %} Home 
+
+    <p>HELLO {{request.session.username}}</p>
+    
+    <img src='{{request.session.profile_image}}'>
+{% endblock %}

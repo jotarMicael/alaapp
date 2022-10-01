@@ -20,7 +20,7 @@ class User(models.Model):
     username=models.CharField(max_length=30,blank=False,null=False)
     email=models.EmailField(max_length=30,blank=False,null=False)
     password=models.CharField(max_length=30,blank=False,null=False)
-    profile_image=models.ImageField(upload_to='creativescience/static/profile_image',null=True,blank=True)
+    profile_image=models.ImageField(upload_to='creativescienceapp/static/profile_image',null=True,blank=True)
     role_id=models.ForeignKey(Role,null=True,blank=True,on_delete=models.RESTRICT)
     verified=models.BooleanField(default=False,blank=False,null=False)
 
