@@ -1,11 +1,11 @@
-from django.shortcuts import render
+from django.shortcuts import redirect, render
 from creativescienceapp.models import User
 from creativescienceapp.utils.System import System
 
 # Create your views here.
 def index(request):
-    if (System.is_logged(request)):
-        return render(request,'creativescienceapp/home.html')
+    #if (System.is_logged(request)):
+        #return render(request,'creativescienceapp/home.html')
     return render(request,'creativescienceapp/index.html')
 
 def login(request):     
@@ -28,6 +28,7 @@ def verificate(request,user):
     return render(request, 'creativescienceapp/verificate.html',{ "user":user})
 
 
-
-
+def logout(request):
+        System.logout(request)
+        return redirect('login')
     

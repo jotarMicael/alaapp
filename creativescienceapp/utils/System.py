@@ -1,5 +1,6 @@
 from django.core.mail import send_mail
 from django.conf import settings
+from django.shortcuts import render
 
 class System(object):
     @classmethod
@@ -8,9 +9,12 @@ class System(object):
 
     @staticmethod
     def is_logged(request):
-        if(request.session):
-            return True
-        return False 
+        try:
+            request.session['username']
+        except KeyError:
+            return False     
+        return True
+
 
     @staticmethod
     def f_send_mail(user):
@@ -22,9 +26,14 @@ class System(object):
 
     @staticmethod
     def set_session(request,user):
-        request.session['username'] = user.complete_name  
+        request.session['username'] = user.username 
         request.session['complete_name'] = user.complete_name 
         request.session['profile_image'] = user.profile_image.url   
         request.session['role'] = user.role_id.name
-
-    
+    @staticmethod
+    def logout(request):
+        try:
+            del request.session['username']
+        except KeyError:
+            pass
+        

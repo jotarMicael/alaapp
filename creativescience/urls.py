@@ -21,9 +21,10 @@ from django.contrib.staticfiles.urls import staticfiles_urlpatterns
 from creativescienceapp.views import user
 urlpatterns = [
     path("admin/", admin.site.urls),
-    path('', user.index),
+    path('', user.index,name='login'),
     path('home/',user.login),
     path('verificate/',user.verificate),
+    path('logout/',user.logout, name='logout')
 ]
 
 urlpatterns+=staticfiles_urlpatterns()
