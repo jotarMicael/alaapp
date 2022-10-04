@@ -10,7 +10,7 @@ class System(object):
     @staticmethod
     def is_logged(request):
         try:
-            request.session['username']
+            request.session['id']
         except KeyError:
             return False     
         return True
@@ -26,6 +26,7 @@ class System(object):
 
     @staticmethod
     def set_session(request,user):
+        request.session['id'] = user.id 
         request.session['username'] = user.username 
         request.session['complete_name'] = user.complete_name 
         request.session['profile_image'] = user.profile_image.url   
@@ -33,7 +34,7 @@ class System(object):
     @staticmethod
     def logout(request):
         try:
-            del request.session['username']
+            del request.session['id']
         except KeyError:
             pass
         
