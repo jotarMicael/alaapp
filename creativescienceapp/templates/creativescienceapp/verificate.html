@@ -32,9 +32,11 @@
                   <div class="card-body">
                     <h5 class="card-title">Verificar dirección de correo electrónico</h5>
   
-                    <p class="card-text">Se ha envíado un correo al email: <a href="#" class="card-link"><strong>{{user.email}}</strong></a></p>
+                    <p class="card-text">Se ha envíado un correo al email: <a href="#" class="card-link"><strong>{{request.session.email}}</strong></a></p>
   
-
+                    <label >
+                      <a  class="card-link" href="/logout/" > <- Volver a inicio</a>
+                    </label>
                   </div>
                 </div>
   

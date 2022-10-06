@@ -1,11 +1,9 @@
 from django.core.mail import send_mail
 from django.conf import settings
 from django.shortcuts import render
-
+from django.contrib.auth import logout
 class System(object):
-    @classmethod
-    def __init__(self):
-        pass
+    
 
     @staticmethod
     def is_logged(request):
@@ -13,7 +11,8 @@ class System(object):
             request.session['id']
         except KeyError:
             return False     
-        return True
+        else:
+            return True
 
 
     @staticmethod
@@ -26,15 +25,18 @@ class System(object):
 
     @staticmethod
     def set_session(request,user):
-        request.session['id'] = user.id 
-        request.session['username'] = user.username 
-        request.session['complete_name'] = user.complete_name 
-        request.session['profile_image'] = user.profile_image.url   
-        request.session['role'] = user.role_id.name
+        try:
+            request.session['profile_image'] = user.profile_image.url   
+        except ValueError:
+            pass
+        finally:
+            request.session['id'] = user.id 
+            request.session['username'] = user.username 
+            request.session['email'] = user.email
+            request.session['complete_name'] = user.complete_name 
+            request.session['role'] = user.role_id.name
     @staticmethod
     def logout(request):
-        try:
-            del request.session['id']
-        except KeyError:
-            pass
+        del request.session['id']
+        
         

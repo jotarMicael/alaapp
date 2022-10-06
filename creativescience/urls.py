@@ -22,10 +22,12 @@ from creativescienceapp.views import user
 urlpatterns = [
     path("admin/", admin.site.urls),
     path('', user.index,name='index'),
-    path('home/',user.home, name='home'),
-    
-    path('verificate/',user.verificate),
-    path('logout/',user.logout, name='logout')
+    path('home/',user.home, name='home'),  
+    path('verificate/',user.verificate, name='verificate'),
+    path('logout/',user.logout, name='logout'),
+    path('register/',user.register,name='register'),
+    path('register_user/',user.register_user,name='register_user'),
+    path('login/',user.login, name='login'), 
 ]
 
 urlpatterns+=staticfiles_urlpatterns()
