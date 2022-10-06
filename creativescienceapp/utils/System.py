@@ -37,6 +37,8 @@ class System(object):
             request.session['role'] = user.role_id.name
     @staticmethod
     def logout(request):
+        
         del request.session['id']
+        
         
         

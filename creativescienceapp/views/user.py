@@ -38,8 +38,7 @@ def login(request):
     System.set_session(request,user)        
     return verificate(request,False,user)
 
-def verificate(request,ok,user):
-    
+def verificate(request,ok=False,user=False):  
     try:
         if not user.verified:  
             if ok:  
