@@ -1,5 +1,5 @@
 from django.contrib import admin
-from creativescienceapp.models import Role,User
+from creativescienceapp.models import Role,User,Token
 
 # Register your models here.
 
@@ -9,5 +9,8 @@ class UserAdmin(admin.ModelAdmin):
 class RoleAdmin(admin.ModelAdmin):
     list_display=('id','name')
     
+class TokenAdmin(admin.ModelAdmin):
+    list_display=('user_id','token')
 admin.site.register(Role,RoleAdmin)
 admin.site.register(User,UserAdmin)
+admin.site.register(Token,TokenAdmin)

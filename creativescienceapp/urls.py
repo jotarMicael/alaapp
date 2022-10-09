@@ -13,16 +13,22 @@ Including another URLconf
     1. Import the include() function: from django.urls import include, path
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
-from django.conf import settings
-from django.conf.urls.static import static
-from django.contrib import admin
-from django.urls import path, include
-from django.contrib.staticfiles.urls import staticfiles_urlpatterns
+
+from threading import activeCount
 from creativescienceapp.views import user
+from django.urls import path
 
 urlpatterns = [
-    path("admin/", admin.site.urls),
-    path('', include('creativescienceapp.urls')),
+    path('', user.index,name='index'),
+    path('home/',user.home, name='home'),  
+    path('logout/',user.logout, name='logout'),
+    path('register/',user.register,name='register'),
+    path('register_user/',user.register_user,name='register_user'),
+    path('login/',user.login, name='login'), 
+    path('verificate/',user.verificate, name='verificate'),
+    path('activate_account/',user.activate_account,name='activate_account'),
+    path('active_account/',user.active_account,name='active_account'),
 ]
-urlpatterns+=staticfiles_urlpatterns()
-urlpatterns+=static(settings.MEDIA_URL,document_root=settings.MEDIA_ROOT)
+
+
+
