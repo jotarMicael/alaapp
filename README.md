@@ -4,11 +4,6 @@
 ### Pre-requisitos 📋
 
 ```
--Instalar las dependencias
-
- 	python-dotenv 
-	python-decouple
-		
 -Instalar un entorno virtual para Python 3.8
 
 -Se debe crear un archivo .env con las siguientes variables para confirgurar el entorno:
@@ -16,8 +11,7 @@
 ...
 ### Instalación 🔧
 ```
-pip install python-dotenv 
-pip install python-decouple
+pip install -r requirements.txt
 
 .env:
   #DB
@@ -34,6 +28,9 @@ pip install python-decouple
   EMAIL_PORT='valor'
   EMAIL_HOST_USER='valor'
   EMAIL_HOST_PASSWORD='valor'
+  
+  #DOMAIN
+  DEFAULT_DOMAIN = 'http://localhost:8000'
 ```
 
 ## Despliegue 📦
