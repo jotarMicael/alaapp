@@ -35,7 +35,7 @@ pip install -r requirements.txt
 
 ## Despliegue 📦
 ```
-Python: python3 manage.py runserve
+Python: python3 manage.py runserver
 ```
 ## Autores ✒️
 
