@@ -65,6 +65,7 @@ def register_user(request):
         return redirect('home')       
     if User.objects.filter(email__exact=request.POST['email']).exists() or  User.objects.filter(username__exact=request.POST['username']).exists():
         messages.error(request,'Nombre de usuario/email ya utilizado')
+        System.logout
         return redirect('register')
     if not request.POST['email'] or not request.POST['username'] or not request.POST['password'] or not request.POST['repeat_password'] or not request.POST['name'] or (request.POST['password'] != request.POST['repeat_password']):
         if (request.POST['password'] != request.POST['repeat_password']):

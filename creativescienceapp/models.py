@@ -22,8 +22,8 @@ class User(models.Model):
     username=models.CharField(max_length=30,blank=False,null=False)
     email=models.EmailField(max_length=30,blank=False,null=False,unique=True)
     password=models.CharField(max_length=100,blank=False,null=False)
-    profile_image=models.ImageField(upload_to='creativescienceapp/static/profile_image/',default='creativescienceapp/static/profile_image/user.png',null=False,blank=False)
-    role_id=models.ForeignKey(Role,null=False,blank=False,on_delete=models.CASCADE)
+    profile_image=models.ImageField(upload_to='creativescience/static/profile_image/',default='creativescience/static/profile_image/user.png',null=False,blank=False)
+    role_id=models.ForeignKey(Role,null=False,blank=False,on_delete=models.DO_NOTHING)
     verified=models.BooleanField(default=False,blank=False,null=False)
 
 
@@ -36,7 +36,7 @@ class User(models.Model):
         db_table='user'
 
 class Token(models.Model):
-    user_id=models.ForeignKey(User,null=False,blank=False,on_delete=models.DO_NOTHING)
+    user_id=models.ForeignKey(User,null=True,blank=False,on_delete=models.DO_NOTHING)
     token=models.CharField(max_length=30,blank=False,null=False)
 
     def __str__(self):
