@@ -140,5 +140,8 @@ EMAIL_USE_TLS=config('EMAIL_USE_TLS')
 EMAIL_PORT=config('EMAIL_PORT')
 EMAIL_HOST_USER=config('EMAIL_HOST_USER')
 EMAIL_HOST_PASSWORD=config('EMAIL_HOST_PASSWORD')
+
 #from django.core.mail import send_mail
 #send_mail('Asunto', 'Mensaje', 'gameuxlegacy@gmail.com', ['micaberoy18@gmail.com'], fail_silently=False )
+
+NAVBAR_COLOR=config('NAVBAR_COLOR')

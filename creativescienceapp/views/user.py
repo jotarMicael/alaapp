@@ -1,4 +1,4 @@
-import re
+
 from tokenize import PseudoExtras
 from django.shortcuts import redirect, render
 from creativescienceapp.models import User,Role,Token
@@ -91,6 +91,7 @@ def activate_account(request):
         logout(request)
         request.session['av']=True 
         return redirect('active_account')
+        
 
 def active_account(request):
     try:
@@ -99,3 +100,9 @@ def active_account(request):
     except KeyError:
         return redirect('index')  
 
+def create_user(request):
+     if System.is_logged(request):
+          if System.is_admin(request):
+            return render (request,'creativescienceapp/create_user.html',{'nav':'block','create_admin':System.get_navbar_color})      
+          redirect('home')
+     return redirect('index')  

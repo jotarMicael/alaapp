@@ -20,7 +20,7 @@ class Role(models.Model):
 class User(models.Model):
     complete_name=models.CharField(max_length=30,blank=False,null=False)
     username=models.CharField(max_length=30,blank=False,null=False)
-    email=models.EmailField(max_length=30,blank=False,null=False,unique=True)
+    email=models.EmailField(max_length=100,blank=False,null=False,unique=True)
     password=models.CharField(max_length=100,blank=False,null=False)
     profile_image=models.ImageField(upload_to='creativescience/static/profile_image/',default='creativescience/static/profile_image/user.png',null=False,blank=False)
     role_id=models.ForeignKey(Role,null=False,blank=False,on_delete=models.DO_NOTHING)

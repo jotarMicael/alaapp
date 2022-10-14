@@ -12,7 +12,7 @@ import hashlib
 import random
 class System(object):
     
-
+    
     @staticmethod
     def is_logged(request):
         try:
@@ -87,6 +87,12 @@ class System(object):
             #check_password_hash(user.password,request.POST['password'])
             return object_token.user_id.id
         return None
+    def is_admin(request):
+        return (request.session['role']=='ROOT')
+        
 
-        
-        
+
+    @staticmethod
+    def get_navbar_color():
+        return settings.NAVBAR_COLOR
+  
