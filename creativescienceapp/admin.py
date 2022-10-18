@@ -1,5 +1,5 @@
 from django.contrib import admin
-from creativescienceapp.models import Role,User,Token
+from creativescienceapp.models import Role,User,Token,Proyect
 
 # Register your models here.
 
@@ -8,9 +8,14 @@ class UserAdmin(admin.ModelAdmin):
     readonly_fields= ('id',)
 class RoleAdmin(admin.ModelAdmin):
     list_display=('id','name')
+
+class ProyectAdmin(admin.ModelAdmin):
+    list_display=('id','name','description','image')
     
 class TokenAdmin(admin.ModelAdmin):
     list_display=('user_id','token')
+
 admin.site.register(Role,RoleAdmin)
 admin.site.register(User,UserAdmin)
 admin.site.register(Token,TokenAdmin)
+admin.site.register(Proyect,ProyectAdmin)

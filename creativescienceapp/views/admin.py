@@ -25,3 +25,10 @@ def register_admin(request):
     return redirect('create_user')
     #System.set_session(request,user)  
     #return user_verificate(request,True,user)
+
+def create_admin(request):
+     if System.is_logged(request):
+          if System.is_admin(request):
+            return render (request,'creativescienceapp/create_admin.html',{'nav':'block','create_admin':System.get_navbar_color})      
+          redirect('home')
+     return redirect('index')  

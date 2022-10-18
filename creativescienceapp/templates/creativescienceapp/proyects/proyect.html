@@ -1,0 +1,64 @@
+<!-- Modal -->
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="myModalTitle"></h5>
+
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+      </div>
+      <div class="modal-body">
+        <div class="row">
+          <img class="proyect_img img-fluid" alt="Responsive image" alt="..." />
+        </div>
+        <br />
+        <div class="row">
+          <p class="description"></p>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+      </div>
+    </div>
+  </div>
+</div>
+<!--  -->
+<div class="container">
+  <div class="row justify-content-start">
+    <div class="row row-cols-1 row-cols-md-4 g-4 mb-3">
+      {% for proyect in proyects|slice:':4' %}
+        <div class="col">
+          <div class="card">
+            <img src="{{ proyect.image.url }}" class="card-img-top" alt="..." />
+            <div class="card-body">
+              <h5 class="card-title"><strong>{{ proyect.name }}</strong></h5>
+
+              <p class="card-text">
+                <a href="javascript:;" onclick="showModal('{{ proyect.name }}','{{ proyect.description }}','{{ proyect.image.url }}')">{{ proyect.description|truncatechars:15 }}</a>
+              </p>
+            </div>
+          </div>
+        </div>
+      {% endfor %}
+    </div>
+  </div>
+  <div class="row justify-content-center mb-3">
+    <div class="col-3 col-md-1 g-4">
+      <form action="/my_proyect/{{ proyect.id }}" method="get">
+        {% csrf_token %}
+        <button type="button" class="btn btn-block bg-gradient-info">Todos...</button>
+      </form>
+    </div>
+  </div>
+
+  
+</div>
+
+<script>
+  function showModal(name, description, image) {
+    $('#myModal .modal-title').html(name)
+    $('#myModal .proyect_img').attr('src', image)
+    $('#myModal .description').html(description)
+    $('#myModal').modal()
+  }
+</script>

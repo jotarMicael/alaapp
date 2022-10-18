@@ -1,7 +1,7 @@
 
 from tokenize import PseudoExtras
 from django.shortcuts import redirect, render
-from creativescienceapp.models import User,Role,Token
+from creativescienceapp.models import User,Role,Token, Proyect
 from creativescienceapp.utils.System import System
 from django.contrib import messages
 from django.core.exceptions import ObjectDoesNotExist
@@ -22,7 +22,8 @@ def register(request):
 
 def home(request):
     if System.is_logged(request):
-        return render(request, 'creativescienceapp/home.html')    
+        proyects=Proyect.objects.filter(admins__id=request.session['id'])
+        return render(request, 'creativescienceapp/home.html',{'proyects':proyects})    
     return redirect('index')
     
     
@@ -100,9 +101,3 @@ def active_account(request):
     except KeyError:
         return redirect('index')  
 
-def create_user(request):
-     if System.is_logged(request):
-          if System.is_admin(request):
-            return render (request,'creativescienceapp/create_user.html',{'nav':'block','create_admin':System.get_navbar_color})      
-          redirect('home')
-     return redirect('index')  

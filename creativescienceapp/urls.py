@@ -15,7 +15,7 @@ Including another URLconf
 """
 
 from threading import activeCount
-from creativescienceapp.views import user, admin
+from creativescienceapp.views import user, admin, proyect
 from django.urls import path
 
 urlpatterns = [
@@ -28,8 +28,11 @@ urlpatterns = [
     path('verificate/',user.verificate, name='verificate'),
     path('activate_account/',user.activate_account,name='activate_account'),
     path('active_account/',user.active_account,name='active_account'),
-    path('create_user/',user.create_user,name='create_user'),
-    path('register_admin/',admin.register_admin,name='register_admin')
+    path('create_admin/',admin.create_admin,name='create_admin'),
+    path('register_admin/',admin.register_admin,name='register_admin'),
+    path('create_proyect/',proyect.create_proyect,name='create_proyect'),
+    path('register_proyect/',proyect.register_proyect,name='register_proyect'),
+  
 ]
 
 

@@ -1,8 +1,13 @@
-
 {% extends 'creativescienceapp/base/base.html' %}
 
 {% block title %} Home {% endblock %}
 
-{% block content %}    
-    
+{% block content_header %}{% endblock %}
+
+{% block content %}   
+
+{% if request.session.role == 'ADMIN' %}    
+    {% include 'creativescienceapp/proyects/proyect.html' %}
+{% endif %}    
+
 {% endblock %}

@@ -77,15 +77,15 @@
             </a>
             <ul class="nav nav-treeview"  style="display: {{ nav|default_if_none:'none' }}">
               <li class="nav-item" >
-                <a href="/create_user/" class="nav-link {{ create_admin|default_if_none:'' }}">
+                <a href="/create_admin/" class="nav-link {{ create_admin|default_if_none:'' }}">
                     <i class="fas fa-users"></i>
                   <p>Alta de admin</p>
                 </a>
               </li>
               <li class="nav-item">
-                <a href="" class="nav-link">
-                  <i class="far fa-circle nav-icon"></i>
-                  <p>Opciones 2</p>
+                <a href="/create_proyect/" class="nav-link {{ create_proyect|default_if_none:'' }}">
+                  <i class="fas fa-tasks"></i>
+                  <p>Crear proyecto</p>
                 </a>
               </li>
               <li class="nav-item">
