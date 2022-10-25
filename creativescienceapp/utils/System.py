@@ -88,8 +88,10 @@ class System(object):
             return object_token.user_id.id
         return None
     def is_admin(request):
-        return (request.session['role']=='ROOT')
-        
+        return (request.session['role']=='ADMIN')
+
+    def is_root(request):
+        return (request.session['role']=='ROOT')    
 
 
     @staticmethod

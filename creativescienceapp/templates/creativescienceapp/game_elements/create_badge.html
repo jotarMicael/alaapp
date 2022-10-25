@@ -1,0 +1,84 @@
+{% extends 'creativescienceapp/base/base.html' %}
+{% load leaflet_tags %}
+
+{% block title %}
+  Nueva Insignia
+{% endblock %}
+
+{% block content %}
+  <div class="col-md-6 mb-5 mt-0">
+    <div class="card card-primary">
+      <div class="card-header">
+        <h3 class="card-title">Crear Insignia</h3>
+      </div>
+      <!-- /.card-header -->
+      <!-- form start -->
+      <form action="/register_proyect/" id="send" method="post">
+        {% csrf_token %}
+        <div class="card-body">
+          <div class="col-12 col-md-12">
+            <label class="invalid-feedback d-block">
+              {% for message in messages %}
+                {% if message.tags == 'error' %}
+                  *{{ message }}
+                {% endif %}
+              {% endfor %}
+            </label>
+
+            <div class="form-group">
+              <label for="exampleInputEmail1">Nombre</label>
+              <input type="text" class="form-control" id="name" name="name" placeholder="Ingresar Nombre del proyecto" required />
+            </div>
+            <div class="form-group">
+              <label for="exampleInputEmail1">Área</label>
+              {% leaflet_map 'main' callback='window.map_init_basic' %}
+              <script>
+                function map_init_basic(map, options) {
+
+                  L.marker([-34, -57]).addTo(map);
+                  L.polygon([
+                    [51.509, -0.08],
+                    [51.503, -0.06],
+                    [51.51, -0.047]
+                  ]).addTo(map);
+                }
+              </script>
+            </div>
+            <div class="form-group">
+              <label for="exampleInputEmail1">Restricción de tiempo</label>
+              <input type="text" class="form-control" id="time" name="time" placeholder="Ingresar restricción" required />
+            </div>
+            <div class="form-group">
+              <label for="exampleInputEmail1">Score</label>
+              <input type="text" class="form-control" id="time" name="time" placeholder="Ingresar score" required />
+            </div>
+
+            <div class="form-group">
+              <label for="exampleFormControlFile1">Imagen de la insignia</label>
+              <input type="file" class="form-control-file" accept="image/*" name="image" />
+            </div>
+          </div>
+        </div>
+        <!-- /.card-body -->
+      </form>
+      <div class="card-footer">
+        <button id="show_confirmation" class="btn btn-primary">Crear Insignia</button>
+      </div>
+    </div>
+    {% for message in messages %}
+      {% if message.tags == 'success' %}
+        <div class="col-md-12 mb-1">
+          <div class="row">
+            <div class="col-12 d-flex justify-content-center">
+              <div class="alert alert-success alert-dismissible">
+                <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+                <i class="icon fas fa-check"></i>
+                {{ message }}
+              </div>
+            </div>
+          </div>
+        </div>
+      {% endif %}
+    {% endfor %}
+  </div>
+{% endblock %}

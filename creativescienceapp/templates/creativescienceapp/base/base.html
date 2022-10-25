@@ -1,7 +1,11 @@
 {% load static %}
+{% load leaflet_tags %}
+
 <!DOCTYPE html>
 <html lang="es">
 <head>
+  {% leaflet_js %}
+  {% leaflet_css %}
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>CC |{% block title %} {% endblock %}</title>
@@ -21,7 +25,8 @@
 
   <link rel="stylesheet" href="{% static 'dist/css/adminlte.min.css' %}">
 
- 
+  {% leaflet_js %}
+  {% leaflet_css %}
 </head>
 <body class="hold-transition sidebar-mini layout-navbar-fixed">
 <!-- Site wrapper -->
@@ -70,7 +75,7 @@
     <div class="float-right d-none d-sm-block">
       <b>Version</b> 0.0.1
     </div>
-    <strong>Copyright &copy; 2022 <a href="#">CienciaCRE</a>.</strong> Derechos reservados.
+    <strong>Copyright &copy; 2022 <a href="#">{{ settings.PROYECT_TITLE }}</a>.</strong> Derechos reservados.
   </footer>
 
   
@@ -92,8 +97,8 @@
 <!-- AdminLTE App -->
 <script src="{% static 'dist/js/adminlte.min.js' %}"></script>
 <script src="{% static 'dist/js/es.js' %}"></script>
-
-
+<script src="{% static 'dist/js/sweetalert2.all.min.js' %}"></script>
+<script src="{% static 'dist/js/showconfirmation.js' %}"></script>
 <!-- AdminLTE for demo purposes -->
 <script>
   $(function () {

@@ -22,7 +22,7 @@ def register(request):
 
 def home(request):
     if System.is_logged(request):
-        proyects=Proyect.objects.filter(admins__id=request.session['id'])
+        proyects=Proyect.objects.filter(admins__id=request.session['id']).order_by('-id')
         return render(request, 'creativescienceapp/home.html',{'proyects':proyects})    
     return redirect('index')
     

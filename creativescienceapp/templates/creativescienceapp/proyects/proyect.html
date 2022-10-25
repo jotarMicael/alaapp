@@ -7,18 +7,22 @@
 
         <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
       </div>
+    <form action='/modify_proyect/' method='POST'> {% csrf_token %}
       <div class="modal-body">
         <div class="row">
-          <img class="proyect_img img-fluid" alt="Responsive image" alt="..." />
+          <img class="proyect_img img-fluid" alt="Responsive image" />
         </div>
         <br />
         <div class="row">
-          <p class="description"></p>
+          <p  class="description"></p>
         </div>
+        <input type='hidden' class='id' name='id'></input>
       </div>
       <div class="modal-footer">
+        <button type="submit" class="btn btn-primary">Save changes</button>
         <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
       </div>
+    </form>
     </div>
   </div>
 </div>
@@ -29,12 +33,12 @@
       {% for proyect in proyects|slice:':4' %}
         <div class="col">
           <div class="card">
-            <img src="{{ proyect.image.url }}" class="card-img-top" alt="..." />
+            <img src="{{ proyect.image.url }}"  width="300px" height="180px"  class="card-img-top" alt="Responsive image" />
             <div class="card-body">
               <h5 class="card-title"><strong>{{ proyect.name }}</strong></h5>
 
               <p class="card-text">
-                <a href="javascript:;" onclick="showModal('{{ proyect.name }}','{{ proyect.description }}','{{ proyect.image.url }}')">{{ proyect.description|truncatechars:15 }}</a>
+                <a href="javascript:;" onclick="showModal('{{ proyect.name }}','{{ proyect.description }}','{{ proyect.image.url }}','{{ proyect.id }}')">{{ proyect.description|truncatechars:15 }}</a>
               </p>
             </div>
           </div>
@@ -43,10 +47,10 @@
     </div>
   </div>
   <div class="row justify-content-center mb-3">
-    <div class="col-3 col-md-1 g-4">
+    <div class="col-3 col-md-2 g-4">
       <form action="/my_proyect/{{ proyect.id }}" method="get">
         {% csrf_token %}
-        <button type="button" class="btn btn-block bg-gradient-info">Todos...</button>
+        <button type="button" class="btn btn-block bg-gradient-info">Ver más...</button>
       </form>
     </div>
   </div>
@@ -55,10 +59,11 @@
 </div>
 
 <script>
-  function showModal(name, description, image) {
+  function showModal(name, description, image,id) {
     $('#myModal .modal-title').html(name)
     $('#myModal .proyect_img').attr('src', image)
     $('#myModal .description').html(description)
+    $('#myModal .id').attr('value',id)
     $('#myModal').modal()
   }
 </script>

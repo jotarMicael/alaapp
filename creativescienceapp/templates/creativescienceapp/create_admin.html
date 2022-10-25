@@ -7,7 +7,7 @@
 
 
 
-<div class="register-box mt-3 mb-3">
+<div class="register-box mb-5">
     <div class="card card-outline card-primary">
       <div class="card-header text-center">
         <a href="" class="h1">Alta de administrador</a>
@@ -15,7 +15,7 @@
       <div class="card-body">
         <p class="login-box-msg">Datos</p>
   
-        <form action="/register_admin/" method="post">{% csrf_token %}
+        <form action="/register_admin/" id='send' method="post">{% csrf_token %}
           <label class="invalid-feedback d-block">{% for message in messages %}{% if message.tags == 'error' %}*{{ message }}{% endif %}{% endfor %}</label>
           <label class="valid-feedback d-block">{% for message in messages %}{% if message.tags == 'success' %}*{{ message }}{% endif %}{% endfor %}</label>
           <div class="input-group mb-3">
@@ -58,19 +58,20 @@
               </div>
             </div>
           </div>
+        </form>
           <div class="d-flex justify-content-center">
           
             
             <!-- /.col -->
             <div class="col-6 ">
                 
-                    <button type="submit" class="btn btn-primary btn-block">Alta</button>
+                    <button id='show_confirmation' class="btn btn-primary btn-block">Alta</button>
                 
             </div>
         
             <!-- /.col -->
           </div>
-        </form>
+        
   
         
   

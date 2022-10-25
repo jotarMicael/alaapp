@@ -44,6 +44,8 @@ INSTALLED_APPS = [
     "django.contrib.staticfiles",
     # local app
     'creativescienceapp',
+    'leaflet',
+    'djgeojson',
 ]
 
 MIDDLEWARE = [
@@ -58,6 +60,9 @@ MIDDLEWARE = [
 
 ROOT_URLCONF = "creativescience.urls"
 
+
+
+
 TEMPLATES = [
     {
         "BACKEND": "django.template.backends.django.DjangoTemplates",
@@ -69,6 +74,7 @@ TEMPLATES = [
                 "django.template.context_processors.request",
                 "django.contrib.auth.context_processors.auth",
                 "django.contrib.messages.context_processors.messages",
+                'django_settings_export.settings_export',
             ],
         },
     },
@@ -145,3 +151,29 @@ EMAIL_HOST_PASSWORD=config('EMAIL_HOST_PASSWORD')
 #send_mail('Asunto', 'Mensaje', 'gameuxlegacy@gmail.com', ['micaberoy18@gmail.com'], fail_silently=False )
 
 NAVBAR_COLOR=config('NAVBAR_COLOR')
+
+#ROOT NAVBAR
+ROOT_CREATE_ADMIN=config('ROOT_CREATE_ADMIN')
+ROOT_CREATE_PROYECT=config('ROOT_CREATE_PROYECT')
+#
+
+#ADMIN NAVBAR
+ADMIN_CREATE_BADGE=config('ADMIN_CREATE_BADGE')
+ADMIN_CREATE_CHALLENGE=config('ADMIN_CREATE_CHALLENGE')
+#
+
+#ROOT_HEADER
+ROOT_HEADER=config('ROOT_HEADER')
+
+#PROYECT_TITLE
+PROYECT_TITLE=config('PROYECT_TITLE')
+#
+
+SETTINGS_EXPORT = [
+    'ROOT_CREATE_ADMIN',
+    'ROOT_CREATE_PROYECT',
+    'ROOT_HEADER',
+    'PROYECT_TITLE',
+    'ADMIN_CREATE_BADGE',
+    'ADMIN_CREATE_CHALLENGE'
+]

@@ -44,7 +44,7 @@
     <!-- Brand Logo -->
     <a href="#" class="brand-link elevation-4">
       <img src="{% static 'dist/img/AdminLTELogo.png' %}" alt="AdminLTE Logo" class="brand-image img-circle elevation-3" style="opacity: .8">
-      <span class="brand-text font-weight-light">CienciaCRE</span>
+      <span class="brand-text font-weight-light">{{ settings.PROYECT_TITLE }}</span>
     </a>
 
     <!-- Sidebar -->
@@ -68,29 +68,23 @@
                with font-awesome or any other icon font library -->
           <li class="nav-item">
             <a href="#" class="nav-link">
-              <i class="nav-icon fas fa-tachometer-alt"></i>
+              <i class="fas fa-dice nav-icon"></i>
               <p>
-                Opciones
+                Game Elements
                 <i class="right fas fa-angle-left"></i>
               </p>
             </a>
-            <ul class="nav nav-treeview">
+            <ul class="nav nav-treeview" style="display: {{ nav|default_if_none:'none' }}">
               <li class="nav-item">
-                <a href="{% static 'index.html' %}" class="nav-link">
-                  <i class="far fa-circle nav-icon"></i>
-                  <p>Opciones 1</p>
+                <a href="/create_challenge/" class="nav-link {{ create_challenge|default_if_none:'' }}">
+                  <i class="fas fa-trophy nav-icon"></i>
+                  <p>{{ settings.ADMIN_CREATE_CHALLENGE }}</p>
                 </a>
               </li>
               <li class="nav-item">
-                <a href="{% static 'index2.html' %}" class="nav-link">
-                  <i class="far fa-circle nav-icon"></i>
-                  <p>Opciones 2</p>
-                </a>
-              </li>
-              <li class="nav-item">
-                <a href="{% static 'index3.html' %}" class="nav-link">
-                  <i class="far fa-circle nav-icon"></i>
-                  <p>Opciones 3</p>
+                <a href="/create_badge/" class="nav-link {{ create_badge|default_if_none:'' }}">
+                  <i class="fas fa-certificate nav-icon"></i>
+                  <p>{{ settings.ADMIN_CREATE_BADGE }}</p>
                 </a>
               </li>
             </ul>

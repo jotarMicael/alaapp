@@ -51,6 +51,7 @@ class Proyect(models.Model):
     name=models.CharField(max_length=30,blank=False,null=False)
     description=models.CharField(max_length=30,blank=True,null=True)
     image=models.ImageField(upload_to='creativescience/creativescienceapp/static/proyect_image/',default='creativescience/creativescienceapp/static/proyect_image/rio.jpg',null=False,blank=False)
+    avaliable=models.BooleanField(default=False,blank=False,null=False)
     admins=models.ManyToManyField(User)
 
     def __str__(self):
@@ -60,3 +61,32 @@ class Proyect(models.Model):
         verbose_name='Proyect'
         verbose_name_plural="Proyects"
         db_table='proyect'
+
+class GameElement(models.Model):
+    area=models.CharField(max_length=150,blank=False,null=False)
+    time_restriction=models.DateTimeField(blank=False,null=False)
+    goal=models.IntegerField(blank=False,null=False)
+    owner=models.ForeignKey(User,null=True,blank=True,on_delete=models.DO_NOTHING)
+    
+    class Meta:
+        verbose_name='GameElement'
+        verbose_name_plural="GameElements"
+        db_table='game_element'
+
+    def __str__(self):
+        return f'{self.area},{self.time_restriction},{self.goal},{self.owner}'
+class Badge(GameElement):
+    image=models.ImageField(upload_to='creativescience/creativescienceapp/static/game_elements_image/',default='creativescience/creativescienceapp/static/game_elements_image/ge.jpg',null=False,blank=False)
+    parent=models.ForeignKey('self',null=True,blank=True,on_delete=models.DO_NOTHING)
+    class Meta:
+        verbose_name='Badge'
+        verbose_name_plural="Badges"
+        db_table='badge'
+    def __str__(self):
+        return f'{self.image},{self.parent}'
+class Challenge(GameElement):
+    pass
+    class Meta:
+        verbose_name='Challenge'
+        verbose_name_plural=" Challenges"
+        db_table='challenge'
