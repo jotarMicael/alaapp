@@ -1,6 +1,6 @@
 
 from django.db import models
-from ludoscienceapp.models.game_element import GameElement
+from creativescienceapp.models.game_element import GameElement
 # Create your models here.
 class Challenge(GameElement):
     pass

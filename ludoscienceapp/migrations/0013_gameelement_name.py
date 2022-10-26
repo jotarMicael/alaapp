@@ -6,7 +6,7 @@ from django.db import migrations, models
 class Migration(migrations.Migration):
 
     dependencies = [
-        ("ludoscienceapp", "0012_area_alter_gameelement_area"),
+        ("creativescienceapp", "0012_area_alter_gameelement_area"),
     ]
 
     operations = [

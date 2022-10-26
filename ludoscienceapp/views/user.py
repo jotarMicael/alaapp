@@ -1,10 +1,17 @@
 
 from tokenize import PseudoExtras
 from django.shortcuts import redirect, render
+<<<<<<< HEAD:ludoscienceapp/views/user.py
 from ludoscienceapp.models.role import Role
 from ludoscienceapp.models.user import User
 from ludoscienceapp.models.proyect import Proyect
 from ludoscienceapp.utils.System import System
+=======
+from creativescienceapp.models.role import Role
+from creativescienceapp.models.token import Token
+from creativescienceapp.models.proyect import Proyect
+from creativescienceapp.utils.System import System
+>>>>>>> fc50664f765aba41ae26cac3f94c5b094dfcf932:creativescienceapp/views/user.py
 from django.contrib import messages
 from django.core.exceptions import ObjectDoesNotExist
 from werkzeug.security import generate_password_hash,check_password_hash
