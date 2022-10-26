@@ -7,7 +7,7 @@ import django.db.models.deletion
 class Migration(migrations.Migration):
 
     dependencies = [
-        ("creativescienceapp", "0011_gameelement_owner"),
+        ("ludoscienceapp", "0011_gameelement_owner"),
     ]
 
     operations = [
@@ -39,7 +39,7 @@ class Migration(migrations.Migration):
                 blank=True,
                 null=True,
                 on_delete=django.db.models.deletion.DO_NOTHING,
-                to="creativescienceapp.area",
+                to="ludoscienceapp.area",
             ),
         ),
     ]

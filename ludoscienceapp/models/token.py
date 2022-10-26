@@ -1,6 +1,6 @@
 
 from django.db import models
-from creativescienceapp.models.user  import User
+from ludoscienceapp.models.user  import User
 
 # Create your models here.
 

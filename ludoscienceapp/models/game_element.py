@@ -1,7 +1,7 @@
 from enum import unique
 from django.db import models
-from creativescienceapp.models.area  import Area
-from creativescienceapp.models.user  import User
+from ludoscienceapp.models.area  import Area
+from ludoscienceapp.models.user  import User
 
 # Create your models here.
 

@@ -4,11 +4,7 @@ from django.shortcuts import render
 from django.contrib.sites.shortcuts import get_current_site
 from django.contrib.auth import logout
 from django.template.loader import render_to_string
-<<<<<<< HEAD:ludoscienceapp/utils/System.py
 from ludoscienceapp.models.token import Token
-=======
-from creativescienceapp.models.token import Token
->>>>>>> fc50664f765aba41ae26cac3f94c5b094dfcf932:creativescienceapp/utils/System.py
 from werkzeug.security import generate_password_hash,check_password_hash
 from decouple import config
 

@@ -6,7 +6,7 @@ from django.db import migrations, models
 class Migration(migrations.Migration):
 
     dependencies = [
-        ("creativescienceapp", "0013_gameelement_name"),
+        ("ludoscienceapp", "0013_gameelement_name"),
     ]
 
     operations = [
