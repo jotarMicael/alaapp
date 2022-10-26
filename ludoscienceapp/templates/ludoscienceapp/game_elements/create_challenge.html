@@ -1,0 +1,76 @@
+{% extends 'ludoscienceapp/base/base.html' %}
+{% block title %}
+  Nuevo Desafío
+{% endblock %}
+
+{% block content %}
+  <div class="col-md-6 mb-5 mt-0">
+    <div class="card card-primary">
+      <div class="card-header">
+        <h3 class="card-title">Crear Desafío</h3>
+      </div>
+      <!-- /.card-header -->
+      <!-- form start -->
+      <form action="/process_challenge/" id="send" method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+        <div class="card-body">
+          <div class="col-12 col-md-12">
+            <label class="invalid-feedback d-block">
+              {% for message in messages %}
+                {% if message.tags == 'error' %}
+                  *{{ message }}
+                {% endif %}
+              {% endfor %}
+            </label>
+            <div class="form-group">
+              <label for="exampleInputEmail1">Nombre</label>
+              <input type="text" class="form-control" id="name" name="name" placeholder="Ingresar nombre del desafío" required>
+            </div>
+            <div class="form-group">
+              <label for="exampleInputEmail1">Seleccionar área</label>
+              <div id="map" style="height: 180px !important"></div>
+            </div>
+            <div class="form-group">
+              <label for="exampleInputEmail1">Restricción de tiempo</label>
+              <div class="input-group">
+                <div class="input-group-prepend">
+
+                  <span class="input-group-text">
+                    <i class="far fa-calendar-alt"></i>
+                  </span>
+                </div>
+                <input type="text" id="datetime" name="datetime"  class="form-control float-right">
+              </div>
+            </div>
+            <div class="form-group">
+              <label for="exampleInputEmail1">Score</label>
+              <input type="number"  min="1" max="999" class="form-control" id="score" name="score" placeholder="Ingresar score" required />
+            </div>
+            <input type="hidden" class="form-control"  id="lat" name="lat"   required />
+            <input type="hidden" class="form-control"  id="lon"  name="lon"  required />
+          </div>
+        </div>
+        <!-- /.card-body -->
+      </form>
+      <div class="card-footer">
+        <button id="show_confirmation" class="btn btn-primary">Crear Desafío</button>
+      </div>
+    </div>
+    {% for message in messages %}
+      {% if message.tags == 'success' %}
+        <div class="col-md-12 mb-1">
+          <div class="row">
+            <div class="col-12 d-flex justify-content-center">
+              <div class="alert alert-success alert-dismissible">
+                <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+                <i class="icon fas fa-check"></i>
+                {{ message }}
+              </div>
+            </div>
+          </div>
+        </div>
+      {% endif %}
+    {% endfor %}
+  </div>
+{% endblock %}
+

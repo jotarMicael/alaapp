@@ -1,0 +1,17 @@
+{% extends 'ludoscienceapp/base/base.html' %}
+
+{% block title %}
+  Home
+{% endblock %}
+
+{% block content_header %}
+  {% if request.session.role == 'ROOT' %}
+    {% include 'ludoscienceapp/root/root_header.html' %}
+  {% endif %}
+{% endblock %}
+
+{% block content %}
+  {% if request.session.role == 'ADMIN' %}
+    {% include 'ludoscienceapp/proyects/proyect.html' %}
+  {% endif %}
+{% endblock %}

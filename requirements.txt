@@ -9,5 +9,5 @@ python-decouple==3.6
 python-dotenv==0.21.0
 sqlparse==0.4.3
 Werkzeug==2.2.2
-django-geojson==3.2.1
-django-leaflet==0.28.3
+django-settings-export==1.2.1
+
