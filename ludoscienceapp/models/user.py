@@ -10,7 +10,7 @@ class User(models.Model):
     username=models.CharField(max_length=30,blank=False,null=False)
     email=models.EmailField(max_length=100,blank=False,null=False,unique=True)
     password=models.CharField(max_length=100,blank=False,null=False)
-    profile_image=models.ImageField(upload_to='ludoscience/ludoscienceapp/static/profile_image/',default='ludoscience/ludoscienceapp/static/profile_image/user.png',null=False,blank=False)
+    profile_image=models.ImageField(upload_to='ludoscienceapp/static/profile_image/',default='ludoscienceapp/static/profile_image/user.png',null=False,blank=False)
     role_id=models.ForeignKey(Role,null=False,blank=False,on_delete=models.DO_NOTHING)
     verified=models.BooleanField(default=False,blank=False,null=False)
 
