@@ -1,18 +1,17 @@
 {% load static %}
-{% load leaflet_tags %}
+
 
 <!DOCTYPE html>
 <html lang="es">
 <head>
-  {% leaflet_js %}
-  {% leaflet_css %}
+
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>CC |{% block title %} {% endblock %}</title>
+  <title>LC |{% block title %} {% endblock %}</title>
  {% block link %} {% endblock %}
   
   <!-- Font Awesome -->
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
+  <link rel="stylesheet" href='https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback'>
   <!-- Font Awesome -->
   <link rel="stylesheet" href="{% static 'plugins/fontawesome-free/css/all.min.css' %}">
 
@@ -25,8 +24,14 @@
 
   <link rel="stylesheet" href="{% static 'dist/css/adminlte.min.css' %}">
 
-  {% leaflet_js %}
-  {% leaflet_css %}
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.2/dist/leaflet.css"
+     integrity="sha256-sA+zWATbFveLLNqWO2gtiw3HL/lh1giY/Inf1BJ0z14="
+     crossorigin=""/>
+     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet.draw/1.0.4/leaflet.draw.css"/>
+
+     <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.css" />
+
+
 </head>
 <body class="hold-transition sidebar-mini layout-navbar-fixed">
 <!-- Site wrapper -->
@@ -99,8 +104,17 @@
 <script src="{% static 'dist/js/es.js' %}"></script>
 <script src="{% static 'dist/js/sweetalert2.all.min.js' %}"></script>
 <script src="{% static 'dist/js/showconfirmation.js' %}"></script>
-<!-- AdminLTE for demo purposes -->
+<script type="text/javascript" src="https://cdn.jsdelivr.net/momentjs/latest/moment.min.js"></script>
+<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.min.js"></script>
+<script src="https://unpkg.com/leaflet@1.9.2/dist/leaflet.js"
+     integrity="sha256-o9N1jGDZrf5tS+Ft4gbIK7mYMipq9lqpVJ91xHSyKhg="
+     crossorigin=""></script>
+     <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet.draw/1.0.4/leaflet.draw.js"></script>
+<script src="{% static 'dist/js/daterangepickerES.js' %}"></script>
+<script src="{% static 'dist/js/datetime.js' %}"></script>
+<script src="{% static 'dist/js/map.js' %}"></script>
 <script>
+
   $(function () {
     //Initialize Select2 Elements
     $('.select2').select2(  {
@@ -113,11 +127,10 @@
     })  
 
    
-
   })
 
-
-  
 </script>
+
+
 </body>
 </html>

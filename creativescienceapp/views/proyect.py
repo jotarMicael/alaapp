@@ -1,7 +1,9 @@
 from email import message
 from tokenize import PseudoExtras
 from django.shortcuts import redirect, render
-from creativescienceapp.models import Proyect, User, Role
+from creativescienceapp.models.proyect import Proyect
+from creativescienceapp.models.user import User
+from creativescienceapp.models.role import Role
 from creativescienceapp.utils.System import System
 from django.contrib import messages
 from django.core.exceptions import ObjectDoesNotExist
@@ -26,7 +28,6 @@ def register_proyect(request):
             for admin_id in request.POST.getlist('select[]'):
                  ad=User.objects.get(id__exact=admin_id)
                  proyect.admins.add(ad)
-            print(proyect)
             messages.success(request,'¡Proyecto creado con éxito¡')
             return redirect('create_proyect') 
      return redirect('index')  

@@ -35,7 +35,9 @@ urlpatterns = [
     path('register_proyect/',proyect.register_proyect,name='register_proyect'),
     path('edit_proyect/',proyect.edit_proyect,name='register_proyect'),
     path('create_badge/',game_elements.badge,name='create_badge'),
+    path('process_badge/',game_elements.create_badge,name='process_badge'),
     path('create_challenge/',game_elements.challenge,name='create_challenge'),
+    path('process_challenge/',game_elements.process_challenge,name='process_challenge'),
 ]
 
 

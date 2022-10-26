@@ -1,7 +1,9 @@
 
 from tokenize import PseudoExtras
 from django.shortcuts import redirect, render
-from creativescienceapp.models import User,Role,Token, Proyect
+from creativescienceapp.models.role import Role
+from creativescienceapp.models.token import Token
+from creativescienceapp.models.proyect import Proyect
 from creativescienceapp.utils.System import System
 from django.contrib import messages
 from django.core.exceptions import ObjectDoesNotExist

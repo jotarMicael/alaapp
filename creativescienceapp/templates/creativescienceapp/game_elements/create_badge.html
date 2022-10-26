@@ -1,5 +1,4 @@
 {% extends 'creativescienceapp/base/base.html' %}
-{% load leaflet_tags %}
 
 {% block title %}
   Nueva Insignia
@@ -13,7 +12,7 @@
       </div>
       <!-- /.card-header -->
       <!-- form start -->
-      <form action="/register_proyect/" id="send" method="post">
+      <form action="/process_badge/" id="send" method="post" enctype="multipart/form-data">
         {% csrf_token %}
         <div class="card-body">
           <div class="col-12 col-md-12">
@@ -24,35 +23,44 @@
                 {% endif %}
               {% endfor %}
             </label>
-
             <div class="form-group">
               <label for="exampleInputEmail1">Nombre</label>
-              <input type="text" class="form-control" id="name" name="name" placeholder="Ingresar Nombre del proyecto" required />
+              <input type="text" class="form-control" id="name" name="name" placeholder="Ingresar nombre de la insignia" required>
             </div>
             <div class="form-group">
-              <label for="exampleInputEmail1">Área</label>
-              {% leaflet_map 'main' callback='window.map_init_basic' %}
-              <script>
-                function map_init_basic(map, options) {
-
-                  L.marker([-34, -57]).addTo(map);
-                  L.polygon([
-                    [51.509, -0.08],
-                    [51.503, -0.06],
-                    [51.51, -0.047]
-                  ]).addTo(map);
-                }
-              </script>
+              <label for="exampleInputEmail1">Seleccionar área</label>
+              <div id="map" style="height: 180px !important" ></div>
             </div>
             <div class="form-group">
               <label for="exampleInputEmail1">Restricción de tiempo</label>
-              <input type="text" class="form-control" id="time" name="time" placeholder="Ingresar restricción" required />
+              <div class="input-group">
+                <div class="input-group-prepend">
+
+                  <span class="input-group-text">
+                    <i class="far fa-calendar-alt"></i>
+                  </span>
+                </div>
+                <input type="text" id="datetime" name="datetime"  class="form-control float-right">
+              </div>
             </div>
             <div class="form-group">
               <label for="exampleInputEmail1">Score</label>
-              <input type="text" class="form-control" id="time" name="time" placeholder="Ingresar score" required />
+              
+              <input type="number"  min="1" max="999" class="form-control" id="score" name="score" placeholder="Ingresar score" required />
             </div>
-
+            <input type="hidden" class="form-control"  id="lat" name="lat"   required />
+            <input type="hidden" class="form-control"  id="lon"  name="lon"  required />
+            
+              <div class="form-group">
+                <label>Insignia Requerida</label>
+                <select id="" name="select" class="form-control select2 select2-info" data-dropdown-css-class="select2-info"  data-placeholder="Seleccionar administradores" style="width: 100%;" required>          
+                  <option value='0'>Ninguna</option>
+                  {% for badge in badges %}
+                  <option value='{{ badge.id }}'>{{ badge.name }}</option>
+                  {% endfor %}
+                </select>
+              </div>
+           
             <div class="form-group">
               <label for="exampleFormControlFile1">Imagen de la insignia</label>
               <input type="file" class="form-control-file" accept="image/*" name="image" />
@@ -82,3 +90,4 @@
     {% endfor %}
   </div>
 {% endblock %}
+

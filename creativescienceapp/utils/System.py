@@ -4,7 +4,7 @@ from django.shortcuts import render
 from django.contrib.sites.shortcuts import get_current_site
 from django.contrib.auth import logout
 from django.template.loader import render_to_string
-from creativescienceapp.models import Token
+from creativescienceapp.models.token import Token
 from werkzeug.security import generate_password_hash,check_password_hash
 from decouple import config
 
