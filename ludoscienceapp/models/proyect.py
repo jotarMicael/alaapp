@@ -7,8 +7,8 @@ from ludoscienceapp.models.user  import User
 
 class Proyect(models.Model):
     name=models.CharField(max_length=30,blank=False,null=False)
-    description=models.CharField(max_length=30,blank=True,null=True)
-    image=models.ImageField(upload_to='ludoscience/ludoscienceapp/static/proyect_image/',default='ludoscience/ludoscienceapp/static/proyect_image/rio.jpg',null=False,blank=False)
+    description=models.CharField(max_length=500,blank=True,null=True)
+    image=models.ImageField(upload_to='ludoscienceapp/static/proyect_image/',default='ludoscienceapp/static/proyect_image/rio.jpg',null=False,blank=False)
     avaliable=models.BooleanField(default=False,blank=False,null=False)
     admins=models.ManyToManyField(User)
 

@@ -7,7 +7,7 @@ $('#show_confirmation').click(function() {
       confirmButtonColor: '#3085d6',
       cancelButtonColor: '#d33',
       cancelButtonText: 'Cancelar.',
-      confirmButtonText: 'Si,crear.'
+      confirmButtonText: 'Si.'
     }).then((result) => {
       if (result.isConfirmed) {       
         $(
