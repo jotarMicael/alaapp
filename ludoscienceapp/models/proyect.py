@@ -1,7 +1,8 @@
 
 from django.db import models
 from ludoscienceapp.models.user  import User
-
+from ludoscienceapp.models.proyect_area  import ProyectArea
+from ludoscienceapp.models.time_restriction  import TimeRestriction
 # Create your models here.
 
 
@@ -11,9 +12,11 @@ class Proyect(models.Model):
     image=models.ImageField(upload_to='ludoscienceapp/static/proyect_image/',default='ludoscienceapp/static/proyect_image/rio.jpg',null=False,blank=False)
     avaliable=models.BooleanField(default=False,blank=False,null=False)
     admins=models.ManyToManyField(User)
+    areas=models.ManyToManyField(ProyectArea)
+    time_restriction=models.ManyToManyField(TimeRestriction)
 
     def __str__(self):
-        return f'{self.name},{self.description},{self.image},{self.admins}'
+        return f'{self.name},{self.description},{self.image},{self.admins},{self.areas},{self.time_restriction}'
 
     class Meta:
         verbose_name='Proyect'

@@ -29,6 +29,18 @@
             "username":"admin",
             "email": "unemail@gmail.com",
             "password" : "sha256$eVxG7RHu1a$ac32f95f9fab40e744380d640c82609fdb73bf8625db281ee2376cdec93761e5",
+            "role_id_id":2,
+            "verified": 1
+        }
+    },
+    {
+        "model": "ludoscienceapp.User",
+        "pk": "2",
+        "fields": {
+            "complete_name": "Root",
+            "username":"root",
+            "email": "unemail2@gmail.com",
+            "password" : "sha256$eVxG7RHu1a$ac32f95f9fab40e744380d640c82609fdb73bf8625db281ee2376cdec93761e5",
             "role_id_id":1,
             "verified": 1
         }

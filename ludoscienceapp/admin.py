@@ -21,7 +21,7 @@ class TokenAdmin(admin.ModelAdmin):
     list_display=('user_id','token')
 
 class GameElementAdmin(admin.ModelAdmin):
-    list_display=('name','area','time_restriction','goal','owner')
+    list_display=('name','goal','owner')
 
 class BadgeAdmin(admin.ModelAdmin):
     list_display=('image','parent')

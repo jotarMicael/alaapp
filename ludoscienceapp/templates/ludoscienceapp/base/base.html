@@ -31,7 +31,7 @@
 
      <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.css" />
 
-
+    
 </head>
 <body class="hold-transition sidebar-mini layout-navbar-fixed">
 <!-- Site wrapper -->
@@ -90,7 +90,8 @@
 <!-- ./wrapper -->
 
 <!-- jQuery -->
-<script src="{% static 'plugins/jquery/jquery.min.js' %}"></script>
+
+<script src="{% static 'plugins/jquery/jquery.js' %}"></script>
 <!-- Bootstrap 4 -->
 <script src="{% static 'plugins/bootstrap/js/bootstrap.bundle.min.js' %}"></script>
 <!-- Select2 -->
@@ -113,6 +114,9 @@
 <script src="{% static 'dist/js/daterangepickerES.js' %}"></script>
 <script src="{% static 'dist/js/datetime.js' %}"></script>
 <script src="{% static 'dist/js/map.js' %}"></script>
+<script src="{% static 'dist/js/chained.js' %}"></script>
+<script src="{% static 'dist/js/chained.min.js' %}"></script>
+<script src="{% static 'dist/js/get_tr_areas.js' %}"></script>
 <script>
 
   $(function () {
@@ -126,9 +130,8 @@
       theme: 'bootstrap4'
     })  
 
-   
+    
   })
-
 </script>
 
 
