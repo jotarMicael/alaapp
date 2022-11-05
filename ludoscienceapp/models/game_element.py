@@ -1,6 +1,6 @@
 from enum import unique
 from django.db import models
-from ludoscienceapp.models.area  import Area
+from ludoscienceapp.models.proyect import Proyect
 from ludoscienceapp.models.user  import User
 
 # Create your models here.
@@ -10,6 +10,7 @@ class GameElement(models.Model):
     goal=models.IntegerField(blank=True,null=True)
     owner=models.ForeignKey(User,null=True,blank=True,on_delete=models.DO_NOTHING)
     rate=models.FloatField(blank=True,null=True)
+    proyect=models.ForeignKey(Proyect,blank=False,null=False,on_delete=models.DO_NOTHING)
     class Meta:
         verbose_name='GameElement'
         verbose_name_plural="GameElements"

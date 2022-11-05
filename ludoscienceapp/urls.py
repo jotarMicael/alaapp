@@ -15,7 +15,7 @@ Including another URLconf
 """
 
 from threading import activeCount
-from ludoscienceapp.views import user, admin, proyect, game_elements
+from ludoscienceapp.views import user, admin, proyect, game_elements, checkin
 from ludoscienceapp.views.game_element_view import GameElementView
 from django.urls import path
 
@@ -39,7 +39,9 @@ urlpatterns = [
     path('process_badge/',game_elements.create_badge,name='process_badge'),
     path('create_challenge/',game_elements.challenge,name='create_challenge'),
     path('process_challenge/',game_elements.process_challenge,name='process_challenge'),
-    path('game_element_view/',GameElementView.as_view(),name='game_element_view')
+    path('game_element_view/',GameElementView.as_view(),name='game_element_view'),
+    path('create_checkin/',checkin.checkin,name='create_checkin'),
+    path('process_checkin/',checkin.process_checkin,name='process_checkin')
 ]
 
 

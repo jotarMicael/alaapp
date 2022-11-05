@@ -11,10 +11,10 @@ map.addLayer(drawnItems)
 var drawControl = new L.Control.Draw({
     draw: {
         polygon: false,
-        marker: false,
+        marker: true,
         circlemarker: false,
         rectangle: false,
-        circle: true,
+        circle: false,
         polyline: false,     
     },
     edit: {
@@ -24,7 +24,9 @@ var drawControl = new L.Control.Draw({
 });
 
 L.drawLocal.draw.toolbar.buttons.circle = 'Seleccionar área.';
+L.drawLocal.draw.toolbar.buttons.marker = 'Seleccionar un punto.';
 L.drawLocal.draw.handlers.circle.tooltip.start= 'Hacer click en el área.';
+L.drawLocal.draw.handlers.marker.tooltip.start= 'Hacer click en el área.';
 L.drawLocal.draw.toolbar.actions.title='Cancelar'
 L.drawLocal.draw.toolbar.actions.text='Cancelar'
 L.drawLocal.edit.toolbar.buttons.removeDisabled= 'Sin área para eliminar'

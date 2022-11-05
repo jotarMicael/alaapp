@@ -91,7 +91,10 @@ class System(object):
         return (request.session['role']=='ADMIN')
 
     def is_root(request):
-        return (request.session['role']=='ROOT')    
+        return (request.session['role']=='ROOT')  
+
+    def is_player(request):
+        return (request.session['role']=='PLAYER')  
 
 
     @staticmethod

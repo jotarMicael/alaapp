@@ -68,29 +68,18 @@
                with font-awesome or any other icon font library -->
           <li class="nav-item">
             <a href="#" class="nav-link">
-              <i class="nav-icon fas fa-tachometer-alt"></i>
+         
+              <i class="fas fa-spell-check nav-icon"></i>
               <p>
-                Opciones
+                CheckIn
                 <i class="right fas fa-angle-left"></i>
               </p>
             </a>
-            <ul class="nav nav-treeview">
+            <ul class="nav nav-treeview" style="display: {{ nav|default_if_none:'none' }}">
               <li class="nav-item">
-                <a href="{% static 'index.html' %}" class="nav-link">
-                  <i class="far fa-circle nav-icon"></i>
-                  <p>Opciones 1</p>
-                </a>
-              </li>
-              <li class="nav-item">
-                <a href="{% static 'index2.html' %}" class="nav-link">
-                  <i class="far fa-circle nav-icon"></i>
-                  <p>Opciones 2</p>
-                </a>
-              </li>
-              <li class="nav-item">
-                <a href="{% static 'index3.html' %}" class="nav-link">
-                  <i class="far fa-circle nav-icon"></i>
-                  <p>Opciones 3</p>
+                <a href="/create_checkin/" class="nav-link {{ create_checkin|default_if_none:'' }}">
+                  <i class="fas fa-check-circle nav-icon"></i>
+                  <p>{{ settings.PLAYER_CREATE_CHECKIN }}</p>
                 </a>
               </li>
             </ul>

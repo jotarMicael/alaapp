@@ -1,4 +1,8 @@
+
+
+
 $(function () {
+    
 
     function removeOptions(selectElement) {
       var i, L = selectElement.options.length - 1;

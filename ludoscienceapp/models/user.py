@@ -13,11 +13,11 @@ class User(models.Model):
     profile_image=models.ImageField(upload_to='ludoscienceapp/static/profile_image/',default='ludoscienceapp/static/profile_image/user.png',null=False,blank=False)
     role_id=models.ForeignKey(Role,null=False,blank=False,on_delete=models.DO_NOTHING)
     verified=models.BooleanField(default=False,blank=False,null=False)
-
+    proyects=models.ManyToManyField('ludoscienceapp.proyect', related_name='proyects')
 
     def __str__(self):
         return f'{self.complete_name},{self.username},{self.email},{self.password},{self.profile_image},{self.verified},{self.role_id}'
-        #return (self.complete_name,self.username,self.email,self.password,self.profile_image,self.verified,self.role_id)
+      
     class Meta:
         verbose_name='User'
         verbose_name_plural="Users"

@@ -1,5 +1,5 @@
 const locale = {
-    "format": "YYYY-MM-DD",
+    "format": "YYYY-MM-DD h:mm A",
     "separator": " - ",
     "applyLabel": "Guardar",
     "cancelLabel": "Cancelar",

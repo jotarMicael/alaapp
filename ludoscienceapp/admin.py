@@ -6,6 +6,7 @@ from ludoscienceapp.models.game_element import GameElement
 from ludoscienceapp.models.badge import Badge
 from ludoscienceapp.models.token import Token
 from ludoscienceapp.models.area import Area
+from ludoscienceapp.models.check_in import CheckIn
 # Register your models here.
 
 class UserAdmin(admin.ModelAdmin):
@@ -29,6 +30,9 @@ class BadgeAdmin(admin.ModelAdmin):
 class AreaAdmin(admin.ModelAdmin):
     list_display=('lat','long')
 
+class CheckInAdmin(admin.ModelAdmin):
+    list_display=('user','proyect','latitude','longitude','datetime')
+
 admin.site.register(Role,RoleAdmin)
 admin.site.register(User,UserAdmin)
 admin.site.register(Token,TokenAdmin)
@@ -36,3 +40,4 @@ admin.site.register(Proyect,ProyectAdmin)
 admin.site.register(GameElement,GameElementAdmin)
 admin.site.register(Badge,BadgeAdmin)
 admin.site.register(Area,AreaAdmin)
+admin.site.register(CheckIn,CheckInAdmin)

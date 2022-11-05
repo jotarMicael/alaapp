@@ -51,10 +51,13 @@ def process_challenge(request):
           if System.is_admin(request):
 
               if not request.POST['name'] or not request.POST['area'] or not request.POST['proyect'] or not request.POST['time_restriction'] or not request.POST['goal']:
-                  messages.error(request,'Debe ingresar todos los campos')
-                  return challenge(request) 
-              
-              challenge_=Challenge(name=request.POST['name'],area=ProyectArea.objects.get(id__exact=request.POST['area']),time_restriction=TimeRestriction.objects.get(id__exact=request.POST['time_restriction']),goal=request.POST['goal'],owner=User.objects.get(id__exact=request.session['id']))
-              challenge_.save()            
-              messages.success(request,'Se ha creado correctamente')
+                  messages.error(request,'Debe ingresar todos los campos')              
+              elif Challenge.objects.filter(name__iexact=request.POST['name'],proyect=Proyect.objects.get(id__exact=request.POST['proyect'])).exists():
+                  messages.error(request,'Ya hay un ge con ese nombre')   
+              else: 
+                challenge_=Challenge(name=request.POST['name'],area=ProyectArea.objects.get(id__exact=request.POST['area']),time_restriction=TimeRestriction.objects.get(id__exact=request.POST['time_restriction']),goal=request.POST['goal'],owner=User.objects.get(id__exact=request.session['id']),proyect=Proyect.objects.get(id__exact=request.POST['proyect']))
+                challenge_.save()            
+                messages.success(request,'Se ha creado correctamente')
               return challenge(request) 
+          return redirect('home')  
+    return redirect('index')  
