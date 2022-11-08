@@ -13,3 +13,7 @@ class ProyectArea(models.Model):
 
     def __str__(self):
         return f'{self.name},{self.polygon}'  
+
+    def is_valid_area(self,lat,lon):
+        #return (lat and lon between polygon)
+        return True

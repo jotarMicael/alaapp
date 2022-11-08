@@ -13,7 +13,6 @@
             "name": "ADMIN"
         }
     },
-
     {
         "model": "ludoscienceapp.Role",
         "pk": "3",
@@ -26,10 +25,10 @@
         "pk": "1",
         "fields": {
             "complete_name": "Admin",
-            "username":"admin",
+            "username": "admin",
             "email": "unemail@gmail.com",
-            "password" : "sha256$eVxG7RHu1a$ac32f95f9fab40e744380d640c82609fdb73bf8625db281ee2376cdec93761e5",
-            "role_id_id":2,
+            "password": "sha256$eVxG7RHu1a$ac32f95f9fab40e744380d640c82609fdb73bf8625db281ee2376cdec93761e5",
+            "role_id_id": 2,
             "verified": 1
         }
     },
@@ -38,12 +37,33 @@
         "pk": "2",
         "fields": {
             "complete_name": "Root",
-            "username":"root",
+            "username": "root",
             "email": "unemail2@gmail.com",
-            "password" : "sha256$eVxG7RHu1a$ac32f95f9fab40e744380d640c82609fdb73bf8625db281ee2376cdec93761e5",
-            "role_id_id":1,
+            "password": "sha256$eVxG7RHu1a$ac32f95f9fab40e744380d640c82609fdb73bf8625db281ee2376cdec93761e5",
+            "role_id_id": 1,
             "verified": 1
         }
+    },
+    {
+        "model": "ludoscienceapp.User",
+        "pk": "3",
+        "fields": {
+            "complete_name": "Player",
+            "username": "player",
+            "email": "unemail3@gmail.com",
+            "password": "sha256$eVxG7RHu1a$ac32f95f9fab40e744380d640c82609fdb73bf8625db281ee2376cdec93761e5",
+            "role_id_id": 3,
+            "verified": 1
+        }
+    },{
+    "model": "ludoscienceapp.TimeRestriction",
+    "pk": "1",
+    "fields": 
+        {
+            "id": 1,
+            "name": "Weekend",
+            "date_to": "2022-11-15",
+            "date_from": "2022-11-08"
+        }
     }
-
 ]

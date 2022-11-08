@@ -1,7 +1,6 @@
 
 from django.shortcuts import redirect, render
 from ludoscienceapp.models.user import  User 
-from ludoscienceapp.models.area import Area
 from ludoscienceapp.models.proyect import Proyect
 from ludoscienceapp.models.proyect_area import ProyectArea
 from ludoscienceapp.models.time_restriction import TimeRestriction
@@ -24,8 +23,8 @@ def create_badge(request):
               if not request.POST['name'] or  not request.POST['datetime'] or not request.POST['lat'] or not request.POST['lon']  or not request.FILES.get('image') or not request.POST['score']:
                   messages.error(request,'Debe ingresar todos los campos')
                   return badge(request)            
-              area=Area(lat=request.POST['lat'],long=request.POST['lon'])
-              area.save()
+              #area=Area(lat=request.POST['lat'],long=request.POST['lon'])
+              #area.save()
               if request.POST['select']=='0':
                   badge_=Badge(name=request.POST['name'],area=area,time_restriction=request.POST['datetime'],goal=request.POST['score'],owner=User.objects.get(id__exact=request.session['id']))
               else:

@@ -2,10 +2,9 @@ from django.contrib import admin
 from ludoscienceapp.models.role import Role
 from ludoscienceapp.models.user import User
 from ludoscienceapp.models.proyect import Proyect
-from ludoscienceapp.models.game_element import GameElement
 from ludoscienceapp.models.badge import Badge
 from ludoscienceapp.models.token import Token
-from ludoscienceapp.models.area import Area
+
 from ludoscienceapp.models.check_in import CheckIn
 # Register your models here.
 
@@ -21,9 +20,6 @@ class ProyectAdmin(admin.ModelAdmin):
 class TokenAdmin(admin.ModelAdmin):
     list_display=('user_id','token')
 
-class GameElementAdmin(admin.ModelAdmin):
-    list_display=('name','goal','owner')
-
 class BadgeAdmin(admin.ModelAdmin):
     list_display=('image','parent')
 
@@ -37,7 +33,5 @@ admin.site.register(Role,RoleAdmin)
 admin.site.register(User,UserAdmin)
 admin.site.register(Token,TokenAdmin)
 admin.site.register(Proyect,ProyectAdmin)
-admin.site.register(GameElement,GameElementAdmin)
 admin.site.register(Badge,BadgeAdmin)
-admin.site.register(Area,AreaAdmin)
 admin.site.register(CheckIn,CheckInAdmin)

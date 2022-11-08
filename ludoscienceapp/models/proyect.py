@@ -15,7 +15,7 @@ class Proyect(models.Model):
     admins=models.ManyToManyField(User, related_name='admins')
     areas=models.ManyToManyField(ProyectArea)
     time_restriction=models.ManyToManyField(TimeRestriction)
-
+    
 
     def __str__(self):
         return f'{self.name},{self.description},{self.image},{self.admins},{self.areas},{self.time_restriction}'

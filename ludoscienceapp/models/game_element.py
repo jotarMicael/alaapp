@@ -11,10 +11,13 @@ class GameElement(models.Model):
     owner=models.ForeignKey(User,null=True,blank=True,on_delete=models.DO_NOTHING)
     rate=models.FloatField(blank=True,null=True)
     proyect=models.ForeignKey(Proyect,blank=False,null=False,on_delete=models.DO_NOTHING)
+    
     class Meta:
         verbose_name='GameElement'
         verbose_name_plural="GameElements"
         db_table='game_element'
+        abstract = True
+
 
     def __str__(self):
-        return f'{self.name},{self.goal},{self.owner}'
+        return f'{self.name},{self.goal},{self.owner},{self.rate},{self.proyect}'

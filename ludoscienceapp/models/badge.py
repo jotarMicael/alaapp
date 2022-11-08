@@ -9,5 +9,6 @@ class Badge(GameElement):
         verbose_name='Badge'
         verbose_name_plural="Badges"
         db_table='badge'
+
     def __str__(self):
         return f'{self.image},{self.parent}'

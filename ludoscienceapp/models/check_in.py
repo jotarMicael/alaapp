@@ -11,6 +11,7 @@ class CheckIn(models.Model):
     latitude=models.CharField(blank=False,null=False,max_length=500)
     longitude=models.CharField(blank=False,null=False,max_length=500)
     datetime=models.DateTimeField(null=False, blank=False)
+    
 
     class Meta:
         verbose_name='CheckIn'
