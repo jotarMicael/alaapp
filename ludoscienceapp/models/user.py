@@ -14,6 +14,7 @@ class User(models.Model):
     role_id=models.ForeignKey(Role,null=False,blank=False,on_delete=models.DO_NOTHING)
     verified=models.BooleanField(default=False,blank=False,null=False)
     proyects=models.ManyToManyField('ludoscienceapp.proyect', related_name='proyects')
+    
 
     def __str__(self):
         return f'{self.complete_name},{self.username},{self.email},{self.password},{self.profile_image},{self.verified},{self.role_id}'

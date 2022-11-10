@@ -5,7 +5,7 @@ from django.db import models
 
 class ProyectArea(models.Model):
     name=models.CharField(blank=False,null=False,max_length=200)
-    polygon=models.CharField(blank=False,null=False,max_length=200)
+    polygon=models.TextField(blank=False,null=False)
     class Meta:
         verbose_name='ProyectArea'
         verbose_name_plural="ProyectAreas"

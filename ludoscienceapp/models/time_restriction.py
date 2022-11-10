@@ -16,5 +16,5 @@ class TimeRestriction(models.Model):
         return f'{self.name},{self.date_from},{self.date_to}'  
 
 
-    def is_valid_time(self,datetime):     
-        return ( datetime>= self.date_from.strftime("%Y-%m-%d") and datetime  <= self.date_to.strftime("%Y-%m-%d"))
+    def is_valid_time(self,date):     
+        return ( date>= self.date_from.strftime("%Y-%m-%d") and date  <= self.date_to.strftime("%Y-%m-%d"))

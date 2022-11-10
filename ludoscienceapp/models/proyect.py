@@ -24,3 +24,24 @@ class Proyect(models.Model):
         verbose_name='Proyect'
         verbose_name_plural="Proyects"
         db_table='proyect'
+
+    def add_checkin(self,checkin_,user_id): 
+        for challenge in self.challenge.all():         
+            challenge.add_checkin(checkin_,user_id)
+        for badges in self.badge.all():
+            badges.add_checkin(checkin_,user_id)
+
+    def add_area(self,area):
+        self.areas.add(area)
+        
+
+    def modify(self,name,description,checkbox):
+        self.name=name
+        self.description=description
+        if (checkbox == 'on'):
+            self.avaliable=1
+        else:
+            self.avaliable=0
+        
+    def add_time_restriction(self,time_restriction):
+        self.time_restriction.add(time_restriction)

@@ -20,3 +20,13 @@ class CheckIn(models.Model):
 
     def __str__(self):
         return f'{self.user},{self.proyect},{self.latitude},{self.longitude},{self.datetime}'
+
+
+    def get_date(self):
+        return self.datetime[:10]
+    
+    def get_latitude(self):
+        return self.latitude
+    
+    def get_longitude(self):
+        return self.longitude

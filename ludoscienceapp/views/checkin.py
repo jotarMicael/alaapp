@@ -20,13 +20,12 @@ def process_checkin(request):
         if System.is_player(request):
             if not request.POST['datetime'] or not request.POST['lat'] or not request.POST['lon'] or not request.POST['proyect']:
                   messages.error(request,'Debe ingresar todos los campos')
-            else:                    
-                challenges = Proyect.objects.get(id__exact=request.POST['proyect']).challenge_set.all()
-                for challenge in challenges:
-                    if(challenge.checkin_valid(request.POST['datetime'][:-8],request.POST['lat'],request.POST['lon'])):
-                        checkin_=CheckIn(user=(User.objects.get(id__exact=request.session['id'])),proyect=(Proyect.objects.get(id__exact=request.POST['proyect'])),latitude=request.POST['lat'],longitude=request.POST['lon'],datetime=request.POST['datetime'][:-3])
-                        checkin_.save()
-                        challenge.add_checkin(checkin_)
+            else:  
+                checkin_=CheckIn(user=(User.objects.get(id__exact=request.session['id'])),proyect=(Proyect.objects.get(id__exact=request.POST['proyect'])),latitude=request.POST['lat'],longitude=request.POST['lon'],datetime=request.POST['datetime'][:-3])
+                checkin_.save()                  
+                proyect = Proyect.objects.get(id__exact=request.POST['proyect'])
+                proyect.add_checkin(checkin_,request.session['id'])
+
                 messages.success(request,'CheckIn realizado correctamente')
             return checkin(request) 
         redirect('home')

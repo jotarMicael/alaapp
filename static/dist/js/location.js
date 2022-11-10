@@ -56,18 +56,22 @@ function error(err) {
 
 
 
-$('#my_coordinates').click(function () {
 
+$('#my_coordinates').click(function () {
     document.getElementById('f_map').classList.toggle('fa')
     document.getElementById('f_map').classList.toggle('fa-spinner')
     document.getElementById('f_map').classList.toggle('fa-spin')
+    setTimeout(function () {
+        drawnItems.clearLayers();
+        navigator.geolocation.getCurrentPosition(success, error, {
+            enableHighAccuracy: true,
+            timeout: 5000,
+            maximumAge: 0
+        });
 
-    drawnItems.clearLayers();
-    navigator.geolocation.getCurrentPosition(success, error, {
-        enableHighAccuracy: true,
-        timeout: 5000,
-        maximumAge: 0
-    });
+    }, 2000);
+
+
 
 
 
