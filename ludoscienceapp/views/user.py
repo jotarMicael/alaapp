@@ -25,7 +25,10 @@ def register(request):
 
 def home(request):
     if System.is_logged(request):
-        proyects=Proyect.objects.filter(admins__id=request.session['id']).order_by('-id')
+        if System.is_admin(request):
+            proyects=Proyect.objects.filter(admins__id=request.session['id']).order_by('-id')
+        else:
+            proyects=User.objects.get(id=request.session['id']).proyects.all()
         return render(request, 'ludoscienceapp/home.html',{'proyects':proyects})    
     return redirect('index')
     

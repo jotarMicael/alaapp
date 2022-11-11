@@ -15,5 +15,4 @@ class Challenge(GameElement):
     def __str__(self):
         return f'{self.name},{self.area},{self.time_restriction}'
 
-
-    
+ 

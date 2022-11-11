@@ -1,3 +1,4 @@
+{% if request.session.role == 'ADMIN' %}
 <!-- Modal -->
 <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
   <div class="modal-dialog modal-dialog-centered" role="document">
@@ -19,6 +20,7 @@
         <input type='hidden' class='id' name='id'></input>
       </div>
       <div class="modal-footer">
+       
         <button type="submit" class="btn btn-primary">Configurar</button>
         <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
       </div>
@@ -27,9 +29,47 @@
   </div>
 </div>
 <!--  -->
+
+{% else %}
+
+<!-- Modal -->
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="myModalTitle"></h5>
+
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+      </div>
+    <form action='/view_game_elements/' method='POST'> {% csrf_token %}
+      <div class="modal-body">
+        <div class="row">
+          <img class="proyect_img img-fluid" alt="Responsive image" />
+        </div>
+        <br />
+        <div class="row">
+          <p  class="description"></p>
+        </div>
+        <input type='hidden' class='id' name='id'></input>
+      </div>
+      <div class="modal-footer">        
+          <button type="submit" class="btn btn-primary">Ver elementos de juego</button>
+       
+        
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+      </div>
+    </form>
+    </div>
+  </div>
+</div>
+<!--  -->
+
+
+{% endif %} 
 <div class="container">
   <div class="row justify-content-start">
-    <div class="row row-cols-1 row-cols-sm-1 row-cols-md-3  mb-3">
+    
+    <div class="row row-cols-1 row-cols-md-2  mb-3">
       {% for proyect in proyects|slice:':4' %}
         <div class="col">
           <div class="card">
@@ -47,7 +87,7 @@
     </div>
   </div>
   <div class="row justify-content-center mb-3">
-    <div class="col-3 col-md-2 g-4">
+    <div class="cols-1 cols-md-2 ">
       <form action="/my_proyect/{{ proyect.id }}" method="get">
         {% csrf_token %}
         <button type="button" class="btn btn-block bg-gradient-info">Ver más...</button>

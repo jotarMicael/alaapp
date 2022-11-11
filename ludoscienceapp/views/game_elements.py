@@ -68,3 +68,22 @@ def process_badge(request):
               return badge(request)   
           return redirect('home')  
     return redirect('index') 
+
+def asign_game_element(request):
+    if System.is_logged(request):
+          if System.is_player(request):
+
+            challenge= Challenge.objects.get(id=request.POST['challenge_id'])
+            user = User.objects.get(id=request.session['id'])
+            user.add_challengue_active(challenge)
+            messages.success(request,'Desafío %s  asignado con éxito'  % (challenge.get_name()))
+            return view_game_elements(request,challenge.get_id_proyect())
+            
+
+def view_game_elements(request,ok=False):  
+    if System.is_logged(request):
+          if System.is_player(request):
+              if not ok:
+                return render(request, 'ludoscienceapp/game_elements/views_game_elements.html',{'nav':'block','create_badge':System.get_navbar_color,'badges':Badge.objects.all(),'challenges':Proyect.objects.get(id__exact=request.POST['id']).get_challenges_not_exists_user(request.session['id']) }) 
+              else:
+                return render(request, 'ludoscienceapp/game_elements/views_game_elements.html',{'nav':'block','create_badge':System.get_navbar_color,'badges':Badge.objects.all(),'challenges':Proyect.objects.get(id__exact=ok).get_challenges_not_exists_user(request.session['id']) }) 

@@ -23,3 +23,7 @@ class User(models.Model):
         verbose_name='User'
         verbose_name_plural="Users"
         db_table='user'
+
+    def add_challengue_active(self,challenge):
+        self.challenge_actives.add(challenge)
+        self.save()

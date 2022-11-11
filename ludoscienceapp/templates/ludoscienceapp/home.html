@@ -11,7 +11,9 @@
 {% endblock %}
 
 {% block content %}
-  {% if request.session.role == 'ADMIN' %}
+  {% if request.session.role == 'ADMIN' or request.session.role == 'PLAYER' %}
     {% include 'ludoscienceapp/proyects/proyect.html' %}
   {% endif %}
 {% endblock %}
+
+

@@ -42,4 +42,8 @@ class GameElement(models.Model, metaclass=AbstractModelMeta):
        
     def is_my_user_complete(self,user_id):
          return (self.user_completes.filter(id=user_id).exists())    
-        
+           
+    def get_id_proyect(self):
+        return self.proyect.id
+    def get_name(self):
+        return self.name

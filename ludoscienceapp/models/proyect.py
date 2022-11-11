@@ -45,3 +45,13 @@ class Proyect(models.Model):
         
     def add_time_restriction(self,time_restriction):
         self.time_restriction.add(time_restriction)
+
+    def get_challenges(self):
+        return self.challenge.all()
+
+    def get_challenges_not_exists_user(self,user_id):
+        challenge_items = set()
+        for challenge in self.get_challenges():
+            if not challenge.is_my_user_active(user_id):
+                challenge_items.add(challenge)
+        return challenge_items

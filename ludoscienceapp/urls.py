@@ -41,7 +41,9 @@ urlpatterns = [
     path('process_challenge/',game_elements.process_challenge,name='process_challenge'),
     path('game_element_view/',GameElementView.as_view(),name='game_element_view'),
     path('create_checkin/',checkin.checkin,name='create_checkin'),
-    path('process_checkin/',checkin.process_checkin,name='process_checkin')
+    path('process_checkin/',checkin.process_checkin,name='process_checkin'),
+    path('view_game_elements/',game_elements.view_game_elements, name='view_game_elements'),
+    path('asign_game_element/',game_elements.asign_game_element,name="asign_game_element")
 ]
 
 

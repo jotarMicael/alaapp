@@ -9,8 +9,9 @@ from ludoscienceapp.models.time_restriction import TimeRestriction
 from ludoscienceapp.utils.System import System
 from django.contrib import messages
 from ludoscienceapp.forms import ProyectForm
-
+import geopandas as gpd
 import os
+
 def create_proyect(request):
      if System.is_logged(request):
           if System.is_root(request):
@@ -45,19 +46,20 @@ def edit_proyect(request):
 
      if System.is_logged(request):
           if System.is_admin(request): 
-                
-                if not request.POST.get('name') or not request.POST.get('description') or not request.FILES.get('image') or  len(request.POST.getlist('area[]'))==0 or not not len(request.POST.getlist('time_restriction[]'))==0:
+                              
+                if not request.POST.get('name') or not request.POST.get('description') or not request.FILES.get('image') or not request.FILES.get('area') or len(request.POST.getlist('time_restriction[]'))==0:
                      messages.error(request,'Debe ingresar todos los campos')
                      return modify_proyect(request)
 
                 proyect=Proyect.objects.get(id__exact=request.POST['id'])
                 proyect.modify(request.POST['name'],request.POST['description'],request.POST.get('checkbox'))             
                 
-                for area in request.POST.getlist('area[]'):
-                    geojson= json.loads(area)     
-                    p_area= ProyectArea(name=geojson['type'],polygon=area)
-                    p_area.save()               
-                    proyect.add_area(p_area)
+                
+                df = gpd.read_file(request.FILES.get('area'), driver='GeoJSON')   
+
+                p_area= ProyectArea(name='Nombre-Fantasia',polygon=df.to_json())
+                p_area.save()               
+                proyect.add_area(p_area)
                 for time_restriction_id in request.POST.getlist('time_restriction[]'):
                     proyect.add_time_restriction(TimeRestriction.objects.get(id__exact=time_restriction_id))
 
