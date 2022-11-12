@@ -14,5 +14,6 @@ class Badge(GameElement):
     def __str__(self):
         return f'{self.image},{self.parent}'
 
-
+    def increment_progress(self,user_id_):
+        pass
      

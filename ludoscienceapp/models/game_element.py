@@ -36,6 +36,7 @@ class GameElement(models.Model, metaclass=AbstractModelMeta):
     def add_checkin(self,checkin_,user_id):
         if(self.time_restriction.is_valid_time(checkin_.get_date()) and self.area.is_valid_area(checkin_.get_latitude(),checkin_.get_longitude()) and self.is_my_user_active(user_id)):
             self.checkin.add(checkin_)
+            self.increment_progress(user_id)
               
     def is_my_user_active(self,user_id):
          return (self.user_actives.filter(id=user_id).exists())
@@ -47,3 +48,7 @@ class GameElement(models.Model, metaclass=AbstractModelMeta):
         return self.proyect.id
     def get_name(self):
         return self.name
+
+    @abc.abstractmethod
+    def increment_progress(self,user_id_):
+        pass

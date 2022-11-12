@@ -6,6 +6,7 @@ from ludoscienceapp.models.proyect_area import ProyectArea
 from ludoscienceapp.models.time_restriction import TimeRestriction
 from ludoscienceapp.views import game_elements
 from ludoscienceapp.models.challenge import Challenge
+from ludoscienceapp.models.challenge_progress import ChallengeProgress
 from ludoscienceapp.utils.System import System
 from django.contrib import messages
 
@@ -41,6 +42,8 @@ def asign_challenge(request):
             challenge= Challenge.objects.get(id=request.POST['challenge_id'])
             user = User.objects.get(id=request.session['id'])
             user.add_challengue_active(challenge)
+            cp = ChallengeProgress(user=user, challenge= challenge)
+            cp.save()
             messages.success(request,'Desafío %s  asignado con éxito'  % (challenge.get_name()))
             return game_elements.view_game_elements(request,challenge.get_id_proyect())
             

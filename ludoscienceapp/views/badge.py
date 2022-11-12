@@ -7,6 +7,7 @@ from ludoscienceapp.models.time_restriction import TimeRestriction
 from ludoscienceapp.views import game_elements
 from ludoscienceapp.utils.System import System
 from ludoscienceapp.models.badge import Badge
+from ludoscienceapp.models.badge_progress import BadgeProgress
 from django.contrib import messages
 from ludoscienceapp.forms import BadgeForm
 import os
@@ -53,5 +54,7 @@ def asign_badge(request):
             badge= Badge.objects.get(id=request.POST['badge_id'])
             user = User.objects.get(id=request.session['id'])
             user.add_badge_active(badge)
+            bp = BadgeProgress(user=user,badge=badge)
+            bp.save()
             messages.success(request,'Insignia %s  asignado con éxito'  % (badge.get_name()))
             return game_elements.view_game_elements(request,badge.get_id_proyect())
