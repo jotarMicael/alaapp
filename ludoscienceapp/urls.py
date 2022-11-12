@@ -15,7 +15,7 @@ Including another URLconf
 """
 
 from threading import activeCount
-from ludoscienceapp.views import user, admin, proyect, game_elements, checkin
+from ludoscienceapp.views import user, admin, proyect, game_elements, checkin ,badge , challenge
 from ludoscienceapp.views.game_element_view import GameElementView
 from django.urls import path
 
@@ -35,15 +35,16 @@ urlpatterns = [
     path('create_proyect/',proyect.create_proyect,name='create_proyect'),
     path('register_proyect/',proyect.register_proyect,name='register_proyect'),
     path('edit_proyect/',proyect.edit_proyect,name='register_proyect'),
-    path('create_badge/',game_elements.badge,name='create_badge'),
-    path('process_badge/',game_elements.process_badge,name='process_badge'),
-    path('create_challenge/',game_elements.challenge,name='create_challenge'),
-    path('process_challenge/',game_elements.process_challenge,name='process_challenge'),
+    path('create_badge/',badge.badge,name='create_badge'),
+    path('process_badge/',badge.process_badge,name='process_badge'),
+    path('create_challenge/',challenge.challenge,name='create_challenge'),
+    path('process_challenge/',challenge.process_challenge,name='process_challenge'),
     path('game_element_view/',GameElementView.as_view(),name='game_element_view'),
     path('create_checkin/',checkin.checkin,name='create_checkin'),
     path('process_checkin/',checkin.process_checkin,name='process_checkin'),
     path('view_game_elements/',game_elements.view_game_elements, name='view_game_elements'),
-    path('asign_game_element/',game_elements.asign_game_element,name="asign_game_element")
+    path('asign_challenge/',challenge.asign_challenge,name="asign_challenge"),
+    path('asign_badge/',badge.asign_badge,name="asign_badge")
 ]
 
 

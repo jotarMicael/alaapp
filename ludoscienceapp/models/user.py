@@ -27,3 +27,7 @@ class User(models.Model):
     def add_challengue_active(self,challenge):
         self.challenge_actives.add(challenge)
         self.save()
+    
+    def add_badge_active(self,badge):
+        self.badge_actives.add(badge)
+        self.save()

@@ -4,8 +4,8 @@ from ludoscienceapp.models.user import User
 from ludoscienceapp.models.proyect import Proyect
 from ludoscienceapp.models.badge import Badge
 from ludoscienceapp.models.token import Token
-
 from ludoscienceapp.models.check_in import CheckIn
+
 # Register your models here.
 
 class UserAdmin(admin.ModelAdmin):

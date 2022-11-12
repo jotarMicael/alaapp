@@ -48,6 +48,9 @@ class Proyect(models.Model):
 
     def get_challenges(self):
         return self.challenge.all()
+    
+    def get_badges(self):
+        return self.badge.all()
 
     def get_challenges_not_exists_user(self,user_id):
         challenge_items = set()
@@ -55,3 +58,13 @@ class Proyect(models.Model):
             if not challenge.is_my_user_active(user_id):
                 challenge_items.add(challenge)
         return challenge_items
+
+    def get_badges_not_exists_user(self,user_id):
+        badge_items = set()
+        for badge in self.get_badges():
+            if not badge.is_my_user_active(user_id):
+                badge_items.add(badge)
+        return badge_items
+
+    def get_name(self):
+        return self.name
