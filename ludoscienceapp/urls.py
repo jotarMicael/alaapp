@@ -44,7 +44,8 @@ urlpatterns = [
     path('process_checkin/',checkin.process_checkin,name='process_checkin'),
     path('view_game_elements/',game_elements.view_game_elements, name='view_game_elements'),
     path('asign_challenge/',challenge.asign_challenge,name="asign_challenge"),
-    path('asign_badge/',badge.asign_badge,name="asign_badge")
+    path('asign_badge/',badge.asign_badge,name="asign_badge"),
+    path('see_my_game_elements/',user.see_my_game_elements,name='see_my_game_elements')
 ]
 
 

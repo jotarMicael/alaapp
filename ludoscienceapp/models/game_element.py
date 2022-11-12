@@ -46,9 +46,20 @@ class GameElement(models.Model, metaclass=AbstractModelMeta):
            
     def get_id_proyect(self):
         return self.proyect.id
+
     def get_name(self):
         return self.name
 
+    def get_goal(self):
+        return self.goal
+    
+    def get_checkins(self):
+        return self.checkin
+
     @abc.abstractmethod
     def increment_progress(self,user_id_):
+        pass
+    
+    @abc.abstractmethod    
+    def get_progress_user(self,user_id_):
         pass

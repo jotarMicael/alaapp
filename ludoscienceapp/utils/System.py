@@ -10,6 +10,7 @@ from decouple import config
 
 import hashlib
 import random
+
 class System(object):
     
     

@@ -67,6 +67,7 @@
           <div class="col-12 d-flex justify-content-center">
             <!-- Default box -->
             {% block content %} {% endblock %}
+           
             <!-- /.card -->
           </div>
         </div>
@@ -88,7 +89,8 @@
 
 </div>
 <!-- ./wrapper -->
-
+{% block scripts %}
+{% endblock %}
 <!-- jQuery -->
 
 <script src="{% static 'plugins/jquery/jquery.js' %}"></script>
@@ -116,7 +118,9 @@
 <script src="{% static 'dist/js/map.js' %}"></script>
 <script src="{% static 'dist/js/dinamic_input.js' %}"></script>
 <script src="{% static 'dist/js/get_tr_areas.js' %}"></script>
-<script src="../../"></script>
+<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.13.1/css/jquery.dataTables.css">
+  
+<script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.13.1/js/jquery.dataTables.js"></script>
 <script>
 
   $(function () {
@@ -143,7 +147,22 @@
   
   
 </script>
+<script src="{% static 'dist/js/datatable_es.js' %}"></script>
+<script>$(document).ready( function () {
+  $('#table').DataTable({
+
+    "language": lang
+
+  });
+  $('#table2').DataTable({
+
+    "language": lang
+
+  });
+} ); </script>
+
 <script src="{% static 'dist/js/location.js' %}"></script>
 <script src="{% static 'dist/js/send_game_element_id.js' %}"></script>
+
 </body>
 </html>

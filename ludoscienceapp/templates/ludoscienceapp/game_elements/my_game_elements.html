@@ -1,7 +1,9 @@
 {% extends 'ludoscienceapp/base/base.html' %}
 {% load static %}
+
+{% load game_element_extras %}
 {% block title %}
-  E-G del proyecto
+  Mis E-J
 {% endblock %}
 
 {% block content %}
@@ -10,26 +12,31 @@
     <label class="valid-feedback d-block">{% for message in messages %}{% if message.tags == 'success' %}*{{ message }}{% endif %}{% endfor %}</label>
     <div class="card">
       <div class="card-header">
-        <h3 class="card-title">Misiones del proyecto: {{ name }}</h3>
+        <h3 class="card-title">Mis misiones</h3>
       </div>
 
       <div class="card-body">
-        <table class="table table-bordered">
+        <table id='table' class="table table-bordered">
           <thead>
             <tr>
               <th style="width: 10px">#</th>
               <th>Nombre</th>
-              <th style="width: 10px">Asignar</th>
+              <th>Proyecto</th>
+              <th style="width: 10px">Progreso</th>
             </tr>
           </thead>
           <tbody>
             
             {% for mission in challenges %}
+            {% get_progress_user mission request.session.id as progress %}
             <tr>
               
               <td>{{ mission.id }}</td>
               <td>{{ mission.name }}</td>
-              <td><button  onclick="send_game_element_id('{{ mission.id }}','#send_challenge');" class="btn btn-block bg-gradient-info btn-xs">Asignar</button></td>
+              <td>{{ mission.proyect.name }}</td>
+            
+
+              <td><span class="float-right badge bg-{% if progress < 25 %}danger {% elif  progress >= 25 and progress < 50 %}warning {% elif   progress >= 50 and progress < 100 %}info {% else %}success {% endif %}">{{ progress }}%</span></td>
             </tr>
             {% endfor %}
             <form id="send_challenge"  method="post" action="/asign_challenge/"   > {% csrf_token %}
@@ -38,47 +45,32 @@
           </tbody>
         </table>
       </div>
-
-      <!--<div class="card-footer clearfix">
-        <ul class="pagination pagination-sm m-0 float-right">
-          <li class="page-item">
-            <a class="page-link" href="#">«</a>
-          </li>
-          <li class="page-item">
-            <a class="page-link" href="#">1</a>
-          </li>
-          <li class="page-item">
-            <a class="page-link" href="#">2</a>
-          </li>
-          <li class="page-item">
-            <a class="page-link" href="#">3</a>
-          </li>
-          <li class="page-item">
-            <a class="page-link" href="#">»</a>
-          </li>
-        </ul>
-      </div> -->
     </div>
     <div class="card">
       <div class="card-header">
-        <h3 class="card-title">Insignias del proyecto: {{ name }}</h3>
+        <h3 class="card-title">Mis insignias</h3>
       </div>
 
       <div class="card-body">
-        <table class="table table-bordered">
+        <table id='table2' class="table table-bordered">
           <thead>
             <tr>
               <th style="width: 10px">#</th>
               <th>Nombre</th>
-              <th style="width: 10px">Asignar</th>
+              <th>Proyecto</th>
+              <th style="width: 10px">Progreso</th>
             </tr>
           </thead>
           <tbody>
             {% for badge in badges %}
+            {% get_progress_user badge request.session.id as progress %}
             <tr>
               <td>{{ badge.id }}</td>
               <td>{{ badge.name }}</td>
-              <td><button  onclick="send_game_element_id('{{ badge.id }}','#send_badge');" class="btn btn-block bg-gradient-success btn-xs">Asignar</button></td>
+              <td>{{ badge.proyect.name }}</td>
+            
+
+              <td><span class="float-right badge bg-{% if progress < 25 %}danger {% elif  progress >= 25 and progress < 50 %}warning {% elif   progress >= 50 and progress < 100 %}info {% else %}success {% endif %}">{{ progress }}%</span></td>
             </tr>
             {% endfor %}
             <form  id="send_badge" method="post" action="/asign_badge/"   > {% csrf_token %}
@@ -110,6 +102,9 @@
     </div>
   </div>
 {% endblock %}
+
+
+
 {% block scripts %}
    
     <script src="{% static '/dist/js/showconfirmation.js' %}"></script>

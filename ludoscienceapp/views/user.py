@@ -1,6 +1,7 @@
 
 
 from django.shortcuts import redirect, render
+from django import template
 
 from ludoscienceapp.models.role import Role
 from ludoscienceapp.models.user import User
@@ -12,6 +13,10 @@ from werkzeug.security import generate_password_hash,check_password_hash
 
 
 # Create your views here.
+
+
+register = template.Library()
+
 
 def index(request):
     if System.is_logged(request):
@@ -107,3 +112,12 @@ def active_account(request):
     except KeyError:
         return redirect('index')  
 
+
+
+
+def see_my_game_elements(request):
+    if System.is_logged(request):
+        if System.is_player(request):
+            user=User.objects.get(id=request.session['id'])
+     
+            return render(request, 'ludoscienceapp/game_elements/my_game_elements.html',{'nav':'block','see_my_game_elements':System.get_navbar_color,'badges':user.badge_actives.all(),'challenges':user.challenge_actives.all() }) 

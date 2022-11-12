@@ -75,11 +75,32 @@
                 <i class="right fas fa-angle-left"></i>
               </p>
             </a>
-            <ul class="nav nav-treeview" style="display: {{ nav|default_if_none:'none' }}">
+            <ul class="nav nav-treeview" style="display: {% if create_checkin %}block    {% else %}none {% endif %}">
               <li class="nav-item">
                 <a href="/create_checkin/" class="nav-link {{ create_checkin|default_if_none:'' }}">
                   <i class="fas fa-check-circle nav-icon"></i>
                   <p>{{ settings.PLAYER_CREATE_CHECKIN }}</p>
+                </a>
+              </li>
+            </ul>
+          </li>
+        </ul>       
+          <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
+          <li class="nav-item">
+            <a href="#" class="nav-link">
+         
+              <i class="fas fa-dice nav-icon"></i>
+              <p>
+                Elementos de juego
+                <i class="right fas fa-angle-left"></i>
+              </p>
+            </a>
+            
+            <ul class="nav nav-treeview" style="display:{% if see_my_game_elements %}block    {% else %}none {% endif %}">
+              <li class="nav-item ">
+                <a href="/see_my_game_elements/" class="nav-link {{ see_my_game_elements|default_if_none:'' }}">
+                  <i class="fas fa-check-circle nav-icon"></i>
+                  <p>{{ settings.PLAYER_SEE_MY_GE }}</p>
                 </a>
               </li>
             </ul>

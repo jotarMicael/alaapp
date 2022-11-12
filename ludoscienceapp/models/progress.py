@@ -27,5 +27,6 @@ class Progress(models.Model, metaclass=AbstractModelMeta):
 
     
     def increment_progress(self,goal,count):
-        self.progress=(count / goal)*100    
-        self.save()
+        if (self.progress<100):
+            self.progress=(count / goal)*100    
+            self.save()

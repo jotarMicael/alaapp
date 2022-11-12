@@ -26,6 +26,12 @@ class Proyect(models.Model):
         db_table='proyect'
 
     def add_checkin(self,checkin_,user_id): 
+
+        # una alternativa es hacer self.challenge.filter(user_id=user_id).all() y self.badge.filter(user_id=user_id).all()
+        # el método 'filter' (equivale al WHERE en SQL) y 'all', son métodos que provee Django para los QuerySet,
+        # para obtener los objetos requeridos de forma mas rápida, sin necesidad de iterar
+        # el QuerySet completo
+
         for challenge in self.challenge.all():         
             challenge.add_checkin(checkin_,user_id)
         for badges in self.badge.all():

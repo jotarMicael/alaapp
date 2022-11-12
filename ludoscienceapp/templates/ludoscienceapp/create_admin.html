@@ -1,6 +1,6 @@
 
 {% extends 'ludoscienceapp/base/base.html' %}
-
+{% load static %}
 {% block title %} Alta admin {% endblock %}
 
 {% block content %}    
@@ -65,7 +65,7 @@
             <!-- /.col -->
             <div class="col-6 ">
                 
-                    <button id='show_confirmation' class="btn btn-primary btn-block">Alta</button>
+                    <button onclick="$.confirmation(send);"  class="btn btn-primary btn-block">Alta</button>
                 
             </div>
         
@@ -81,4 +81,8 @@
     </div><!-- /.card -->
   </div>
 
+{% endblock %}
+{% block scripts %}
+   
+    <script src="{% static '/dist/js/showconfirmation.js' %}"></script>
 {% endblock %}

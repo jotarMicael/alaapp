@@ -31,3 +31,4 @@ class User(models.Model):
     def add_badge_active(self,badge):
         self.badge_actives.add(badge)
         self.save()
+

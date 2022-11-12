@@ -1,6 +1,6 @@
 
 {% extends 'ludoscienceapp/base/base.html' %}
-
+{% load static %}
 {% block title %} Nuevo Proyecto {% endblock %}
 
 {% block content %}    
@@ -37,7 +37,7 @@
     <!-- /.card-body -->
   </form>
   <div class="card-footer">
-    <button  id="show_confirmation" class="btn btn-primary">Crear</button>
+    <button  onclick="$.confirmation(send);"  class="btn btn-primary">Crear</button>
   </div>
    
   
@@ -60,4 +60,9 @@
 {% endfor %}
 </div>
 
+{% endblock %}
+
+{% block scripts %}
+   
+    <script src="{% static '/dist/js/showconfirmation.js' %}"></script>
 {% endblock %}

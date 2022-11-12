@@ -1,4 +1,4 @@
-$('#show_confirmation').click(function(id) {
+/*$('#show_confirmation').click(function(id) {
     Swal.fire({
       title: '¿Está seguro?',
       text: "No podrá revertir la acción",
@@ -17,7 +17,7 @@ $('#show_confirmation').click(function(id) {
     })
 
 
-  })
+  }) */
 
   $.confirmation = function(id) {
     Swal.fire({

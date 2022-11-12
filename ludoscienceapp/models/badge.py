@@ -15,5 +15,10 @@ class Badge(GameElement):
         return f'{self.image},{self.parent}'
 
     def increment_progress(self,user_id_):
-        pass
-     
+        
+        badge_progress=self.badgeprogress_set.get(user_id=user_id_)
+        badge_progress.increment_progress(self.get_goal(),self.get_checkins().filter(user_id=user_id_).count())
+
+    def get_progress_user(self,user_id_):
+        progress_ge=self.badgeprogress_set.get(user_id=user_id_)
+        return progress_ge.progress
