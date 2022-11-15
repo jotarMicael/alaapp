@@ -45,7 +45,9 @@ urlpatterns = [
     path('view_game_elements/',game_elements.view_game_elements, name='view_game_elements'),
     path('asign_challenge/',challenge.asign_challenge,name="asign_challenge"),
     path('asign_badge/',badge.asign_badge,name="asign_badge"),
-    path('see_my_game_elements/',user.see_my_game_elements,name='see_my_game_elements')
+    path('see_my_game_elements/',user.see_my_game_elements,name='see_my_game_elements'),
+    path('edit_profile/',user.edit_profile,name='edit_profile'),
+    path('process_edit_profile/',user.process_edit_profile,name='process_edit_profile')
 ]
 
 

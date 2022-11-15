@@ -1,7 +1,7 @@
 
 from django.db import models
 from ludoscienceapp.models.role  import Role
-
+from werkzeug.security import generate_password_hash
 # Create your models here.
 
 
@@ -32,3 +32,12 @@ class User(models.Model):
         self.badge_actives.add(badge)
         self.save()
 
+    def update_data (self,name,email,password):
+        self.complete_name=name
+        self.email=email
+        if password!='valuedefault':        
+            self.password= generate_password_hash(password, 'sha256', 10)
+        self.save()
+
+    def get_profile_image(self):
+        return self.profile_image

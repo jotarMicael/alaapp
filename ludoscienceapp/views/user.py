@@ -2,15 +2,15 @@
 
 from django.shortcuts import redirect, render
 from django import template
-
 from ludoscienceapp.models.role import Role
 from ludoscienceapp.models.user import User
 from ludoscienceapp.models.proyect import Proyect
+from ludoscienceapp.forms import UserForm
 from ludoscienceapp.utils.System import System
 from django.contrib import messages
 from django.core.exceptions import ObjectDoesNotExist
 from werkzeug.security import generate_password_hash,check_password_hash
-
+import os
 
 # Create your views here.
 
@@ -121,3 +121,40 @@ def see_my_game_elements(request):
             user=User.objects.get(id=request.session['id'])
      
             return render(request, 'ludoscienceapp/game_elements/my_game_elements.html',{'nav':'block','see_my_game_elements':System.get_navbar_color,'badges':user.badge_actives.all(),'challenges':user.challenge_actives.all() }) 
+        return redirect('home')  
+    return redirect('index')   
+
+def edit_profile(request):
+    if System.is_logged(request):
+        if System.is_player(request):    
+            return render(request, 'ludoscienceapp/user/edit_profile.html',{'edit_profile':System.get_navbar_color }) 
+        return redirect('home')  
+    return redirect('index')      
+
+def process_edit_profile(request):
+    if System.is_logged(request):
+        if System.is_player(request):    
+            if not request.POST['name'] or not request.POST['email'] or not request.POST['password'] or not request.POST['repeat_password']:
+                messages.error(request,'Los campos deben estar completos')
+                return edit_profile(request)
+            elif User.objects.filter(email__exact=request.POST['email']).exclude(id=request.session['id']).exists():
+                messages.error(request,'Ya existe un usuario con ese email')
+                return edit_profile(request)
+            elif request.POST['password'] != request.POST['repeat_password']:
+                messages.error(request,'Las contraseñas deben ser iguales')
+                return edit_profile(request)
+            user=User.objects.get(id__exact=request.session['id'])          
+            user.update_data(request.POST['name'],request.POST['email'],request.POST['password']) 
+            form = UserForm(data=request.POST, files=request.FILES, instance=user)
+            if  request.FILES.get('profile_image'):
+                if form.is_valid():                   
+                    if os.path.exists(user.get_profile_image().path):
+                        os.remove(user.get_profile_image().path)
+                    form.save()
+            System.set_session(request,user)
+            messages.success(request,'¡Datos actualizados con éxito!')
+            return edit_profile(request)
+        return redirect('home')  
+    return redirect('index')   
+
+
