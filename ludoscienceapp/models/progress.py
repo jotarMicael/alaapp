@@ -11,7 +11,7 @@ class AbstractModelMeta(abc.ABCMeta, type(models.Model)):
 class Progress(models.Model, metaclass=AbstractModelMeta):
     user= models.ForeignKey(User,blank=False,null=False,on_delete=models.DO_NOTHING)
     progress=models.FloatField(default=0,blank=False,null=False)
-    
+ 
 
     class Meta:
         verbose_name='Progress'

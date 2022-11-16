@@ -7,12 +7,13 @@ from ludoscienceapp.models.challenge_progress import ChallengeProgress
 from ludoscienceapp.models.badge_progress import BadgeProgress
 from ludoscienceapp.models.token import Token
 from ludoscienceapp.models.check_in import CheckIn
-
+from ludoscienceapp.models.proyect_subarea import ProyectSubArea
 # Register your models here.
 
 class UserAdmin(admin.ModelAdmin):
     list_display=('id','complete_name','username','email','password','profile_image','verified','role_id')
     readonly_fields= ('id',)
+
 class RoleAdmin(admin.ModelAdmin):
     list_display=('id','name')
 
@@ -37,6 +38,9 @@ class ChallengeProgressAdmin(admin.ModelAdmin):
 class BadgeProgressAdmin(admin.ModelAdmin):
     list_display=('user','badge','progress')
 
+class SubAreaAdmin(admin.ModelAdmin):
+    list_display=('area','sub_area')
+
 admin.site.register(Role,RoleAdmin)
 admin.site.register(User,UserAdmin)
 admin.site.register(Token,TokenAdmin)
@@ -45,3 +49,4 @@ admin.site.register(Badge,BadgeAdmin)
 admin.site.register(CheckIn,CheckInAdmin)
 admin.site.register(ChallengeProgress,ChallengeProgressAdmin)
 admin.site.register(BadgeProgress,BadgeProgressAdmin)
+admin.site.register(ProyectSubArea,SubAreaAdmin)

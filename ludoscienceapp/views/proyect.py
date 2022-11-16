@@ -5,6 +5,7 @@ from ludoscienceapp.models.proyect import Proyect
 from ludoscienceapp.models.user import User
 from ludoscienceapp.models.role import Role
 from ludoscienceapp.models.proyect_area import ProyectArea
+from ludoscienceapp.models.proyect_subarea import ProyectSubArea
 from ludoscienceapp.models.time_restriction import TimeRestriction
 from ludoscienceapp.utils.System import System
 from django.contrib import messages
@@ -53,23 +54,26 @@ def edit_proyect(request):
 
                 proyect=Proyect.objects.get(id__exact=request.POST['id'])
                 proyect.modify(request.POST['name'],request.POST['description'],request.POST.get('checkbox'))             
-                
-                
+                               
                 df = gpd.read_file(request.FILES.get('area'), driver='GeoJSON')   
-
-                p_area= ProyectArea(name='Nombre-Fantasia',polygon=df.to_json())
-                p_area.save()               
-                proyect.add_area(p_area)
+                area=json.loads(df.to_json())
+                p_area= ProyectArea(name='Nombre-Fantasia',type=area['type'])
+                p_area.save()
+                proyect.add_area(p_area)        
+                for subarea in area['features']:
+                    p_subarea=ProyectSubArea(area=p_area,sub_area=json.dumps(subarea))
+                    p_subarea.save()
                 for time_restriction_id in request.POST.getlist('time_restriction[]'):
                     proyect.add_time_restriction(TimeRestriction.objects.get(id__exact=time_restriction_id))
 
-                proyect.save()
+                proyect.save()    
+                print(proyect.subarea_set.all())
                 form = ProyectForm(data=request.POST, files=request.FILES, instance=proyect)
                 if form.is_valid():
                     
                     if os.path.exists(proyect.image.path):
                          os.remove(proyect.image.path)
                     form.save()
-                    return redirect('home') 
+                return redirect('home') 
 
 

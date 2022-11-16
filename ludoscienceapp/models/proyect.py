@@ -13,7 +13,7 @@ class Proyect(models.Model):
     image=models.ImageField(upload_to='ludoscienceapp/static/proyect_image/',default='ludoscienceapp/static/proyect_image/rio.jpg',null=False,blank=False)
     avaliable=models.BooleanField(default=False,blank=False,null=False)
     admins=models.ManyToManyField(User, related_name='admins')
-    areas=models.ManyToManyField(ProyectArea)
+    area=models.ForeignKey(ProyectArea,blank=False,null=False,default=1,on_delete=models.CASCADE)
     time_restriction=models.ManyToManyField(TimeRestriction)
     
 
@@ -38,7 +38,7 @@ class Proyect(models.Model):
             badges.add_checkin(checkin_,user_id)
 
     def add_area(self,area):
-        self.areas.add(area)
+        self.area=area
         
 
     def modify(self,name,description,checkbox):
