@@ -1,12 +1,12 @@
 
 from django import forms
-from ludoscienceapp.models.proyect  import Proyect
+from ludoscienceapp.models.project  import Project
 from ludoscienceapp.models.badge import  Badge
 from ludoscienceapp.models.user import User
 
-class ProyectForm(forms.ModelForm):
+class ProjectForm(forms.ModelForm):
     class Meta:
-        model = Proyect
+        model = Project
         fields = ["image"]
 
 class BadgeForm(forms.ModelForm):

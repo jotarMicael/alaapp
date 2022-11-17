@@ -10,7 +10,7 @@ $(function () {
             selectElement.remove(i);
         }
     }
-    $('#id_proyect').on('change', function () {
+    $('#id_project').on('change', function () {
         removeOptions(document.getElementById('id_area'));
         removeOptions(document.getElementById('id_time_restriction'));
         var id = $(this).val();

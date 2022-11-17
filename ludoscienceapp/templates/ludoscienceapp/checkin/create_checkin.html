@@ -24,12 +24,12 @@
               {% endfor %}
             </label>
             <div class="form-group">
-              <label>Asignar al proyecto</label>
+              <label>Asignar al projecto</label>
              
-              <select id="proyect" name="proyect" class="form-control select2 select2-info" data-dropdown-css-class="select2-info" data-placeholder="Seleccionar proyecto" style="width: 100%;" required>          
+              <select id="project" name="project" class="form-control select2 select2-info" data-dropdown-css-class="select2-info" data-placeholder="Seleccionar projecto" style="width: 100%;" required>          
                 <option value='#'>--------</option>
-                {% for proyect in proyects %}
-                <option  value='{{ proyect.id }}'>{{ proyect.name }}</option>
+                {% for project in projects %}
+                <option  value='{{ project.id }}'>{{ project.name }}</option>
                 {% endfor %}
               </select>
             </div>
@@ -87,6 +87,7 @@
 {% endblock %}
 
 {% block scripts %}
+
    
     <script src="{% static '/dist/js/showconfirmation.js' %}"></script>
 {% endblock %}

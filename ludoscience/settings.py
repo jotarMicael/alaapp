@@ -38,12 +38,13 @@ ALLOWED_HOSTS = []
 INSTALLED_APPS = [
     "django.contrib.admin",
     "django.contrib.auth",
-    "django.contrib.contenttypes",
     "django.contrib.sessions",
     "django.contrib.messages",
     "django.contrib.staticfiles",
+    'django.contrib.contenttypes',
     # local app   
     'ludoscienceapp',
+    
 ]
 
 MIDDLEWARE = [
@@ -152,7 +153,7 @@ NAVBAR_COLOR=config('NAVBAR_COLOR')
 
 #ROOT NAVBAR
 ROOT_CREATE_ADMIN=config('ROOT_CREATE_ADMIN')
-ROOT_CREATE_PROYECT=config('ROOT_CREATE_PROYECT')
+ROOT_CREATE_PROJECT=config('ROOT_CREATE_PROJECT')
 #
 
 #ADMIN NAVBAR
@@ -168,15 +169,15 @@ PLAYER_CREATE_CHECKIN=config('PLAYER_CREATE_CHECKIN')
 #ROOT_HEADER
 ROOT_HEADER=config('ROOT_HEADER')
 
-#PROYECT_TITLE
-PROYECT_TITLE=config('PROYECT_TITLE')
+#PROJECT_TITLE
+PROJECT_TITLE=config('PROJECT_TITLE')
 #
 
 SETTINGS_EXPORT = [
     'ROOT_CREATE_ADMIN',
-    'ROOT_CREATE_PROYECT',
+    'ROOT_CREATE_PROJECT',
     'ROOT_HEADER',
-    'PROYECT_TITLE',
+    'PROJECT_TITLE',
     'ADMIN_CREATE_BADGE',
     'ADMIN_CREATE_CHALLENGE',
     'PLAYER_CREATE_CHECKIN',

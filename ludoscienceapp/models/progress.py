@@ -1,23 +1,22 @@
 from enum import unique
 from django.db import models
 from ludoscienceapp.models.user import User
-import abc
+from ludoscienceapp.models.game_element import GameElement
 
 
-class AbstractModelMeta(abc.ABCMeta, type(models.Model)):
-    pass
 
 
-class Progress(models.Model, metaclass=AbstractModelMeta):
+
+class Progress(models.Model):
     user= models.ForeignKey(User,blank=False,null=False,on_delete=models.DO_NOTHING)
     progress=models.FloatField(default=0,blank=False,null=False)
- 
+    game_element=models.ForeignKey(GameElement,blank=False,null=False,on_delete=models.DO_NOTHING)
 
     class Meta:
         verbose_name='Progress'
         verbose_name_plural="Progress"
         db_table='progress'
-        abstract = True
+
 
 
     def __str__(self):

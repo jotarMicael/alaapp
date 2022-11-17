@@ -74,9 +74,9 @@ function viewInMap(data) {
 
 
 
-    arr.forEach((numero, index) => {
+    arr.forEach((area, index) => {
 
-        L.polygon(numero, { color: 'red' }).addTo(map)
+        L.polygon(area, { color: 'red' }).addTo(map)
     });
 
 

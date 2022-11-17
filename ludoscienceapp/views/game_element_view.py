@@ -3,7 +3,7 @@ from django.http import JsonResponse
 from django.views.decorators.csrf import csrf_exempt
 from django.views.generic import TemplateView
 from django.utils.decorators import method_decorator
-from ludoscienceapp.models.proyect import Proyect
+from ludoscienceapp.models.project import Project
 import json
 class GameElementView(TemplateView):
     template_name = 'create_challenge.html'
@@ -24,12 +24,12 @@ class GameElementView(TemplateView):
         try:
             action = request.POST['action']
             if action == 'search_time_restriction_id':
-                proyect=Proyect.objects.get(id=int(request.POST['id']))      
-                for i in proyect.time_restriction.all():
+                project=Project.objects.get(id=int(request.POST['id']))      
+                for i in project.time_restriction.all():
                     data_time_restriction.append({'id': i.id, 'name': i.name})          
-                data_area.append({'id': i.id, 'name': proyect.area.name})
+                data_area.append({'id': i.id, 'name': project.area.name})
                 
-                for subarea in proyect.area.proyectsubarea_set.all():
+                for subarea in project.area.projectsubarea_set.all():
                     data_subarea.append({'id': subarea.id, 'subarea': json.loads(subarea.sub_area)['geometry']['coordinates'] })
             else:
                 data['error'] = 'Ha ocurrido un error'

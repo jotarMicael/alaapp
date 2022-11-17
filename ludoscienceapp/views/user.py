@@ -4,7 +4,9 @@ from django.shortcuts import redirect, render
 from django import template
 from ludoscienceapp.models.role import Role
 from ludoscienceapp.models.user import User
-from ludoscienceapp.models.proyect import Proyect
+from ludoscienceapp.models.project import Project
+from ludoscienceapp.models.challenge import Challenge
+from ludoscienceapp.models.badge import Badge
 from ludoscienceapp.forms import UserForm
 from ludoscienceapp.utils.System import System
 from django.contrib import messages
@@ -31,10 +33,10 @@ def register(request):
 def home(request):
     if System.is_logged(request):
         if System.is_admin(request):
-            proyects=Proyect.objects.filter(admins__id=request.session['id']).order_by('-id')
+            projects=Project.objects.filter(admins__id=request.session['id']).order_by('-id')
         else:
-            proyects=User.objects.get(id=request.session['id']).proyects.all()
-        return render(request, 'ludoscienceapp/home.html',{'proyects':proyects})    
+            projects=User.objects.get(id=request.session['id']).projects.all()
+        return render(request, 'ludoscienceapp/home.html',{'projects':projects})    
     return redirect('index')
     
     
@@ -119,8 +121,11 @@ def see_my_game_elements(request):
     if System.is_logged(request):
         if System.is_player(request):
             user=User.objects.get(id=request.session['id'])
-     
-            return render(request, 'ludoscienceapp/game_elements/my_game_elements.html',{'nav':'block','see_my_game_elements':System.get_navbar_color,'badges':user.badge_actives.all(),'challenges':user.challenge_actives.all() }) 
+            #c=user.gameelement_actives.all() 
+            #for i in c:
+                #i.challenge
+            
+            return render(request, 'ludoscienceapp/game_elements/my_game_elements.html',{'nav':'block','see_my_game_elements':System.get_navbar_color,'badges':Badge.objects.filter(user_actives=User.objects.get(id=request.session['id'])).all(),'challenges':Challenge.objects.filter(user_actives=User.objects.get(id=request.session['id'])).all() }) 
         return redirect('home')  
     return redirect('index')   
 

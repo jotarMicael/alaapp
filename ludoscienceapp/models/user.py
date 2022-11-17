@@ -13,7 +13,7 @@ class User(models.Model):
     profile_image=models.ImageField(upload_to='ludoscienceapp/static/profile_image/',default='ludoscienceapp/static/profile_image/user.png',null=False,blank=False)
     role_id=models.ForeignKey(Role,null=False,blank=False,on_delete=models.DO_NOTHING)
     verified=models.BooleanField(default=False,blank=False,null=False)
-    proyects=models.ManyToManyField('ludoscienceapp.proyect', related_name='proyects')
+    projects=models.ManyToManyField('ludoscienceapp.project', related_name='projects')
     
 
     def __str__(self):
@@ -24,13 +24,13 @@ class User(models.Model):
         verbose_name_plural="Users"
         db_table='user'
 
-    def add_challengue_active(self,challenge):
-        self.challenge_actives.add(challenge)
+    
+    
+    def add_gamelement_active(self,challenge):
+        self.gameelement_actives.add(challenge)
         self.save()
     
-    def add_badge_active(self,badge):
-        self.badge_actives.add(badge)
-        self.save()
+    
 
     def update_data (self,name,email,password):
         self.complete_name=name

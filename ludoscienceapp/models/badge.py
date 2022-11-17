@@ -16,9 +16,20 @@ class Badge(GameElement):
 
     def increment_progress(self,user_id_):
         
-        badge_progress=self.badgeprogress_set.get(user_id=user_id_)
-        badge_progress.increment_progress(self.get_goal(),self.get_checkins().filter(user_id=user_id_).count())
+        return super().increment_progress(user_id_)
+   
+
+    def is_challenge(self):
+        return False
 
     def get_progress_user(self,user_id_):
-        progress_ge=self.badgeprogress_set.get(user_id=user_id_)
-        return progress_ge.progress
+        return super().get_progress_user(user_id_)
+
+    def add_checkin(self,checkin_,user_id):
+        return super().add_checkin(checkin_,user_id)
+    
+    def change_state(self):
+        return super().change_state()
+
+    def get_state(self):
+        return super().get_state()

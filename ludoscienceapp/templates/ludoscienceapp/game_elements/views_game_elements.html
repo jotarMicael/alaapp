@@ -1,7 +1,7 @@
 {% extends 'ludoscienceapp/base/base.html' %}
 {% load static %}
 {% block title %}
-  E-G del proyecto
+  E-G del projecto
 {% endblock %}
 
 {% block content %}
@@ -10,7 +10,7 @@
     <label class="valid-feedback d-block">{% for message in messages %}{% if message.tags == 'success' %}*{{ message }}{% endif %}{% endfor %}</label>
     <div class="card">
       <div class="card-header">
-        <h3 class="card-title">Misiones del proyecto: {{ name }}</h3>
+        <h3 class="card-title">Misiones del projecto: {{ name }}</h3>
       </div>
 
       <div class="card-body">
@@ -24,12 +24,12 @@
           </thead>
           <tbody>
             
-            {% for mission in challenges %}
+            {% for challenge in challenges %}
             <tr>
               
-              <td>{{ mission.id }}</td>
-              <td>{{ mission.name }}</td>
-              <td><button  onclick="send_game_element_id('{{ mission.id }}','#send_challenge');" class="btn btn-block bg-gradient-info btn-xs">Asignar</button></td>
+              <td>{{ challenge.id }}</td>
+              <td>{{ challenge.name }}</td>
+              <td><button  onclick="send_game_element_id('{{ challenge.id }}','#send_challenge');" class="btn btn-block bg-gradient-info btn-xs">Asignar</button></td>
             </tr>
             {% endfor %}
             <form id="send_challenge"  method="post" action="/asign_challenge/"   > {% csrf_token %}
@@ -61,7 +61,7 @@
     </div>
     <div class="card">
       <div class="card-header">
-        <h3 class="card-title">Insignias del proyecto: {{ name }}</h3>
+        <h3 class="card-title">Insignias del projecto: {{ name }}</h3>
       </div>
 
       <div class="card-body">

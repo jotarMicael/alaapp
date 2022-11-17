@@ -1,13 +1,13 @@
 from django.contrib import admin
 from ludoscienceapp.models.role import Role
 from ludoscienceapp.models.user import User
-from ludoscienceapp.models.proyect import Proyect
+from ludoscienceapp.models.project import Project
 from ludoscienceapp.models.badge import Badge
-from ludoscienceapp.models.challenge_progress import ChallengeProgress
-from ludoscienceapp.models.badge_progress import BadgeProgress
+
+
 from ludoscienceapp.models.token import Token
 from ludoscienceapp.models.check_in import CheckIn
-from ludoscienceapp.models.proyect_subarea import ProyectSubArea
+from ludoscienceapp.models.project_subarea import ProjectSubArea
 # Register your models here.
 
 class UserAdmin(admin.ModelAdmin):
@@ -17,7 +17,7 @@ class UserAdmin(admin.ModelAdmin):
 class RoleAdmin(admin.ModelAdmin):
     list_display=('id','name')
 
-class ProyectAdmin(admin.ModelAdmin):
+class ProjectAdmin(admin.ModelAdmin):
     list_display=('id','name','description','image')
     
 class TokenAdmin(admin.ModelAdmin):
@@ -30,7 +30,7 @@ class AreaAdmin(admin.ModelAdmin):
     list_display=('lat','long')
 
 class CheckInAdmin(admin.ModelAdmin):
-    list_display=('user','proyect','latitude','longitude','datetime')
+    list_display=('user','project','latitude','longitude','datetime')
 
 class ChallengeProgressAdmin(admin.ModelAdmin):
     list_display=('user','challenge','progress')
@@ -44,9 +44,7 @@ class SubAreaAdmin(admin.ModelAdmin):
 admin.site.register(Role,RoleAdmin)
 admin.site.register(User,UserAdmin)
 admin.site.register(Token,TokenAdmin)
-admin.site.register(Proyect,ProyectAdmin)
+admin.site.register(Project,ProjectAdmin)
 admin.site.register(Badge,BadgeAdmin)
 admin.site.register(CheckIn,CheckInAdmin)
-admin.site.register(ChallengeProgress,ChallengeProgressAdmin)
-admin.site.register(BadgeProgress,BadgeProgressAdmin)
-admin.site.register(ProyectSubArea,SubAreaAdmin)
+admin.site.register(ProjectSubArea,SubAreaAdmin)

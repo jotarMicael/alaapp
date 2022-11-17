@@ -14,8 +14,7 @@ Including another URLconf
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
 
-from threading import activeCount
-from ludoscienceapp.views import user, admin, proyect, game_elements, checkin ,badge , challenge
+from ludoscienceapp.views import user, admin, project, game_elements, checkin ,badge , challenge
 from ludoscienceapp.views.game_element_view import GameElementView
 from django.urls import path
 
@@ -30,13 +29,15 @@ urlpatterns = [
     path('activate_account/',user.activate_account,name='activate_account'),
     path('active_account/',user.active_account,name='active_account'),
     path('create_admin/',admin.create_admin,name='create_admin'),
-    path('modify_proyect/',proyect.modify_proyect,name='modify_proyect'),
+    path('modify_project/',project.modify_project,name='modify_project'),
+    path('modify/',game_elements.modify,name='modify'),
     path('register_admin/',admin.register_admin,name='register_admin'),
-    path('create_proyect/',proyect.create_proyect,name='create_proyect'),
-    path('register_proyect/',proyect.register_proyect,name='register_proyect'),
-    path('edit_proyect/',proyect.edit_proyect,name='register_proyect'),
+    path('create_project/',project.create_project,name='create_project'),
+    path('register_project/',project.register_project,name='register_project'),
+    path('edit_project/',project.edit_project,name='register_project'),
     path('create_badge/',badge.badge,name='create_badge'),
     path('process_badge/',badge.process_badge,name='process_badge'),
+    path('change_state/',game_elements.change_state,name='change_state'),
     path('create_challenge/',challenge.challenge,name='create_challenge'),
     path('process_challenge/',challenge.process_challenge,name='process_challenge'),
     path('game_element_view/',GameElementView.as_view(),name='game_element_view'),
@@ -47,7 +48,9 @@ urlpatterns = [
     path('asign_badge/',badge.asign_badge,name="asign_badge"),
     path('see_my_game_elements/',user.see_my_game_elements,name='see_my_game_elements'),
     path('edit_profile/',user.edit_profile,name='edit_profile'),
-    path('process_edit_profile/',user.process_edit_profile,name='process_edit_profile')
+    path('process_edit_profile/',user.process_edit_profile,name='process_edit_profile'),
+    path('game_elements_project/',project.game_elements_project,name='game_elements_project'),
+    path('modify_challenge/',challenge.modify_challenge, name='modify_challenge')
 ]
 
 
