@@ -1,9 +1,9 @@
 
 from django.shortcuts import redirect, render
 from ludoscienceapp.models.user import  User 
-from ludoscienceapp.views.project import game_elements_project
 from ludoscienceapp.models.project import Project
-from ludoscienceapp.models.project_area import ProjectArea
+
+from ludoscienceapp.models.project_subarea import ProjectSubArea
 from ludoscienceapp.models.time_restriction import TimeRestriction
 from ludoscienceapp.views import game_elements
 from ludoscienceapp.utils.System import System
@@ -11,7 +11,7 @@ from ludoscienceapp.models.badge import Badge
 from ludoscienceapp.models.progress import Progress
 from django.contrib import messages
 from ludoscienceapp.forms import BadgeForm
-import os
+
 
 
 
@@ -31,18 +31,11 @@ def process_badge(request):
               elif Badge.objects.filter(name__iexact=request.POST['name'],project=Project.objects.get(id__exact=request.POST['project'])).exists():
                   messages.error(request,'Ya hay una insignia con ese nombre') 
                   return badge(request)   
-              else: 
-                if request.POST['select']=='0':   
-                  badge_= Badge(name=request.POST['name'],area=ProjectArea.objects.get(id__exact=request.POST['area']),time_restriction=TimeRestriction.objects.get(id__exact=request.POST['time_restriction']),goal=request.POST['goal'],owner=User.objects.get(id__exact=request.session['id']),project=Project.objects.get(id__exact=request.POST['project']))
-                else:
-                  parent_badge=Badge.objects.get(id__exact=request.POST['select'])
-                  badge_= Badge(name=request.POST['name'],area=ProjectArea.objects.get(id__exact=request.POST['area']),time_restriction=TimeRestriction.objects.get(id__exact=request.POST['time_restriction']),goal=request.POST['goal'],owner=User.objects.get(id__exact=request.session['id']),project=Project.objects.get(id__exact=request.POST['project']),parent=parent_badge)
-                badge_.save()   
-                form = BadgeForm(data=request.POST, files=request.FILES, instance=badge_)
-                if form.is_valid():
-                    if os.path.exists(badge_.image.path):
-                        os.remove(badge_.image.path)
-                form.save()
+              badge_= Badge(name=request.POST['name'],area=ProjectSubArea.objects.get(id__exact=request.POST['area']),time_restriction=TimeRestriction.objects.get(id__exact=request.POST['time_restriction']),goal=request.POST['goal'],owner=User.objects.get(id__exact=request.session['id']),project=Project.objects.get(id__exact=request.POST['project']))                
+              badge_.add_parent(int(request.POST['select']))    
+              badge_.save()            
+              form = BadgeForm(data=request.POST, files=request.FILES, instance=badge_)
+              form.procces(badge_.get_path_image())
               messages.success(request,'Se ha creado correctamente')
               return badge(request)   
           return redirect('home')  

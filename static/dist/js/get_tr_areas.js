@@ -11,6 +11,7 @@ $(function () {
         }
     }
     $('#id_project').on('change', function () {
+
         removeOptions(document.getElementById('id_area'));
         removeOptions(document.getElementById('id_time_restriction'));
         var id = $(this).val();
@@ -32,10 +33,10 @@ $(function () {
                     document.getElementById('id_time_restriction').appendChild(opt);
                 });
 
-                $.each(data[1], function (key, value) {
+                $.each(data[2], function (key, value) {
                     let opt = document.createElement('option');
                     opt.value = value.id;
-                    opt.innerHTML = value.name;
+                    opt.innerHTML = 'Área '+value.id;
                     document.getElementById('id_area').appendChild(opt);
                 });    
                

@@ -33,3 +33,11 @@ class Badge(GameElement):
 
     def get_state(self):
         return super().get_state()
+
+    def add_parent(self,id_parent):
+        if id_parent !=0:
+            self.parent=Badge.objects.get(id__exact=id_parent)
+
+    def get_path_image(self):
+        return self.image.path
+        

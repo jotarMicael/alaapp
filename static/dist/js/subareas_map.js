@@ -1,6 +1,8 @@
 
 var map;
 
+
+
 function viewInMap(data) {
 
 

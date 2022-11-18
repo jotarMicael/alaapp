@@ -31,7 +31,7 @@ def process_challenge(request):
                   messages.error(request,'Ya hay un desafío con ese nombre')
                   return challenge(request)    
               else: 
-                challenge_=Challenge(name=request.POST['name'],area=ProjectArea.objects.get(id__exact=request.POST['area']),time_restriction=TimeRestriction.objects.get(id__exact=request.POST['time_restriction']),goal=request.POST['goal'],owner=User.objects.get(id__exact=request.session['id']),project=Project.objects.get(id__exact=request.POST['project']))
+                challenge_=Challenge(name=request.POST['name'],area=ProjectSubArea.objects.get(id__exact=request.POST['area']),time_restriction=TimeRestriction.objects.get(id__exact=request.POST['time_restriction']),goal=request.POST['goal'],owner=User.objects.get(id__exact=request.session['id']),project=Project.objects.get(id__exact=request.POST['project']))
                 challenge_.save()            
                 messages.success(request,'Se ha creado correctamente')
               return challenge(request) 
@@ -56,7 +56,7 @@ def modify_challenge(request):
               if not request.POST['name'] or not request.POST['area'] or  not request.POST['time_restriction'] or not request.POST['goal']:
                   messages.error(request,'Debe ingresar todos los campos')
                   return game_elements.modify(request,True)               
-              elif Challenge.objects.filter(name__iexact=request.POST['name'],project=Project.objects.get(id__exact=request.POST['project_id'])).exclude(id__exact=request.POST['id']).exists():
+              elif Challenge.objects.filter(name__iexact=request.POST['name'],project=Project.objects.get(id__exact=request.POST['id_project'])).exclude(id__exact=request.POST['id']).exists():
                   messages.error(request,'Ya hay un desafío con ese nombre')
                   return game_elements.modify(request,True)       
               else: 
