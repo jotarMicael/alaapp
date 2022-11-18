@@ -102,3 +102,11 @@ class System(object):
     def get_navbar_color():
         return settings.NAVBAR_COLOR
   
+    @staticmethod
+    def is_access_correct(var):
+        try:
+            var
+        except KeyError:
+            return False     
+        else:
+            return True

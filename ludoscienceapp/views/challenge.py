@@ -61,7 +61,7 @@ def modify_challenge(request):
                   return game_elements.modify(request,True)       
               else: 
                 challenge_=Challenge.objects.get(id__exact=request.POST['id'])
-                challenge_.update(request.POST['name'],ProjectSubArea.objects.get(id__exact=request.POST['area']),TimeRestriction.objects.get(id__exact=request.POST['time_restriction']),request.POST['goal'])           
+                challenge_.update(request.POST['name'],ProjectSubArea.objects.get(id__exact=request.POST['area']),TimeRestriction.objects.get(id__exact=request.POST['time_restriction']),request.POST['goal'])         
                 messages.success(request,'Desafío modificado correctamente')
               return game_elements.modify(request,True)     
           return redirect('home')  

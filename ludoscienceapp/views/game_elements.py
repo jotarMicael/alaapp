@@ -38,4 +38,5 @@ def modify(request,ok=False):
           time_restrictions=ge.project.time_restriction.all()
           if isinstance(ge, Challenge):
             return render(request, 'ludoscienceapp/game_elements/modify_challenge.html',{'nav':'block','modify_challenge':System.get_navbar_color,'challenge':ge, 'areas':areas,'time_restrictions':time_restrictions}) 
-          return render(request, 'ludoscienceapp/game_elements/modify_badge.html',{'nav':'block','modify_badge':System.get_navbar_color,'badge':ge,'areas':areas,'time_restrictions':time_restrictions}) 
+   
+          return render(request, 'ludoscienceapp/game_elements/modify_badge.html',{'nav':'block','modify_badge':System.get_navbar_color,'badge':ge,'areas':areas,'time_restrictions':time_restrictions,'badges':Badge.objects.filter(project_id=ge.project_id).all()}) 

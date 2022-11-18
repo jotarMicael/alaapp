@@ -2,7 +2,6 @@
 from django.shortcuts import redirect, render
 from ludoscienceapp.models.user import  User 
 from ludoscienceapp.models.project import Project
-
 from ludoscienceapp.models.project_subarea import ProjectSubArea
 from ludoscienceapp.models.time_restriction import TimeRestriction
 from ludoscienceapp.views import game_elements
@@ -53,3 +52,27 @@ def asign_badge(request):
             messages.success(request,'Insignia %s  asignado con éxito'  % (badge.get_name()))
             return game_elements.view_game_elements(request,badge.get_id_project())
 
+def modify_badge(request):
+    if System.is_logged(request):
+          if System.is_admin(request):  
+                try:
+                    request.POST['name']
+                except:
+                    return redirect ('home')
+                if not request.POST['name'] or not request.POST['area'] or  not request.POST['time_restriction'] or not request.POST['goal']:
+                    messages.error(request,'Debe ingresar todos los campos')
+                    return game_elements.modify(request,True)               
+                elif Badge.objects.filter(name__iexact=request.POST['name'],project=Project.objects.get(id__exact=request.POST['id_project'])).exclude(id__exact=request.POST['id']).exists():
+                    messages.error(request,'Ya hay una insignia con ese nombre')
+                    return game_elements.modify(request,True)       
+                else: 
+                    badge_=Badge.objects.get(id__exact=request.POST['id'])
+                    badge_.update(request.POST['name'],ProjectSubArea.objects.get(id__exact=request.POST['area']),TimeRestriction.objects.get(id__exact=request.POST['time_restriction']),request.POST['goal'],int(request.POST['select']))  
+            
+                    form = BadgeForm(data=request.POST, files=request.FILES, instance=badge_)
+                    form.procces(badge_.get_path_image())
+
+                    messages.success(request,'Insignia modificada correctamente')
+                return game_elements.modify(request,True)     
+          return redirect('home')  
+    return redirect('index')  

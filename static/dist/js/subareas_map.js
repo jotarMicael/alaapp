@@ -1,8 +1,6 @@
 
 var map;
 
-
-
 function viewInMap(data) {
 
 
@@ -25,7 +23,7 @@ function viewInMap(data) {
         });
     }
 
-    map = new L.map(document.getElementById('map'), { zoomControl: true }).setView(arr[0][0], 15);
+    map = new L.map(document.getElementById('map'), { zoomControl: true }).setView([arr[0][0][1],arr[0][0][0]], 15);
 
 
 
@@ -74,18 +72,24 @@ function viewInMap(data) {
 
     map.addControl(drawControl);
 
-
+    
 
     arr.forEach((area, index) => {
-
-        L.polygon(area, { color: 'red' }).addTo(map)
+        let areas = []
+        area.forEach((a, index) => {
+            areas.push([a[1],a[0]])
+        });
+  
+        
+        L.polygon(areas, { color: 'red' }).addTo(map)
     });
+
+    
 
 
 
 
     map.on(L.Draw.Event.CREATED, function (e) {
-        console.log(e)
         e.layer.options.color = '#FF0000';
         document.getElementById("lat").value = e.layer._latlng.lat;
         document.getElementById("lon").value = e.layer._latlng.lng;

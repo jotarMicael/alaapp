@@ -37,7 +37,15 @@ class Badge(GameElement):
     def add_parent(self,id_parent):
         if id_parent !=0:
             self.parent=Badge.objects.get(id__exact=id_parent)
+        else:
+            self.parent=None
 
     def get_path_image(self):
         return self.image.path
+
+
+    def update(self,name,area,time_restriction,goal,id_parent):
+       self.add_parent(id_parent)
+       super().update(name,area,time_restriction,goal)
+       
         

@@ -50,7 +50,8 @@ urlpatterns = [
     path('edit_profile/',user.edit_profile,name='edit_profile'),
     path('process_edit_profile/',user.process_edit_profile,name='process_edit_profile'),
     path('game_elements_project/',project.game_elements_project,name='game_elements_project'),
-    path('modify_challenge/',challenge.modify_challenge, name='modify_challenge')
+    path('modify_challenge/',challenge.modify_challenge, name='modify_challenge'),
+    path('modify_badge/',badge.modify_badge, name='modify_badge'),
 ]
 
 

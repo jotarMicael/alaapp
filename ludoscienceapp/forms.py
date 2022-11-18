@@ -4,6 +4,7 @@ from ludoscienceapp.models.project  import Project
 from ludoscienceapp.models.badge import  Badge
 from ludoscienceapp.models.user import User
 import os
+
 class ProjectForm(forms.ModelForm):
     class Meta:
         model = Project
