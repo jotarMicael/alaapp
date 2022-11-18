@@ -20,7 +20,7 @@
   }) */
 
   $.confirmation = function(id) {
-    console.log(id)
+    
     Swal.fire({
       title: '¿Está seguro?',
       text: "No podrá revertir la acción",
