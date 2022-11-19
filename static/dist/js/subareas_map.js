@@ -1,10 +1,7 @@
 
-var map;
+let map;
 
 function viewInMap(data) {
-
-
-
 
     if (map != undefined || !data) {
         map.remove();
@@ -23,21 +20,18 @@ function viewInMap(data) {
         });
     }
 
-    map = new L.map(document.getElementById('map'), { zoomControl: true }).setView([arr[0][0][1],arr[0][0][0]], 15);
-
-
-
+    map = new L.map(document.getElementById('map'), { zoomControl: true }).setView([arr[0][0][1], arr[0][0][0]], 15);
 
     L.tileLayer('http://{s}.tile.osm.org/{z}/{x}/{y}.png', {
         attribution: '&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
     }).addTo(map);
 
-    var drawnItems = new L.FeatureGroup()
+    let drawnItems = new L.FeatureGroup()
 
 
     map.addLayer(drawnItems)
 
-    var drawControl = new L.Control.Draw({
+    let drawControl = new L.Control.Draw({
         draw: {
             polygon: false,
             marker: false,
@@ -49,60 +43,27 @@ function viewInMap(data) {
         edit: {
             featureGroup: drawnItems,
             edit: false,
-            delete: false,
+            remove: false,
         }
     });
 
-    L.drawLocal.draw.toolbar.buttons.circle = 'Seleccionar área.';
-    L.drawLocal.draw.toolbar.buttons.marker = 'Seleccionar un punto.';
-    L.drawLocal.draw.handlers.circle.tooltip.start = 'Hacer click en el área.';
-    L.drawLocal.draw.handlers.marker.tooltip.start = 'Hacer click en el área.';
-    L.drawLocal.draw.toolbar.actions.title = 'Cancelar'
-    L.drawLocal.draw.toolbar.actions.text = 'Cancelar'
-    L.drawLocal.edit.toolbar.buttons.removeDisabled = 'Sin área para eliminar'
-    L.drawLocal.edit.toolbar.buttons.remove = 'Eliminar área'
-    L.drawLocal.edit.toolbar.actions.save.title = 'Guardar cambios.'
-    L.drawLocal.edit.toolbar.actions.save.text = 'Guardar cambios.'
-    L.drawLocal.edit.toolbar.actions.cancel.title = 'Cancelar y descartar los cambios'
-    L.drawLocal.edit.toolbar.actions.cancel.text = 'Cancelar'
-    L.drawLocal.edit.toolbar.actions.clearAll.title = 'Eliminar todas las área'
-    L.drawLocal.edit.toolbar.actions.clearAll.text = 'Eliminar todo'
-    L.drawLocal.draw.handlers.simpleshape.tooltip.end = 'Arrastrar el mouse hasta la ubicación deseada.'
-    L.drawLocal.edit.handlers.remove.tooltip.text = 'Click en área para eliminar'
-
     map.addControl(drawControl);
 
-    
-
     arr.forEach((area, index) => {
+
         let areas = []
-        area.forEach((a, index) => {
-            areas.push([a[1],a[0]])
+        area.forEach((a, index2) => {
+            areas.push([a[1], a[0]])
         });
-  
-        
-        L.polygon(areas, { color: 'red' }).addTo(map)
+
+        let polygon = new L.Polygon(areas, { 'id': (index+1),'color':'red' }).addTo(map);
+        polygon.bindPopup("<strong>Área " + (index + 1) + "</strong>");
+        polygon.on('click', function (event) {            
+            $('#id_area').val(event.target.options.id);
+            $('#id_area').trigger('change');
+        });   
     });
 
-    
-
-
-
-
-    map.on(L.Draw.Event.CREATED, function (e) {
-        e.layer.options.color = '#FF0000';
-        document.getElementById("lat").value = e.layer._latlng.lat;
-        document.getElementById("lon").value = e.layer._latlng.lng;
-        let layer = e.layer;
-        drawnItems.clearLayers();
-        drawnItems.addLayer(layer);
-    });
-
-    map.on(L.Draw.Event.DELETED, function (e) {
-
-        document.getElementById("lat").value = null;
-        document.getElementById("lon").value = null;
-    });
 
 }
 
