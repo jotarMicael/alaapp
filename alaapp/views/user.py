@@ -119,12 +119,7 @@ def active_account(request):
 
 def see_my_game_elements(request):
     if System.is_logged(request):
-        if System.is_player(request):
-            user=User.objects.get(id=request.session['id'])
-            #c=user.gameelement_actives.all() 
-            #for i in c:
-                #i.challenge
-            
+        if System.is_player(request):         
             return render(request, 'alaapp/game_elements/my_game_elements.html',{'nav':'block','see_my_game_elements':System.get_navbar_color,'badges':Badge.objects.filter(user_actives=User.objects.get(id=request.session['id'])).all(),'challenges':Challenge.objects.filter(user_actives=User.objects.get(id=request.session['id'])).all() }) 
         return redirect('home')  
     return redirect('index')   
@@ -163,3 +158,9 @@ def process_edit_profile(request):
     return redirect('index')   
 
 
+def my_projects(request):
+    if System.is_logged(request):
+        if System.is_player(request):   
+             return render(request, 'alaapp/projects/my_projects.html',{'nav':'block','my_projects':System.get_navbar_color,'projects':Project.objects.filter(user__id=request.session['id']) }) 
+        return redirect('home')  
+    return redirect('index') 

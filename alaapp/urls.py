@@ -53,7 +53,8 @@ urlpatterns = [
     path('modify_challenge/',challenge.modify_challenge, name='modify_challenge'),
     path('modify_badge/',badge.modify_badge, name='modify_badge'),
     path('see_all_projects/',project.see_all_projects,name='see_all_projects'),
-    path('asign_project/',project.asign_project,name='asign_project')
+    path('asign_project/',project.asign_project,name='asign_project'),
+    path('my_projects/',user.my_projects,name='my_projects')
 ]
 
 

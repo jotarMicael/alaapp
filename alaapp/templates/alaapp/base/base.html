@@ -89,8 +89,7 @@
 
 </div>
 <!-- ./wrapper -->
-{% block scripts %}
-{% endblock %}
+
 <!-- jQuery -->
 
 <script src="{% static 'plugins/jquery/jquery.js' %}"></script>
@@ -105,21 +104,14 @@
 <!-- AdminLTE App -->
 <script src="{% static 'dist/js/adminlte.min.js' %}"></script>
 <script src="{% static 'dist/js/es.js' %}"></script>
-<script src="{% static 'dist/js/sweetalert2.all.min.js' %}"></script>
-<script src="{% static 'dist/js/showconfirmation.js' %}"></script>
+
 <script type="text/javascript" src="https://cdn.jsdelivr.net/momentjs/latest/moment.min.js"></script>
 <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.min.js"></script>
-<script src="https://unpkg.com/leaflet@1.9.2/dist/leaflet.js"
-     integrity="sha256-o9N1jGDZrf5tS+Ft4gbIK7mYMipq9lqpVJ91xHSyKhg="
-     crossorigin=""></script>
-     <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet.draw/1.0.4/leaflet.draw.js"></script>
+
 <script src="{% static 'dist/js/daterangepickerES.js' %}"></script>
 <script src="{% static 'dist/js/datetime.js' %}"></script>
-<!--<script src="{% static 'dist/js/map.js' %}"></script>-->
-<script src="{% static 'dist/js/get_tr_areas.js' %}"></script>
-<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.13.1/css/jquery.dataTables.css">
 
-<script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.13.1/js/jquery.dataTables.js"></script>
+
 <script>
 
   $(function () {
@@ -138,22 +130,12 @@
   
   
 </script>
-<script src="{% static 'dist/js/datatable_es.js' %}"></script>
-<script>$(document).ready( function () {
-  $('#table').DataTable({
 
-    "language": lang
 
-  });
-  $('#table2').DataTable({
-
-    "language": lang
-
-  });
-} ); </script>
-<script src="{% static 'dist/js/get_tr_areas_.js' %}"></script>
 <script src="{% static 'dist/js/location.js' %}"></script>
 <script src="{% static 'dist/js/send_game_element_id.js' %}"></script>
 <script src="{% static 'dist/js/send_game_element_id_2.js' %}"></script>
+{% block scripts %}
+{% endblock %}
 </body>
 </html>

@@ -48,7 +48,7 @@
 
             <div class="form-group">
               <label for="exampleInputEmail1">¿Dónde?</label>
-              <div id="map" style="height: 180px !important" ></div>
+              <div id="map" style="height: 180px !important"></div>
             </div>
             <input type="hidden" class="form-control"  id="lat" name="lat"   required />
             <input type="hidden" class="form-control"  id="lon"  name="lon"  required />
@@ -88,6 +88,10 @@
 
 {% block scripts %}
 
-   
-    <script src="{% static '/dist/js/showconfirmation.js' %}"></script>
+<script src="https://unpkg.com/leaflet@1.9.2/dist/leaflet.js"
+     integrity="sha256-o9N1jGDZrf5tS+Ft4gbIK7mYMipq9lqpVJ91xHSyKhg="
+     crossorigin=""></script>
+     <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet.draw/1.0.4/leaflet.draw.js"></script>
+<script src="{% static 'dist/js/map.js' %}"></script>
+<script src="{% static '/dist/js/showconfirmation.js' %}"></script>
 {% endblock %}

@@ -18,7 +18,7 @@ def checkin(request):
 def process_checkin(request):
     if System.is_logged(request):
         if System.is_player(request):
-            if not request.POST['datetime'] or not request.POST['lat'] or not request.POST['lon'] or not request.POST['project']:
+            if not request.POST['datetime'] or not request.POST['lat'] or not request.POST['lon'] or not request.POST['project'] or request.POST['project']=='#':
                   messages.error(request,'Debe ingresar todos los campos')
             else:  
                 checkin_=CheckIn(user=(User.objects.get(id__exact=request.session['id'])),project=(Project.objects.get(id__exact=request.POST['project'])),latitude=request.POST['lat'],longitude=request.POST['lon'],datetime=request.POST['datetime'][:-3])

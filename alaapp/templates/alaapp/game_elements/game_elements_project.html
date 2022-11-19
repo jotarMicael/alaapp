@@ -16,7 +16,7 @@
       <div class="card-body">
         <div class="table-responsive">
         <table id="table" class="table table-bordered">
-          <thead>
+          <thead class="table-primary">
             <tr>
               <th style="width: 10px">#</th>
               <th>Nombre</th>
@@ -29,7 +29,7 @@
             {% for challenge in challenges %}
             <tr>
               
-              <td>{{ challenge.id }}</td>
+              <td class="table-success">{{ challenge.id }}</td>
               <td>{{ challenge.name }}</td>
              
               <td><button  onclick="send_game_element_id_2('{{ challenge.id }}','#change_state');" class="btn btn-block bg-gradient-danger btn-xs">{% if challenge.public %}Eliminar{% else %}Restaurar{% endif %}</button></td>
@@ -71,7 +71,7 @@
       <div class="card-body">
         <div class="table-responsive">
         <table id="table2" class="table table-bordered">
-          <thead>
+          <thead class="table-primary">
             <tr>
               <th style="width: 10px">#</th>
               <th>Nombre</th>
@@ -81,8 +81,8 @@
           </thead>
           <tbody>
             {% for badge in badges %}
-            <tr>
-              <td>{{ badge.id }}</td>
+            <tr >
+              <td class="table-success">{{ badge.id }}</td>
               <td>{{ badge.name }}</td>
               <td><button  onclick="send_game_element_id_2('{{ badge.id }}','#change_state');" class="btn btn-block bg-gradient-danger btn-xs">{% if badge.public %}Eliminar{% else %}Restaurar{% endif %}</button></td>
 
@@ -104,6 +104,22 @@
   </div>
 {% endblock %}
 {% block scripts %}
-   
-    <script src="{% static '/dist/js/showconfirmation.js' %}"></script>
+<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.13.1/css/jquery.dataTables.css">
+
+<script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.13.1/js/jquery.dataTables.js"></script>
+<script src="{% static 'dist/js/datatable_es.js' %}"></script>
+<script>$(document).ready( function () {
+  $('#table').DataTable({
+
+    "language": lang
+
+  });
+  $('#table2').DataTable({
+
+    "language": lang
+
+  });
+} ); </script>
+<script src="{% static 'dist/js/sweetalert2.all.min.js' %}"></script>
+<script src="{% static 'dist/js/showconfirmation.js' %}"></script>
 {% endblock %}
