@@ -12,3 +12,8 @@ def is_valued(ge,user_id):
 @register.simple_tag
 def get_assignment_id(ge,user_id):
     return ge.get_assignment_id(user_id)
+
+@register.simple_tag
+
+def scoried(ge,user_id):
+    return ge.scoried(user_id)

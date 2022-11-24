@@ -1,11 +1,17 @@
 
 from django.db import models
+from datetime import datetime
+        
+
 # Create your models here.
 
 class TimeRestriction(models.Model):
-    name=models.CharField(blank=False,null=False,max_length=10)
+    name=models.CharField(blank=False,null=False,max_length=100)
     date_from=models.DateField(blank=True,null=True,max_length=10)
     date_to=models.DateField(blank=True,null=True,max_length=10)
+    hour_from=models.CharField(blank=True,null=True,max_length=10)
+    hour_to=models.CharField(blank=True,null=True,max_length=10)
+    days=models.ManyToManyField('alaapp.day')
   
     class Meta:
         verbose_name='TimeRestriction'
@@ -17,4 +23,18 @@ class TimeRestriction(models.Model):
 
 
     def is_valid_time(self,date):     
-        return ( date>= self.date_from.strftime("%Y-%m-%d") and date  <= self.date_to.strftime("%Y-%m-%d"))
+        
+        return ( date>= (self.date_from.strftime("%Y-%m-%d")+ ' ' + self.hour_from) and date  <= (self.date_to.strftime("%Y-%m-%d") + ' ' + self.hour_to) and self.is_valid_day())
+    
+    def is_valid_day(self):
+        from alaapp.models.day import Day  
+        return self.days.all().contains(Day.objects.get(id=datetime.today().isoweekday()))
+        
+
+
+    def add_days(self,days):       
+        from alaapp.models.day import Day   
+        for day in Day.objects.all():
+            if days.get(day.get_id())=='on':
+                self.days.add(day)
+        self.save()

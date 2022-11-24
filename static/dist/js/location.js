@@ -28,9 +28,10 @@ function success(pos) {
 
 
     let current = new Date()
+	
+    var fecha = current.getFullYear()  + '-' + ( current.getMonth() + 1 ) + '-' + current.getDate() + ' ' + current.getHours() + ':' + (current.getMinutes()<10?'0':'') + current.getMinutes() ;
 
-
-    document.getElementById("datetime").value = current.toISOString().split('T')[0] + ' ' + this.formatAMPM(current)
+    document.getElementById("datetime").value = fecha
 
     document.getElementById("lat").value = crd.latitude;
     document.getElementById("lon").value = crd.longitude;

@@ -33,10 +33,11 @@
             {% for challenge in challenges %}
             {% get_progress_user challenge request.session.id as progress %}
             {% is_valued challenge request.session.id as valorate %}
+            {% get_assignment_id challenge request.session.id as id_assignment %}
             <tr>
               
               <td class="table-success">{{ challenge.id }}</td>
-              <td>{{ challenge.name }} {% if progress == 100 and valorate is False %} {% get_assignment_id challenge request.session.id as id_assignment %}&nbsp;&nbsp;<span onclick="send_assignment_id('{{ id_assignment }}','#send_assignment','true');"><i class="fas fa-thumbs-up"   ></i></span>&nbsp;&nbsp;<span onclick="send_assignment_id('{{ id_assignment }}','#send_assignment',false);"><i class="fas fa-thumbs-down"></i></span><a href="javascript:;" onclick="showCriteriaModal('{{ id_assignment }}','{{ challenge.name }}')">opinión</a> {% endif %}</td>   
+              <td>{{ challenge.name }} {% if progress == 100 and valorate is False %} &nbsp;&nbsp;<span onclick="send_assignment_id('{{ id_assignment }}','#send_assignment','true');"><i class="fas fa-thumbs-up"   ></i></span>&nbsp;&nbsp;<span onclick="send_assignment_id('{{ id_assignment }}','#send_assignment',false);"><i class="fas fa-thumbs-down"></i></span>  {% endif %}{% scoried challenge request.session.id as scoried %}{% if progress == 100 and scoried is False%}<a href="javascript:;" onclick="showCriteriaModal('{{ id_assignment }}','{{ challenge.name }}')">opinión</a>{% endif %}</td>   
               <td>{{ challenge.project.name }}</td>
             
 
@@ -69,9 +70,10 @@
             {% for badge in badges %}
             {% get_progress_user badge request.session.id as progress %}
             {% is_valued badge request.session.id as valorate %}
+            {% get_assignment_id badge request.session.id as id_assignment %}
             <tr>
               <td class="table-success">{{ badge.id }}</td>
-              <td>{{ badge.name }} {% if progress == 100 and valorate is False %} {% get_assignment_id badge request.session.id as id_assignment %}&nbsp;&nbsp;<span onclick="send_assignment_id('{{ id_assignment }}','#send_assignment','true');"><i class="fas fa-thumbs-up"></i></span>&nbsp;&nbsp;<span onclick="send_assignment_id('{{ id_assignment }}','#send_assignment',false);"><i class="fas fa-thumbs-down"></i></span><a href="javascript:;" onclick="showCriteriaModal('{{ id_assignment }}','{{ badge.name }}')">opinión</a> {% endif %}</td>             
+              <td>{{ badge.name }} {% if progress == 100 and valorate is False %} &nbsp;&nbsp;<span onclick="send_assignment_id('{{ id_assignment }}','#send_assignment','true');"><i class="fas fa-thumbs-up"></i></span>&nbsp;&nbsp;<span onclick="send_assignment_id('{{ id_assignment }}','#send_assignment',false);"><i class="fas fa-thumbs-down"></i></span> {% endif %}{% scoried badge request.session.id as scoried %}{% if progress == 100 and scoried is False%}<a href="javascript:;" onclick="showCriteriaModal('{{ id_assignment }}','{{ badge.name }}')">opinión</a>{% endif %}</td>             
               <td>{{ badge.project.name }}</td>
             
 

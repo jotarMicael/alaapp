@@ -5,7 +5,7 @@ from alaapp.models.project import Project
 from alaapp.models.badge import Badge
 from alaapp.models.scoring import Scoring
 from alaapp.models.criteria import Criteria
-
+from alaapp.models.day import Day
 from alaapp.models.token import Token
 from alaapp.models.check_in import CheckIn
 from alaapp.models.project_subarea import ProjectSubArea
@@ -45,6 +45,9 @@ class CriteriaAdmin(admin.ModelAdmin):
 class ScoringAdmin(admin.ModelAdmin):
     list_display=('criteria','assignment','assessment')
 
+class DayAdmin(admin.ModelAdmin):
+    list_display= ('id','name')
+
 admin.site.register(Role,RoleAdmin)
 admin.site.register(User,UserAdmin)
 admin.site.register(Token,TokenAdmin)
@@ -54,3 +57,4 @@ admin.site.register(CheckIn,CheckInAdmin)
 admin.site.register(ProjectSubArea,SubAreaAdmin)
 admin.site.register(Scoring,ScoringAdmin)
 admin.site.register(Criteria,CriteriaAdmin)
+admin.site.register(Day,DayAdmin)

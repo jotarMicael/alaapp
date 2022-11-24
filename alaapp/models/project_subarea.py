@@ -1,6 +1,8 @@
 
 from django.db import models
 from alaapp.models.project_area import ProjectArea
+from shapely.geometry import Point, Polygon
+import json
 # Create your models here.
 
 class ProjectSubArea(models.Model):
@@ -17,5 +19,13 @@ class ProjectSubArea(models.Model):
         return f'{self.area},{self.sub_area}'  
 
     def is_valid_area(self,lat,lon):
-        #return (lat and lon between polygon)
-        return True
+        a=json.loads(self.sub_area)
+        coords = []
+        for coor in a['geometry']['coordinates'][0]:
+            coords.append((coor[1],coor[0]))        
+        #p1 = Point(-36.655022950488615, -69.72561322652085)  
+        p1 = Point(float(lat), float(lon) )   
+        poly = Polygon(coords) 
+        #cent=poly.centroid      
+        return p1.within(poly)
+

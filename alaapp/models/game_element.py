@@ -37,6 +37,7 @@ class GameElement(models.Model):
         return f'{self.name},{self.goal},{self.owner},{self.rate},{self.project}'     
 
     def add_checkin(self,checkin_,user_id):
+        self.area.is_valid_area(checkin_.get_latitude(),checkin_.get_longitude())
         if(self.time_restriction.is_valid_time(checkin_.get_date()) and self.area.is_valid_area(checkin_.get_latitude(),checkin_.get_longitude()) and self.is_my_user_active(user_id)):
             self.checkin.add(checkin_)
             self.increment_progress(user_id)
@@ -94,7 +95,11 @@ class GameElement(models.Model):
        self.goal=goal
        self.save()
        
-    
+    def scoried(self,user_id):
+        if self.assignment_set.get(user_id=user_id).scoring_set.count() == 0:
+            return False
+        return True
+
 
     def get_state(self):
         if self.public:

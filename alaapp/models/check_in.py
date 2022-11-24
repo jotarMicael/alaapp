@@ -23,7 +23,7 @@ class CheckIn(models.Model):
 
 
     def get_date(self):
-        return self.datetime[:10]
+        return self.datetime[:16]
     
     def get_latitude(self):
         return self.latitude

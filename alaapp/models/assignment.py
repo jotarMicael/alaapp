@@ -43,8 +43,7 @@ class Assignment(models.Model):
         from alaapp.models.criteria import Criteria
         from alaapp.models.scoring import Scoring
         for criteria in Criteria.objects.all():
-            Scoring(assessment=assesments[criteria.get_name()],criteria=Criteria.objects.get(id=criteria.get_id()),assignment=self).save()    
-                 
+            Scoring(assessment=assesments[criteria.get_name()],criteria=criteria,assignment=self).save()     
 
     def get_id(self):
         return self.id
