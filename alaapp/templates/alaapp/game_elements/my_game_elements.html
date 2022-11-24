@@ -2,6 +2,7 @@
 {% load static %}
 
 {% load game_element_extras %}
+
 {% block title %}
   Mis E-J
 {% endblock %}
@@ -22,7 +23,7 @@
           <thead class="table-primary" >
             <tr>
               <th style="width: 5px">#</th>
-              <th>Nombre</th>
+              <th style="width: 300px" >Nombre</th>
               <th>Proyecto</th>
               <th style="width: 10px">Progreso</th>
             </tr>
@@ -31,22 +32,20 @@
             
             {% for challenge in challenges %}
             {% get_progress_user challenge request.session.id as progress %}
+            {% is_valued challenge request.session.id as valorate %}
             <tr>
               
               <td class="table-success">{{ challenge.id }}</td>
-              <td>{{ challenge.name }}</td>
+              <td>{{ challenge.name }} {% if progress == 100 and valorate is False %} {% get_assignment_id challenge request.session.id as id_assignment %}&nbsp;&nbsp;<span onclick="send_assignment_id('{{ id_assignment }}','#send_assignment','true');"><i class="fas fa-thumbs-up"   ></i></span>&nbsp;&nbsp;<span onclick="send_assignment_id('{{ id_assignment }}','#send_assignment',false);"><i class="fas fa-thumbs-down"></i></span><a href="javascript:;" onclick="showCriteriaModal('{{ id_assignment }}','{{ challenge.name }}')">opinión</a> {% endif %}</td>   
               <td>{{ challenge.project.name }}</td>
             
 
               <td><span class="float-right badge bg-{% if progress < 25 %}danger {% elif  progress >= 25 and progress < 50 %}warning {% elif   progress >= 50 and progress < 100 %}info {% else %}success {% endif %}">{{ progress }}%</span></td>
             </tr>
             {% endfor %}
-            <form id="send_challenge"  method="post" action="/asign_challenge/"   > {% csrf_token %}
-            <input type="hidden" id="challenge_id" name="challenge_id" />
-            </form>
           </tbody>
         </table>
-      </div>
+        </div>
       </div>
     </div>
  
@@ -61,7 +60,7 @@
           <thead class="table-primary">
             <tr>
               <th style="width: 10px">#</th>
-              <th>Nombre</th>
+              <th style="width: 300px" >Nombre</th>
               <th>Proyecto</th>
               <th style="width: 10px">Progreso</th>
             </tr>
@@ -69,47 +68,33 @@
           <tbody>
             {% for badge in badges %}
             {% get_progress_user badge request.session.id as progress %}
-            <tr >
+            {% is_valued badge request.session.id as valorate %}
+            <tr>
               <td class="table-success">{{ badge.id }}</td>
-              <td>{{ badge.name }}</td>
+              <td>{{ badge.name }} {% if progress == 100 and valorate is False %} {% get_assignment_id badge request.session.id as id_assignment %}&nbsp;&nbsp;<span onclick="send_assignment_id('{{ id_assignment }}','#send_assignment','true');"><i class="fas fa-thumbs-up"></i></span>&nbsp;&nbsp;<span onclick="send_assignment_id('{{ id_assignment }}','#send_assignment',false);"><i class="fas fa-thumbs-down"></i></span><a href="javascript:;" onclick="showCriteriaModal('{{ id_assignment }}','{{ badge.name }}')">opinión</a> {% endif %}</td>             
               <td>{{ badge.project.name }}</td>
             
 
               <td><span class="float-right badge bg-{% if progress < 25 %}danger {% elif  progress >= 25 and progress < 50 %}warning {% elif   progress >= 50 and progress < 100 %}info {% else %}success {% endif %}">{{ progress }}%</span></td>
             </tr>
             {% endfor %}
-            <form  id="send_badge" method="post" action="/asign_badge/"   > {% csrf_token %}
-              <input type="hidden" id="badge_id" name="badge_id" />
-              </form>
+           
+ 
           </tbody>
         </table>
+        <form  id="send_assignment" method="post" action="/add_like_dislike/"   > {% csrf_token %}
+          <input type="hidden" id="assignment_id" name="assignment_id" />
+          <input type="hidden" id="assignment_bool" name="assignment_bool" />
+        </form>
       </div>
+
       
     </div>
   
 </div>
 
-      <!--<div class="card-footer clearfix">
-        <ul class="pagination pagination-sm m-0 float-right">
-          <li class="page-item">
-            <a class="page-link" href="#">«</a>
-          </li>
-          <li class="page-item">
-            <a class="page-link" href="#">1</a>
-          </li>
-          <li class="page-item">
-            <a class="page-link" href="#">2</a>
-          </li>
-          <li class="page-item">
-            <a class="page-link" href="#">3</a>
-          </li>
-          <li class="page-item">
-            <a class="page-link" href="#">»</a>
-          </li>
-        </ul>
-      </div> -->
-    
-  
+
+{% include '../modal/criteria_modal.html' %}
 {% endblock %}
 
 
@@ -133,4 +118,12 @@
 } ); </script>
 <script src="{% static 'dist/js/sweetalert2.all.min.js' %}"></script>
 <script src="{% static 'dist/js/showconfirmation.js' %}"></script>
+
+<script>
+  function showCriteriaModal(id,name) {
+    $('#myModal .modal-title').html(name)
+    $('#myModal .id').attr('value',id)
+    $('#myModal').modal()
+  }
+</script>
 {% endblock %}

@@ -49,9 +49,7 @@
           <div class="form-group">
             <label>Asignar área</label>
             <select id="id_area" name="area" class="form-control select2 select2-info" data-dropdown-css-class="select2-info" data-placeholder="Seleccionar áreas" style="width: 100%;" required>          
-              {% for area in areas %}
-              <option value='{{ area.id }}'>Área {{ area.id }}</option>
-              {% endfor %}
+             
             </select><br>
             <div id="map" ></div>
           </div>
@@ -102,6 +100,6 @@
      <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet.draw/1.0.4/leaflet.draw.js"></script>
 <script src="{% static 'dist/js/subareas_map.js' %}"></script>
 <script src="{% static 'dist/js/get_tr_areas_.js' %}"></script>
-
+<script src="{% static 'dist/js/sweetalert2.all.min.js' %}"></script>
     <script src="{% static '/dist/js/showconfirmation.js' %}"></script>
 {% endblock %}

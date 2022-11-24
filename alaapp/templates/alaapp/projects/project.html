@@ -74,14 +74,16 @@
 
 
 {% endif %} 
+
 <div class="container">
+  {% block content_header %}<h3>Mis últimos proyectos asignados</h3>{% endblock %}
   <div class="row justify-content-start">
     
     <div class="row row-cols-1 row-cols-md-2  mb-3">
       {% for project in projects|slice:':4' %}
         <div class="col">
           <div class="card">
-            <img src="{{ project.image.url }}"  width="300px" height="180px"  class="card-img-top" alt="Responsive image" />
+            <img src="{{ project.image.url }}"  width="300px" height="150px"  class="card-img-top" alt="Responsive image" />
             <div class="card-body">
               <h5 class="card-title"><strong>{{ project.name }}</strong></h5>
 
@@ -96,9 +98,11 @@
   </div>
   <div class="row justify-content-center mb-3">
     <div class="cols-1 cols-md-2 ">
-      <form action="/my_project/{{ project.id }}" method="get">
+      {% if request.session.role == 'PLAYER' %}
+      <form action="/my_projects/" method="get">
+        {% endif %}
         {% csrf_token %}
-        <button type="button" class="btn btn-block bg-gradient-info">Ver más...</button>
+        <button type="submit" class="btn btn-block bg-gradient-info">Ver más...</button>
       </form>
     </div>
   </div>

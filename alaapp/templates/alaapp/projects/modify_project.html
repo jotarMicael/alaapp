@@ -44,8 +44,7 @@
           <div class="form-group">
             <label for="exampleFormControlFile1">Asignar área</label>
             <input type="file" class="form-control-file" accept=".geojson" name="area">
-          </div>
-           
+          </div>          
             <div class="form-group">
               <label>Asignar restricciones de tiempo</label>
               <select id="" name="time_restriction[]" class="form-control select2 select2-info" data-dropdown-css-class="select2-info" multiple="multiple" data-placeholder="Seleccionar restricciones de tiempo" style="width: 100%;" >          
@@ -81,6 +80,6 @@
   </div>
 {% endblock %}
 {% block scripts %}
-   
+<script src="{% static 'dist/js/sweetalert2.all.min.js' %}"></script>
     <script src="{% static '/dist/js/showconfirmation.js' %}"></script>
 {% endblock %}

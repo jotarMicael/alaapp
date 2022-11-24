@@ -25,8 +25,7 @@ def register_admin(request):
     user.save()
     messages.success(request,'¡Administrador dado de alta con éxito')
     return redirect('create_admin')
-    #System.set_session(request,user)  
-    #return user_verificate(request,True,user)
+
 
 def create_admin(request):
      if System.is_logged(request):

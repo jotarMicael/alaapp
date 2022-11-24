@@ -27,14 +27,18 @@ class Project(models.Model):
         db_table='project'
 
     def add_checkin(self,checkin_,user_id): 
-
         for ge in self.get_game_elements():         
             ge.add_checkin(checkin_,user_id)
+        self.save()
         
+    def add_admins(self,id_admins):
+        for id_admin in id_admins:
+            self.admins.add(User.objects.get(id=id_admin))
+        self.save()
 
     def add_area(self,area):
         self.area=area
-        
+        self.save()
 
     def modify(self,name,description,checkbox):
         self.name=name
@@ -44,8 +48,10 @@ class Project(models.Model):
         else:
             self.avaliable=0
         
-    def add_time_restriction(self,time_restriction):
-        self.time_restriction.add(time_restriction)
+    def add_time_restrictions(self,id_time_restrictions):
+        for id_tr in id_time_restrictions:
+            self.time_restriction.add(TimeRestriction.objects.get(id=id_tr))
+        self.save()
 
     def get_game_elements(self):
         return self.gameelement.all()
@@ -53,4 +59,5 @@ class Project(models.Model):
     def get_name(self):
         return self.name
 
-   
+    def get_image_path(self):
+        return self.image.path

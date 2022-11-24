@@ -14,13 +14,14 @@ function viewInMap(data) {
 
         document.getElementById('map').innerHTML = "<div id='map' style='height: 180px'></div>";
         data.forEach((numero, index) => {
-            arr.push(numero.subarea[0]);
+            
+            arr.push([numero.subarea[0],numero.id,numero.number]);
 
 
         });
     }
 
-    map = new L.map(document.getElementById('map'), { zoomControl: true }).setView([arr[0][0][1], arr[0][0][0]], 15);
+    map = new L.map(document.getElementById('map'), { zoomControl: true }).setView([arr[0][0][0][1], arr[0][0][0][0]], 15);
 
     L.tileLayer('http://{s}.tile.osm.org/{z}/{x}/{y}.png', {
         attribution: '&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
@@ -49,15 +50,15 @@ function viewInMap(data) {
 
     map.addControl(drawControl);
 
-    arr.forEach((area, index) => {
-
+    arr.forEach((area) => {
         let areas = []
-        area.forEach((a, index2) => {
+        area[0].forEach((a) => {
+            
             areas.push([a[1], a[0]])
         });
 
-        let polygon = new L.Polygon(areas, { 'id': (index+1),'color':'red' }).addTo(map);
-        polygon.bindPopup("<strong>Área " + (index + 1) + "</strong>");
+        let polygon = new L.Polygon(areas, { 'id': (area[1]),'color':'red' }).addTo(map);
+        polygon.bindPopup("<strong>Área " + (area[2]), + "</strong>");
         polygon.on('click', function (event) {            
             $('#id_area').val(event.target.options.id);
             $('#id_area').trigger('change');

@@ -14,7 +14,7 @@ Including another URLconf
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
 
-from alaapp.views import user, admin, project, game_elements, checkin ,badge , challenge
+from alaapp.views import user, admin, project, game_elements, checkin ,badge , challenge , assignment
 from alaapp.views.game_element_view import GameElementView
 from django.urls import path
 
@@ -54,7 +54,9 @@ urlpatterns = [
     path('modify_badge/',badge.modify_badge, name='modify_badge'),
     path('see_all_projects/',project.see_all_projects,name='see_all_projects'),
     path('asign_project/',project.asign_project,name='asign_project'),
-    path('my_projects/',user.my_projects,name='my_projects')
+    path('my_projects/',user.my_projects,name='my_projects'),
+    path('add_like_dislike/',assignment.add_like_dislike,name='add_like_dislike'),
+    path('create_scoring/',assignment.create_scoring,name='create_scoring')
 ]
 
 

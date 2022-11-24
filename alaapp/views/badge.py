@@ -7,7 +7,7 @@ from alaapp.models.time_restriction import TimeRestriction
 from alaapp.views import game_elements
 from alaapp.utils.System import System
 from alaapp.models.badge import Badge
-from alaapp.models.progress import Progress
+from alaapp.models.assignment import Assignment
 from django.contrib import messages
 from alaapp.forms import BadgeForm
 
@@ -47,7 +47,7 @@ def asign_badge(request):
             badge= Badge.objects.get(id=request.POST['badge_id'])
             user = User.objects.get(id=request.session['id'])
             user.add_gamelement_active(badge)
-            bp = Progress(user=user,game_element=badge)
+            bp = Assignment(user=user,game_element=badge)
             bp.save()
             messages.success(request,'Insignia %s  asignado con éxito'  % (badge.get_name()))
             return game_elements.view_game_elements(request,badge.get_id_project())

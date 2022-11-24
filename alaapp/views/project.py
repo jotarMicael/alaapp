@@ -14,7 +14,7 @@ from alaapp.utils.System import System
 from django.contrib import messages
 from alaapp.forms import ProjectForm
 import geopandas as gpd
-import os
+
 
 def create_project(request):
      if System.is_logged(request):
@@ -31,9 +31,7 @@ def register_project(request):
                return redirect('create_project') 
             project = Project(name=request.POST['name'])
             project.save()
-            for admin_id in request.POST.getlist('select[]'):
-                 ad=User.objects.get(id__exact=admin_id)
-                 project.admins.add(ad)
+            project.add_admins(request.POST.getlist('select[]'))
             messages.success(request,'¡Proyecto creado con éxito¡')
             return redirect('create_project') 
      return redirect('index')  
@@ -51,7 +49,7 @@ def edit_project(request):
      if System.is_logged(request):
           if System.is_admin(request): 
                               
-                if not request.POST.get('name') or not request.POST.get('description') or not request.FILES.get('image') or not request.FILES.get('area') or len(request.POST.getlist('time_restriction[]'))==0:
+                if not request.POST.get('name') or not request.POST.get('description') or not request.FILES.get('image') or not request.FILES.get('area') or len(request.POST.getlist('time_restriction[]'))==0 :
                      messages.error(request,'Debe ingresar todos los campos')
                      return modify_project(request)
 
@@ -60,23 +58,14 @@ def edit_project(request):
                                
                 df = gpd.read_file(request.FILES.get('area'), driver='GeoJSON')   
                 area=json.loads(df.to_json())
-                p_area= ProjectArea(name='Nombre-Fantasia',type=area['type'])
+                p_area= ProjectArea(name=area['type'])
                 p_area.save()
-                project.add_area(p_area)        
-                for subarea in area['features']:
-                    p_subarea=ProjectSubArea(area=p_area,sub_area=json.dumps(subarea))
-                    p_subarea.save()
-                for time_restriction_id in request.POST.getlist('time_restriction[]'):
-                    project.add_time_restriction(TimeRestriction.objects.get(id__exact=time_restriction_id))
-
-                project.save()    
-               
+                p_area.add_subareas(area['features'])
+                project.add_area(p_area)     
+                project.add_time_restrictions(request.POST.getlist('time_restriction[]'))
+                project.save()           
                 form = ProjectForm(data=request.POST, files=request.FILES, instance=project)
-                if form.is_valid():
-                    
-                    if os.path.exists(project.image.path):
-                         os.remove(project.image.path)
-                    form.save()
+                form.procces(project.get_image_path())
                 return redirect('home') 
 
 def game_elements_project(request,ok=False):

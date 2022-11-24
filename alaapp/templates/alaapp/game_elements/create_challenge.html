@@ -37,14 +37,7 @@
                 {% endfor %}
               </select>
             </div>
-            <div class="form-group">
-              <label>Área</label>
-              <select id="id_area" name="area" class="form-control select2 select2-info" data-dropdown-css-class="select2-info" data-placeholder="Seleccionar áreas" style="width: 100%;" required>          
-                {% for area in areas %}
-                <option value='{{ area.id }}'>{{ area.name }}</option>
-                {% endfor %}
-              </select>
-            </div>
+            
            
             <div class="form-group">
               <label>Asignar restricción de tiempo</label>
@@ -52,7 +45,12 @@
               </select>
             </div>
             <div class="form-group">
-              <label for="exampleInputEmail1">Seleccionar sub-área</label>
+              <label>Área</label>
+              <select id="id_area" name="area" class="form-control select2 select2-info" data-dropdown-css-class="select2-info" data-placeholder="Seleccionar áreas" style="width: 100%;" required>          
+                
+              </select>
+            
+              <br>
               <div id="map" ></div>
             </div>
             <div class="form-group">

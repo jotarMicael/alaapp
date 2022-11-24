@@ -42,5 +42,12 @@ class User(models.Model):
     def get_profile_image(self):
         return self.profile_image
 
+    def get_profile_image_path(self):
+        return self.get_profile_image().path
+
     def add_project(self,project):
         self.projects.add(project)
+
+    def change_verified(self):
+        self.verified=True
+        self.save()

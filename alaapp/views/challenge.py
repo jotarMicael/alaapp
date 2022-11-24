@@ -9,7 +9,7 @@ from alaapp.models.time_restriction import TimeRestriction
 from alaapp.views import game_elements
 from alaapp.models.challenge import Challenge
 from alaapp.models.game_element import GameElement
-from alaapp.models.progress import Progress
+from alaapp.models.assignment import Assignment
 from alaapp.utils.System import System
 from django.contrib import messages
 
@@ -45,7 +45,7 @@ def asign_challenge(request):
             challenge= Challenge.objects.get(id=request.POST['challenge_id'])
             user = User.objects.get(id=request.session['id'])
             user.add_gamelement_active(challenge)
-            cp = Progress(user=user, game_element=challenge)
+            cp = Assignment(user=user, game_element=challenge)
             cp.save()
             messages.success(request,'Desafío %s  asignado con éxito'  % (challenge.get_name()))
             return game_elements.view_game_elements(request,challenge.get_id_project())

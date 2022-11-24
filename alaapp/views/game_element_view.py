@@ -25,12 +25,12 @@ class GameElementView(TemplateView):
             action = request.POST['action']
             if action == 'search_time_restriction_id':
                 project=Project.objects.get(id=int(request.POST['id']))      
-                for i in project.time_restriction.all():
+                for i in project.time_restriction.all().order_by('id'):
                     data_time_restriction.append({'id': i.id, 'name': i.name})          
                 data_area.append({'id': i.id, 'name': project.area.name})
                 
                 for subarea in project.area.projectsubarea_set.all():
-                    data_subarea.append({'id': subarea.id, 'subarea': json.loads(subarea.sub_area)['geometry']['coordinates'] })
+                    data_subarea.append({'id': subarea.id,'number':subarea.number, 'subarea': json.loads(subarea.sub_area)['geometry']['coordinates'] })
             else:
                 data['error'] = 'Ha ocurrido un error'
         except Exception as e:

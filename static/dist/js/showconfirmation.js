@@ -20,7 +20,7 @@
   }) */
 
   $.confirmation = function(id) {
-    
+ 
     Swal.fire({
       title: '¿Está seguro?',
       text: "No podrá revertir la acción",
@@ -31,10 +31,9 @@
       cancelButtonText: 'Cancelar.',
       confirmButtonText: 'Si.'
     }).then((result) => {
-      if (result.isConfirmed) {       
-        $(
-          id
-        ).submit();
+      if (result.isConfirmed) {   
+
+        $(id).submit();
       }
     })
  };

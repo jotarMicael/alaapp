@@ -6,7 +6,8 @@
 
 {% block content %}
 
-  <div class="col-md-6">
+
+<div class="card-deck">
     <label class="valid-feedback d-block">{% for message in messages %}{% if message.tags == 'success' %}*{{ message }}{% endif %}{% endfor %}</label>
     <div class="card">
       <div class="card-header">
@@ -40,29 +41,10 @@
 
           </tbody>
         </table>
+        </div>
       </div>
-      </div>
-
-      <!--<div class="card-footer clearfix">
-        <ul class="pagination pagination-sm m-0 float-right">
-          <li class="page-item">
-            <a class="page-link" href="#">«</a>
-          </li>
-          <li class="page-item">
-            <a class="page-link" href="#">1</a>
-          </li>
-          <li class="page-item">
-            <a class="page-link" href="#">2</a>
-          </li>
-          <li class="page-item">
-            <a class="page-link" href="#">3</a>
-          </li>
-          <li class="page-item">
-            <a class="page-link" href="#">»</a>
-          </li>
-        </ul>
-      </div> -->
     </div>
+    
     <div class="card">
       <div class="card-header">
         <h3 class="card-title">Insignias del proyecto: {{ project_name }}</h3>
@@ -95,10 +77,10 @@
         </div>
         <form id="change_state"  method="post" action="/change_state/"   > {% csrf_token %}
           <input type="hidden" id="ge_id" name="ge_id" />
-          </form>
-          <form id="modify"  method="post" action="/modify/"   > {% csrf_token %}
+        </form>
+        <form id="modify"  method="post" action="/modify/"   > {% csrf_token %}
             <input type="hidden" id="ge_id_" name="ge_id_" />
-          </form>
+        </form>
       </div>
     </div>
   </div>

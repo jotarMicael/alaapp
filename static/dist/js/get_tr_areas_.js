@@ -8,13 +8,16 @@
             },
             dataType: 'json',
         }).done(function (data) {
-            if (!data.hasOwnProperty('error')) {             
-                viewInMap(data[2]);
+            $.each(data[2], function (key, value) {
+                let opt = document.createElement('option');
+                opt.value = value.id;
+                opt.innerHTML = 'Área '+value.number;
+                document.getElementById('id_area').appendChild(opt);
+            });   
+                     
+            viewInMap(data[2]);
 
-            }
-            else{
-              
-            }
+           
 
         }).fail(function (jqXHR, textStatus, errorThrown) {
             viewInMap(null);

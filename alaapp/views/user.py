@@ -7,6 +7,7 @@ from alaapp.models.user import User
 from alaapp.models.project import Project
 from alaapp.models.challenge import Challenge
 from alaapp.models.badge import Badge
+from alaapp.models.criteria import Criteria
 from alaapp.forms import UserForm
 from alaapp.utils.System import System
 from django.contrib import messages
@@ -100,8 +101,7 @@ def activate_account(request):
     user_id=System.decode_token(request.GET.get('token')[:15],request.GET.get('token')[15:len(request.GET.get('token'))])
     if user_id:
         user=User.objects.get(id=user_id)
-        user.verified=True
-        user.save()
+        user.change_verified()
         logout(request)
         request.session['av']=True 
         return redirect('active_account')
@@ -120,7 +120,7 @@ def active_account(request):
 def see_my_game_elements(request):
     if System.is_logged(request):
         if System.is_player(request):         
-            return render(request, 'alaapp/game_elements/my_game_elements.html',{'nav':'block','see_my_game_elements':System.get_navbar_color,'badges':Badge.objects.filter(user_actives=User.objects.get(id=request.session['id'])).all(),'challenges':Challenge.objects.filter(user_actives=User.objects.get(id=request.session['id'])).all() }) 
+            return render(request, 'alaapp/game_elements/my_game_elements.html',{'nav':'block','see_my_game_elements':System.get_navbar_color,'badges':Badge.objects.filter(user_actives=User.objects.get(id=request.session['id'])).all(),'challenges':Challenge.objects.filter(user_actives=User.objects.get(id=request.session['id'])).all(),'criterias':Criteria.objects.all()}) 
         return redirect('home')  
     return redirect('index')   
 
@@ -146,11 +146,7 @@ def process_edit_profile(request):
             user=User.objects.get(id__exact=request.session['id'])          
             user.update_data(request.POST['name'],request.POST['email'],request.POST['password']) 
             form = UserForm(data=request.POST, files=request.FILES, instance=user)
-            if  request.FILES.get('profile_image'):
-                if form.is_valid():                   
-                    if os.path.exists(user.get_profile_image().path):
-                        os.remove(user.get_profile_image().path)
-                    form.save()
+            form.procces(user.get_profile_image_path())
             System.set_session(request,user)
             messages.success(request,'¡Datos actualizados con éxito!')
             return edit_profile(request)

@@ -43,8 +43,18 @@ class GameElement(models.Model):
 
     def get_progress_user(self,user_id_):
  
-      progress_ge=self.progress_set.get(user_id=user_id_)
-      return progress_ge.progress
+      assignment_ge=self.assignment_set.get(user_id=user_id_)
+      return assignment_ge.progress
+    
+    def is_valued(self,user_id_):
+        
+        if self.assignment_set.get(user_id=user_id_).get_like_dislike() is None:
+            return False
+        return True
+
+    def get_assignment_id(self,user_id_):
+        return self.assignment_set.get(user_id=user_id_).get_id()
+
 
     def is_my_user_active(self,user_id):
          return (self.user_actives.filter(id=user_id).exists())
@@ -73,7 +83,7 @@ class GameElement(models.Model):
 
     def increment_progress(self,user_id_):
         
-        progress=self.progress_set.get(user_id=user_id_)
+        progress=self.assignment_set.get(user_id=user_id_)
         progress.increment_progress(self.get_goal(),self.get_checkins().filter(user_id=user_id_).count())
 
     
@@ -84,9 +94,7 @@ class GameElement(models.Model):
        self.goal=goal
        self.save()
        
-    def get_progress_user(self,user_id_):
-      progress_ge=self.progress_set.get(user_id=user_id_)
-      return progress_ge.progress
+    
 
     def get_state(self):
         if self.public:

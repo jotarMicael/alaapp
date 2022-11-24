@@ -9,6 +9,10 @@ class ProjectForm(forms.ModelForm):
     class Meta:
         model = Project
         fields = ["image"]
+        
+    def procces(self,path_image):
+        if self.is_valid():    
+            self.save()
 
 class BadgeForm(forms.ModelForm):
     class Meta:
@@ -16,12 +20,14 @@ class BadgeForm(forms.ModelForm):
         fields = ["image"]
 
     def procces(self,path_image):
-        if self.is_valid():
-                  if os.path.exists(path_image):
-                      os.remove(path_image)       
-        self.save()
+        if self.is_valid():    
+            self.save()
 
 class UserForm(forms.ModelForm):
     class Meta:
         model = User
         fields = ['profile_image']
+
+    def procces(self,path_image):
+        if self.is_valid():    
+            self.save()

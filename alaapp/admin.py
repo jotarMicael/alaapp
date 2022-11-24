@@ -3,7 +3,8 @@ from alaapp.models.role import Role
 from alaapp.models.user import User
 from alaapp.models.project import Project
 from alaapp.models.badge import Badge
-
+from alaapp.models.scoring import Scoring
+from alaapp.models.criteria import Criteria
 
 from alaapp.models.token import Token
 from alaapp.models.check_in import CheckIn
@@ -32,14 +33,17 @@ class AreaAdmin(admin.ModelAdmin):
 class CheckInAdmin(admin.ModelAdmin):
     list_display=('user','project','latitude','longitude','datetime')
 
-class ChallengeProgressAdmin(admin.ModelAdmin):
-    list_display=('user','challenge','progress')
-
 class BadgeProgressAdmin(admin.ModelAdmin):
     list_display=('user','badge','progress')
 
 class SubAreaAdmin(admin.ModelAdmin):
     list_display=('area','sub_area')
+
+class CriteriaAdmin(admin.ModelAdmin):
+    list_display=('id','name')
+
+class ScoringAdmin(admin.ModelAdmin):
+    list_display=('criteria','assignment','assessment')
 
 admin.site.register(Role,RoleAdmin)
 admin.site.register(User,UserAdmin)
@@ -48,3 +52,5 @@ admin.site.register(Project,ProjectAdmin)
 admin.site.register(Badge,BadgeAdmin)
 admin.site.register(CheckIn,CheckInAdmin)
 admin.site.register(ProjectSubArea,SubAreaAdmin)
+admin.site.register(Scoring,ScoringAdmin)
+admin.site.register(Criteria,CriteriaAdmin)
