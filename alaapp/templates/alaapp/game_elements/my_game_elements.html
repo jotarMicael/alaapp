@@ -8,7 +8,7 @@
 {% endblock %}
 
 {% block content %}
-
+<div class="col-md-12">
 <div class="card-deck">
   
     <label class="valid-feedback d-block">{% for message in messages %}{% if message.tags == 'success' %}*{{ message }}{% endif %}{% endfor %}</label>
@@ -94,7 +94,7 @@
     </div>
   
 </div>
-
+</div>
 
 {% include '../modal/criteria_modal.html' %}
 {% endblock %}

@@ -7,7 +7,7 @@
   
           <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
         </div>
-      <form action='/create_scorings/' method='POST'> {% csrf_token %}
+      <form id="create_scorings" action='/create_scorings/' method='POST'> {% csrf_token %}
         <div class="modal-body">
             {% for criteria in criterias %}
           <div class="row">
@@ -28,13 +28,14 @@
           {% endfor %}
 
           <input type='hidden' class='id' name='id'></input>
+        </form>
         </div>
         <div class="modal-footer">        
-        <button type="submit" class="btn btn-primary">Enviar</button>
-  
-          <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+        <button onclick="$.confirmation(create_scorings);" type="submit" class="btn btn-primary">Enviar</button>
+        <button  type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+         
         </div>
-      </form>
+      
       </div>
     </div>
   </div>
