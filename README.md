@@ -6,7 +6,7 @@
 ```
 -Instalar un entorno virtual para Python 3.8
 
--Se debe crear un archivo .env con las siguientes variables para confirgurar el entorno:
+-Se debe crear un archivo .env con las siguientes variables para configurar el entorno:
 ```
 ...
 ### Instalación 🔧
