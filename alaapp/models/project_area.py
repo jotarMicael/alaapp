@@ -2,7 +2,7 @@
 from django.db import models
 
 import json
-# Create your models here.
+
 
 class ProjectArea(models.Model):
     name=models.CharField(blank=False,null=False,max_length=200)

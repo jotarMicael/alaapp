@@ -1,9 +1,5 @@
-
 from django.db import models
 from alaapp.models.user  import User
-
-# Create your models here.
-
 
 class Token(models.Model):
     user_id=models.ForeignKey(User,null=True,blank=False,on_delete=models.DO_NOTHING)

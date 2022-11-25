@@ -4,8 +4,6 @@ from alaapp.models.criteria import Criteria
 from alaapp.models.assignment import Assignment
 
 
-
-
 class Scoring(models.Model):
     assignment=models.ForeignKey(Assignment,blank=False,null=False,on_delete=models.DO_NOTHING)
     criteria= models.ForeignKey(Criteria,blank=False,null=False,on_delete=models.DO_NOTHING)

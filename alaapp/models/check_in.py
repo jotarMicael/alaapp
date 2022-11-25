@@ -2,7 +2,7 @@ from django.db import models
 from alaapp.models.project import Project
 from alaapp.models.user  import User
 
-# Create your models here.
+
 
 class CheckIn(models.Model):
 

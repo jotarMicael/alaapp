@@ -7,24 +7,24 @@
   
           <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
         </div>
-      <form action='/view_game_elements/' method='POST'> {% csrf_token %}
+      
         <div class="modal-body">
+          <form id="send_project"  method="post" action="/view_game_elements/"   > {% csrf_token %}
+            <input type='hidden' class='id' name='id'></input>
+          </form>  
           <div class="row">
             <img class="project_img img-fluid" alt="Responsive image" />
           </div>
           <br />
           <div class="row">
             <p  class="description"></p>
-          </div>
-          <input type='hidden' class='id' name='id'></input>
-        </div>
-        <div class="modal-footer">        
-            <!--<button type="submit" class="btn btn-primary">Ver elementos de juego</button>-->
-         
-          
+          </div>         
+        </div>        
+        <div class="modal-footer">            
+            <button  onclick="$.confirmation('#send_project');" class="btn btn-primary">Ver progreso</button>        
           <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
         </div>
-      </form>
+      
       </div>
     </div>
   </div>

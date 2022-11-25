@@ -3,7 +3,7 @@ from django.db import models
 from alaapp.models.project_area import ProjectArea
 from shapely.geometry import Point, Polygon
 import json
-# Create your models here.
+
 
 class ProjectSubArea(models.Model):
     area=models.ForeignKey(ProjectArea,null=False,blank=False, on_delete=models.CASCADE)

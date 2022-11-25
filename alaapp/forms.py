@@ -3,7 +3,7 @@ from django import forms
 from alaapp.models.project  import Project
 from alaapp.models.badge import  Badge
 from alaapp.models.user import User
-import os
+
 
 class ProjectForm(forms.ModelForm):
     class Meta:

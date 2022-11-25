@@ -1,9 +1,9 @@
 
-from django.db import models
+
 from alaapp.models.game_element import GameElement
 
 
-# Create your models here.
+
 class Challenge(GameElement):
    
     

@@ -5,9 +5,6 @@ from alaapp.models.project_area  import ProjectArea
 from alaapp.models.time_restriction  import TimeRestriction
 from alaapp.models.user import User
 
-# Create your models here.
-
-
 class Project(models.Model):
     name=models.CharField(max_length=30,blank=False,null=False)
     description=models.CharField(max_length=500,blank=True,null=True)

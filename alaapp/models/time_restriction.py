@@ -1,10 +1,6 @@
-
 from django.db import models
 from datetime import datetime
         
-
-# Create your models here.
-
 class TimeRestriction(models.Model):
     name=models.CharField(blank=False,null=False,max_length=100)
     date_from=models.DateField(blank=True,null=True,max_length=10)
@@ -37,4 +33,13 @@ class TimeRestriction(models.Model):
         for day in Day.objects.all():
             if days.get(day.get_id())=='on':
                 self.days.add(day)
+        self.save()
+    
+    def add_hours(self,bool,hf,ht):
+        if bool =='on':
+            self.hour_from = '00:00'
+            self.hour_to = '23:59'
+        else:
+            self.hour_from = hf
+            self.hour_to = ht
         self.save()

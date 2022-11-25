@@ -1,15 +1,9 @@
-
-
-
 from django.db import models
 from model_utils.managers import InheritanceManager
 from alaapp.models.user  import User
 from alaapp.models.project_subarea import ProjectSubArea
 from alaapp.models.project import Project
 from alaapp.models.time_restriction import TimeRestriction
-
-
-
 
 
 class GameElement(models.Model):

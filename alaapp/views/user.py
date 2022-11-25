@@ -119,8 +119,8 @@ def active_account(request):
 
 def see_my_game_elements(request):
     if System.is_logged(request):
-        if System.is_player(request):         
-            return render(request, 'alaapp/game_elements/my_game_elements.html',{'nav':'block','see_my_game_elements':System.get_navbar_color,'badges':Badge.objects.filter(user_actives=User.objects.get(id=request.session['id'])).all(),'challenges':Challenge.objects.filter(user_actives=User.objects.get(id=request.session['id'])).all(),'criterias':Criteria.objects.all()}) 
+        if System.is_player(request):       
+            return render(request, 'alaapp/game_elements/my_game_elements.html',{'nav':'block','see_my_game_elements':System.get_navbar_color,'my_badges':Badge.objects.filter(user_actives=User.objects.get(id=request.session['id'])).all(),'my_challenges':Challenge.objects.filter(user_actives=User.objects.get(id=request.session['id'])).all(),'criterias':Criteria.objects.all()}) 
         return redirect('home')  
     return redirect('index')   
 

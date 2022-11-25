@@ -1,9 +1,6 @@
-
 from django.db import models
 from alaapp.models.role  import Role
 from werkzeug.security import generate_password_hash
-# Create your models here.
-
 
 class User(models.Model):
     complete_name=models.CharField(max_length=30,blank=False,null=False)

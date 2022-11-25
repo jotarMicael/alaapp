@@ -1,7 +1,7 @@
 
 from django.db import models
 from alaapp.models.game_element import GameElement
-# Create your models here.
+
 class Badge(GameElement):
     image=models.ImageField(upload_to='alaapp/static/game_elements_image/',default='alaapp/static/game_elements_image/ge.jpg',null=False,blank=False)
     parent=models.ForeignKey('self',null=True,blank=True,on_delete=models.DO_NOTHING)

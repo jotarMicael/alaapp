@@ -77,12 +77,13 @@
 
 <div class="container">
   {% block content_header %}<h3>Mis últimos proyectos asignados</h3>{% endblock %}
-  <div class="row justify-content-start">
+  <div class="card-group">
     
-    <div class="row row-cols-1 row-cols-md-2  mb-3">
+    <div class="row row-cols-1 row-cols-sm-2 row-cols-md-{{ projects|length }}  mb-3">
+
       {% for project in projects|slice:':4' %}
         <div class="col">
-          <div class="card" style="width: 18rem;height: 15rem;" >
+          <div class="card"  style="width: auto;height: 16rem;" >
             <img src="{{ project.image.url }}" height="150rem;"   class="card-img-top" alt="Responsive image" />
             <div class="card-body">
               <h5 class="card-title"><strong>{{ project.name }}</strong></h5>
@@ -102,7 +103,9 @@
       <form action="/my_projects/" method="get">
         {% endif %}
         {% csrf_token %}
+        {% if projects|length == 4 %}
         <button type="submit" class="btn btn-block bg-gradient-info">Ver más...</button>
+        {% endif %}
       </form>
     </div>
   </div>

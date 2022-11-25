@@ -7,6 +7,7 @@
 {% block content %}
 
 
+
 <div class="card-deck">
     <label class="valid-feedback d-block">{% for message in messages %}{% if message.tags == 'success' %}*{{ message }}{% endif %}{% endfor %}</label>
     <div class="card">

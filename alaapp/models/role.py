@@ -1,7 +1,7 @@
 
 from django.db import models
 from django.db.models.signals import post_migrate
-# Create your models here.
+
 
 class Role(models.Model):
     name=models.CharField(max_length=30)
