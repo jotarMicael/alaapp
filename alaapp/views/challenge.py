@@ -20,7 +20,9 @@ def challenge(request):
           if System.is_admin(request):
                        
               return render(request, 'alaapp/game_elements/create_challenge.html',{'nav':'block','create_challenge':System.get_navbar_color,'projects':Project.objects.all()})
-
+          return redirect('home')  
+    return redirect('index')     
+    
 def process_challenge(request):
     if System.is_logged(request):
           if System.is_admin(request):
@@ -49,7 +51,9 @@ def asign_challenge(request):
             cp.save()
             messages.success(request,'Desafío %s  asignado con éxito'  % (challenge.get_name()))
             return game_elements.view_game_elements(request,challenge.get_id_project())
-            
+          return redirect('home')  
+    return redirect('index')          
+
 def modify_challenge(request):
     if System.is_logged(request):
           if System.is_admin(request):

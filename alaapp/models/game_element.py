@@ -23,7 +23,6 @@ class GameElement(models.Model):
     time_restriction=models.ForeignKey(TimeRestriction,null=True,blank=True,on_delete=models.DO_NOTHING)
     checkin=models.ManyToManyField('alaapp.checkin', related_name='%(class)s_checkins')
     user_actives=models.ManyToManyField('alaapp.user', related_name='%(class)s_actives')
-    user_completes=models.ManyToManyField('alaapp.user', related_name='%(class)s_completes')
     public=models.BooleanField(blank=False,null=False,default=1)
 
     class Meta:
@@ -37,8 +36,8 @@ class GameElement(models.Model):
         return f'{self.name},{self.goal},{self.owner},{self.rate},{self.project}'     
 
     def add_checkin(self,checkin_,user_id):
-        self.area.is_valid_area(checkin_.get_latitude(),checkin_.get_longitude())
-        if(self.time_restriction.is_valid_time(checkin_.get_date()) and self.area.is_valid_area(checkin_.get_latitude(),checkin_.get_longitude()) and self.is_my_user_active(user_id)):
+        
+        if(self.time_restriction.is_valid_time(checkin_.get_date()) and self.area.is_valid_area(checkin_.get_latitude(),checkin_.get_longitude()) and self.is_my_user_active(user_id) and self.public):
             self.checkin.add(checkin_)
             self.increment_progress(user_id)
 

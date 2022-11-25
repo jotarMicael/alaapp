@@ -9,6 +9,7 @@ from alaapp.models.day import Day
 from alaapp.models.token import Token
 from alaapp.models.check_in import CheckIn
 from alaapp.models.project_subarea import ProjectSubArea
+from alaapp.models.time_restriction import TimeRestriction
 # Register your models here.
 
 class UserAdmin(admin.ModelAdmin):
@@ -47,6 +48,9 @@ class ScoringAdmin(admin.ModelAdmin):
 
 class DayAdmin(admin.ModelAdmin):
     list_display= ('id','name')
+
+class TimeRestrictionAdmin(admin.ModelAdmin):
+    list_display= ('id','name','date_from','date_to','hour_from','hour_to')
 
 admin.site.register(Role,RoleAdmin)
 admin.site.register(User,UserAdmin)

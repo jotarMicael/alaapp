@@ -25,7 +25,10 @@ def process_time_restriction(request):
                 messages.error(request,'Debe seleccionar al menos un día')
                 return redirect ('create_time_restriction')
             datetimes=request.POST['datetime'].split(' ')
-            tr=TimeRestriction(name=request.POST['name'],date_from=datetimes[0], date_to=datetimes[4],hour_from=datetimes[1],hour_to=datetimes[5])
+            if request.POST.get('hour')=='on':
+                tr=TimeRestriction(name=request.POST['name'],date_from=datetimes[0], date_to=datetimes[3],hour_from=datetimes[1],hour_to=datetimes[4])
+            else:
+                tr=TimeRestriction(name=request.POST['name'],date_from=datetimes[0], date_to=datetimes[3],hour_from='00:00',hour_to='23:59')
             tr.save()
             tr.add_days(request.POST)
             messages.success(request,'¡RT Creado con éxito!')
