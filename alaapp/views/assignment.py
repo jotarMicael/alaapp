@@ -12,7 +12,7 @@ def add_like_dislike(request):
         if System.is_player(request):   
             Assignment.objects.get(id=request.POST['assignment_id']).add_like_dislike(request.POST['assignment_bool'])
             messages.success(request,'¡Su valoración se ha guardado correctamente!')
-            return redirect('see_my_game_elements')
+            return redirect('see_my_game_elements')           
         return redirect('home')
     return redirect('index')
 

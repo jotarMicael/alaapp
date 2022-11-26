@@ -13,9 +13,9 @@ from alaapp.utils.System import System
 from django.contrib import messages
 from django.core.exceptions import ObjectDoesNotExist
 from werkzeug.security import generate_password_hash,check_password_hash
-import os
 
-# Create your views here.
+
+
 
 
 register = template.Library()

@@ -1,6 +1,5 @@
 from django.shortcuts import redirect, render
 from alaapp.models.time_restriction import TimeRestriction
-
 from alaapp.models.day import Day
 from alaapp.utils.System import System
 from django.contrib import messages

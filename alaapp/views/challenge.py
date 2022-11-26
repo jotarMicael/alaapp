@@ -2,13 +2,10 @@
 from django.shortcuts import redirect, render
 from alaapp.models.user import  User 
 from alaapp.models.project import Project
-
-from alaapp.models.project_area import ProjectArea
 from alaapp.models.project_subarea import ProjectSubArea
 from alaapp.models.time_restriction import TimeRestriction
 from alaapp.views import game_elements
 from alaapp.models.challenge import Challenge
-from alaapp.models.game_element import GameElement
 from alaapp.models.assignment import Assignment
 from alaapp.utils.System import System
 from django.contrib import messages
@@ -50,7 +47,9 @@ def asign_challenge(request):
             cp = Assignment(user=user, game_element=challenge)
             cp.save()
             messages.success(request,'Desafío %s  asignado con éxito'  % (challenge.get_name()))
-            return game_elements.view_game_elements(request,challenge.get_id_project())
+            request.session['old']=challenge.get_id_project()
+            return redirect ('view_game_elements')
+            
           return redirect('home')  
     return redirect('index')          
 

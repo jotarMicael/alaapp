@@ -47,3 +47,6 @@ class Assignment(models.Model):
 
     def get_id(self):
         return self.id
+
+    def get_progress(self):
+        return self.progress

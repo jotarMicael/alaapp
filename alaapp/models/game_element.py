@@ -38,7 +38,7 @@ class GameElement(models.Model):
     def get_progress_user(self,user_id_):
  
       assignment_ge=self.assignment_set.get(user_id=user_id_)
-      return assignment_ge.progress
+      return assignment_ge.get_progress()
     
     def is_valued(self,user_id_):
         
@@ -57,7 +57,7 @@ class GameElement(models.Model):
          return (self.user_completes.filter(id=user_id).exists())    
            
     def get_id_project(self):
-        return self.project.id
+        return self.project.get_id()
 
     def get_name(self):
         return self.name

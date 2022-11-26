@@ -58,3 +58,6 @@ class Project(models.Model):
 
     def get_image_path(self):
         return self.image.path
+
+    def get_id(self):
+        return self.id

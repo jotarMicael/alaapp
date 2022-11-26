@@ -50,7 +50,10 @@ def asign_badge(request):
             bp = Assignment(user=user,game_element=badge)
             bp.save()
             messages.success(request,'Insignia %s  asignado con éxito'  % (badge.get_name()))
-            return game_elements.view_game_elements(request,badge.get_id_project())
+            request.session['old']=badge.get_id_project()
+            return redirect ('view_game_elements')
+          return redirect('home')  
+    return redirect('index')  
 
 def modify_badge(request):
     if System.is_logged(request):

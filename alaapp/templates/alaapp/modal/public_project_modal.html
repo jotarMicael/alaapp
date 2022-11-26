@@ -9,7 +9,7 @@
         </div>
       
         <div class="modal-body">
-          <form id="send_project"  method="post" action="/view_game_elements/"   > {% csrf_token %}
+          <form id="send_project_"  method="POST" action="/view_game_elements/"   > {% csrf_token %}
             <input type='hidden' class='id' name='id'></input>
           </form>  
           <div class="row">
@@ -21,7 +21,7 @@
           </div>         
         </div>        
         <div class="modal-footer">            
-            <button  onclick="$.confirmation('#send_project');" class="btn btn-primary">Ver progreso</button>        
+            <button  onclick="$.confirmation('#send_project_');" class="btn btn-primary">Ver progreso</button>        
           <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
         </div>
       

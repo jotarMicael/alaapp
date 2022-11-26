@@ -1,12 +1,9 @@
-from tokenize import PseudoExtras
 from django.shortcuts import redirect, render
 from alaapp.models.user import User
 from alaapp.models.role import Role
-from alaapp.models.token import Token
 from alaapp.utils.System import System
 from django.contrib import messages
-from django.core.exceptions import ObjectDoesNotExist
-from werkzeug.security import generate_password_hash,check_password_hash
+from werkzeug.security import generate_password_hash
 
 
 def register_admin(request):
@@ -31,7 +28,7 @@ def create_admin(request):
      if System.is_logged(request):
           if System.is_root(request):
             return render (request,'alaapp/create_admin.html',{'nav':'block','create_admin':System.get_navbar_color})      
-          redirect('home')
+          return redirect('home')
      return redirect('index')  
 
 

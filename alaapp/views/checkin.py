@@ -1,4 +1,3 @@
-from tokenize import PseudoExtras
 from django.shortcuts import redirect, render
 from alaapp.models.user import User
 from alaapp.models.check_in import CheckIn
