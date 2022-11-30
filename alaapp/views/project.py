@@ -38,7 +38,7 @@ def register_project(request):
 def modify_project(request):
     if System.is_logged(request):
           if System.is_admin(request):
-               return render (request,'alaapp/projects/modify_project.html',{'nav':'block','create_admin':System.get_navbar_color, 'project':Project.objects.get(id__exact=request.POST.get('id')),'areas':ProjectArea.objects.all(),'time_restrictions':TimeRestriction.objects.all()})      
+               return render (request,'alaapp/projects/modify_project.html',{'nav':'block','create_admin':System.get_navbar_color, 'project':Project.objects.get(id__exact=request.POST.get('id')),'areas':ProjectArea.objects.all(),'time_restrictions':TimeRestriction.objects.filter(creator_id=request.session['id'])})      
           return redirect('home')
     return redirect('index') 
 
@@ -48,18 +48,20 @@ def edit_project(request):
      if System.is_logged(request):
           if System.is_admin(request): 
                               
-                if not request.POST.get('name') or not request.POST.get('description') or not request.FILES.get('image') or not request.FILES.get('area') or len(request.POST.getlist('time_restriction[]'))==0 :
+                if not request.POST.get('name') or not request.POST.get('description')  :
                      messages.error(request,'Debe ingresar todos los campos')
                      return modify_project(request)
 
                 project=Project.objects.get(id__exact=request.POST['id'])
-                project.modify(request.POST['name'],request.POST['description'],request.POST.get('checkbox'))                                  
-                df = gpd.read_file(request.FILES.get('area'), driver='GeoJSON')   
-                area=json.loads(df.to_json())
-                p_area= ProjectArea(name=area['type'])
-                p_area.save()
-                p_area.add_subareas(area['features'])
-                project.add_area(p_area)     
+                project.modify(request.POST['name'],request.POST['description'],request.POST.get('checkbox')) 
+                if request.FILES.get('area'):                                 
+                    df = gpd.read_file(request.FILES.get('area'), driver='GeoJSON')   
+                    area=json.loads(df.to_json())
+                    p_area= ProjectArea(name=area['type'])
+                    p_area.save()
+                    p_area.add_subareas(area['features'])
+                    project.add_area(p_area)   
+            
                 project.add_time_restrictions(request.POST.getlist('time_restriction[]'))
                 project.save()           
                 form = ProjectForm(data=request.POST, files=request.FILES, instance=project)

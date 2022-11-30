@@ -1,9 +1,10 @@
 
 from django.db import models
-
+from django.contrib import messages
 from alaapp.models.project_area  import ProjectArea
 from alaapp.models.time_restriction  import TimeRestriction
 from alaapp.models.user import User
+from django.utils.safestring import mark_safe
 
 class Project(models.Model):
     name=models.CharField(max_length=30,blank=False,null=False)
@@ -23,11 +24,14 @@ class Project(models.Model):
         verbose_name_plural="Projects"
         db_table='project'
 
-    def add_checkin(self,checkin_,user_id): 
+    def add_checkin(self,checkin_,request): 
+        s_gr=''
         for ge in self.get_game_elements():         
-            ge.add_checkin(checkin_,user_id)
+            if ge.add_checkin(checkin_,request.session['id']):
+                s_gr= s_gr + ge.get_name() + '<br/>'
+        messages.success(request,'Progreso actualizado en los Elementos de juego: %s'  % (s_gr))                
         self.save()
-        
+
     def add_admins(self,id_admins):
         for id_admin in id_admins:
             self.admins.add(User.objects.get(id=id_admin))
@@ -46,8 +50,9 @@ class Project(models.Model):
             self.avaliable=0
         
     def add_time_restrictions(self,id_time_restrictions):
-        for id_tr in id_time_restrictions:
-            self.time_restriction.add(TimeRestriction.objects.get(id=id_tr))
+        if len(id_time_restrictions)!=0:
+            for id_tr in id_time_restrictions:
+                self.time_restriction.add(TimeRestriction.objects.get(id=id_tr))
         self.save()
 
     def get_game_elements(self):

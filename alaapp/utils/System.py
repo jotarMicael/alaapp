@@ -34,12 +34,11 @@ class System(object):
             'alaapp/verificate/activate_account.html',
             { 'token': token+encript,'site': config('DEFAULT_DOMAIN') }
             )
-        subject="Bienvenido/a a CienciaCRE"
+        subject="Bienvenido/a a ALA"
         message=''
         email_from=settings.EMAIL_HOST_USER
         recipient_list=[user.email]
         html_message=message_
-        #send_mail(subject,message,email_from,recipient_list,fail_silently=False,html_message)
         send_mail(
             subject=subject, 
             message=message, 

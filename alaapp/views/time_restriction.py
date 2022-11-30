@@ -1,6 +1,7 @@
 from django.shortcuts import redirect, render
 from alaapp.models.time_restriction import TimeRestriction
 from alaapp.models.day import Day
+from alaapp.models.user import User
 from alaapp.utils.System import System
 from django.contrib import messages
 
@@ -24,7 +25,7 @@ def process_time_restriction(request):
                 messages.error(request,'Debe seleccionar al menos un día')
                 return redirect ('create_time_restriction')
             datetimes=request.POST['datetime'].split(' ')           
-            tr=TimeRestriction(name=request.POST['name'],date_from=datetimes[0], date_to=datetimes[3])       
+            tr=TimeRestriction(name=request.POST['name'],date_from=datetimes[0], date_to=datetimes[3],creator=User.objects.get(id=request.session['id']))       
             tr.add_hours(request.POST.get('hour'),datetimes[1],datetimes[4])        
             tr.add_days(request.POST)
             messages.success(request,'¡RT Creado con éxito!')

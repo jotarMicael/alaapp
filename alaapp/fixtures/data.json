@@ -55,15 +55,90 @@
             "role_id_id": 3,
             "verified": 1
         }
-    },{
-    "model": "alaapp.TimeRestriction",
-    "pk": "1",
-    "fields": 
-        {
+    },
+    {
+        "model": "alaapp.Criteria",
+        "pk": "1",
+        "fields": {
             "id": 1,
-            "name": "Weekend",
-            "date_to": "2022-11-15",
-            "date_from": "2022-11-08"
+            "name": "Diversión"
+        }
+    },
+    {
+        "model": "alaapp.Criteria",
+        "fields": {
+            "id": 2,
+            "name": "Dificultad"
+        }
+    },
+    {
+        "model": "alaapp.Criteria",
+        "fields": {
+            "id": 3,
+            "name": "Originalidad"
+        }
+    },
+    {
+        "model": "alaapp.Criteria",
+        "fields": {
+            "id": 4,
+            "name": "Duración"
+        }
+    }
+    ,
+    {
+        "model": "alaapp.Day",
+        "fields": {
+            "id": 1,
+            "name": "Lunes"
+        }
+    }
+    ,
+    {
+        "model": "alaapp.Day",
+        "fields": {
+            "id": 2,
+            "name": "Martes"
+        }
+    }
+    ,
+    {
+        "model": "alaapp.Day",
+        "fields": {
+            "id": 3,
+            "name": "Miercoles"
+        }
+    }
+    ,
+    {
+        "model": "alaapp.Day",
+        "fields": {
+            "id": 4,
+            "name": "Jueves"
+        }
+    }
+    ,
+    {
+        "model": "alaapp.Day",
+        "fields": {
+            "id": 5,
+            "name": "Viernes"
+        }
+    }
+    ,
+    {
+        "model": "alaapp.Day",
+        "fields": {
+            "id": 6,
+            "name": "Sabado"
+        }
+    }
+    ,
+    {
+        "model": "alaapp.Day",
+        "fields": {
+            "id": 7,
+            "name": "Domingo"
         }
     }
 ]

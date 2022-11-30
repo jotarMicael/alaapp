@@ -16,7 +16,7 @@ def view_game_elements(request,ok=False):
                 project=Project.objects.get(id__exact=request.session['old'])   
               else:
                 project=Project.objects.get(id__exact=request.POST['id'])  
-              return render(request, 'alaapp/game_elements/views_game_elements.html',{'nav':'block','view_game_elements':System.get_navbar_color,'badges':Badge.objects.filter(project=project,public=True).exclude(user_actives = User.objects.get(id=request.session['id'])).all(),'challenges':Challenge.objects.filter(project=project,public=True).exclude(user_actives = User.objects.get(id=request.session['id'])).all(),'name':project.get_name(),'my_badges':Badge.objects.filter(user_actives=User.objects.get(id=request.session['id']),project=project).all(), 'my_challenges': Challenge.objects.filter(user_actives=User.objects.get(id=request.session['id']),project=project).all(), 'criterias':Criteria.objects.all()}) 
+              return render(request, 'alaapp/game_elements/views_game_elements.html',{'nav':'block','view_game_elements':System.get_navbar_color,'badges':Badge.objects.filter(project=project,public=True).exclude(user_actives = User.objects.get(id=request.session['id'])).all(),'challenges':Challenge.objects.filter(project=project,public=True).exclude(user_actives = User.objects.get(id=request.session['id'])).all(),'name':project.get_name(),'my_badges':Badge.objects.filter(user_actives=User.objects.get(id=request.session['id']),project=project,public=True).all(), 'my_challenges': Challenge.objects.filter(user_actives=User.objects.get(id=request.session['id']),project=project,public=True).all(), 'criterias':Criteria.objects.all()}) 
           return redirect('home')
     return redirect('index')  
 
@@ -40,7 +40,7 @@ def modify(request,ok=False):
             id_=request.POST['id']
           ge=GameElement.objects.get_subclass(id=id_)
           areas=ge.project.area.projectsubarea_set.all()
-          time_restrictions=ge.project.time_restriction.all()
+          time_restrictions=ge.project.time_restriction.filter(creator_id=request.session['id'])
           if isinstance(ge, Challenge):
             return render(request, 'alaapp/game_elements/modify_challenge.html',{'nav':'block','modify_challenge':System.get_navbar_color,'challenge':ge, 'areas':areas,'time_restrictions':time_restrictions})   
           return render(request, 'alaapp/game_elements/modify_badge.html',{'nav':'block','modify_badge':System.get_navbar_color,'badge':ge,'areas':areas,'time_restrictions':time_restrictions,'badges':Badge.objects.filter(project_id=ge.get_id_project()).all()}) 

@@ -23,9 +23,10 @@ def process_checkin(request):
                 checkin_=CheckIn(user=(User.objects.get(id__exact=request.session['id'])),project=(Project.objects.get(id__exact=request.POST['project'])),latitude=request.POST['lat'],longitude=request.POST['lon'],datetime=request.POST['datetime'][:-3])
                 checkin_.save()                  
                 project = Project.objects.get(id__exact=request.POST['project'])
-                project.add_checkin(checkin_,request.session['id'])
-
                 messages.success(request,'CheckIn realizado correctamente')
+                project.add_checkin(checkin_,request)
+                
+                             
             return checkin(request) 
         redirect('home')
     return redirect('index')  
