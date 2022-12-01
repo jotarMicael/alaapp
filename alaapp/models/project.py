@@ -50,13 +50,23 @@ class Project(models.Model):
             self.avaliable=0
         
     def add_time_restrictions(self,id_time_restrictions):
-        if len(id_time_restrictions)!=0:
-            for id_tr in id_time_restrictions:
-                self.time_restriction.add(TimeRestriction.objects.get(id=id_tr))
+        self.time_restriction.clear()   
+        for id_tr in id_time_restrictions:
+            self.add_time_restriction(id_tr)
+        self.save()
+
+
+    def add_time_restriction(self,id_time_restriction):
+        
+        self.time_restriction.add(TimeRestriction.objects.get(id=id_time_restriction))
         self.save()
 
     def get_game_elements(self):
         return self.gameelement.all()
+
+    def set_name(self,name_):
+        self.name=name_
+        self.save()
 
     def get_name(self):
         return self.name
@@ -66,3 +76,15 @@ class Project(models.Model):
 
     def get_id(self):
         return self.id
+
+    def is_my_admin(self,admin_id):     
+        return self.admins.filter(id=admin_id).exists()
+
+    def update_admins(self,id_admins):
+        self.admins.clear()
+        self.add_admins(id_admins)
+        self.save()
+    
+    def is_my_time_restriction(self,time_restriction_id):
+        return self.time_restriction.filter(id=time_restriction_id).exists()
+        

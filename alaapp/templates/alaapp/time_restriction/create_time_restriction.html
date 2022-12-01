@@ -8,7 +8,7 @@
   <div class="col-md-6 mb-5 mt-0">
     <div class="card card-primary">
       <div class="card-header">
-        <h3 class="card-title">Crear restricción de tiempo</h3>
+        <h3 class="card-title">Crear restricción de tiempo para: {{ project.name }}</h3>
       </div>
       <!-- /.card-header -->
       <!-- form start -->
@@ -26,6 +26,7 @@
             <div class="form-group">
                 <label for="exampleInputEmail1">Nombre</label>
                 <input type="text" class="form-control" id="name" name="name" placeholder="Ingresar nombre de la rt" required>
+                <input type='hidden' class="form-control" id='project_id' name='project_id' value="{{ project.id }}"></input>
               </div>
               <input  type="checkbox" class="form-group-input" name="hour">&nbsp;<label for="exampleFormControlFile1">Hora</label>
             <div class="form-group">

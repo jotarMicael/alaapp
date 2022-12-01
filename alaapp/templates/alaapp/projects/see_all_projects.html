@@ -32,16 +32,22 @@
               
               <td class="table-success">{{ project.id }}</td>
               <td><a href="javascript:;" onclick="showModal('{{ project.name }}','{{ project.description }}','{{ project.image.url }}','{{ project.id }}')">{{ project.name }}</a></td>
-              <td><button  onclick="send_project_id('{{ project.id }}');" class="btn btn-block bg-gradient-info btn-xs">Asignar</button></td>
+              <td><button  onclick="send_project_id('{{ project.id }}');" class="btn btn-block bg-gradient-info btn-xs">{%  if request.session.role == 'ROOT'  %}{{ settings.MODIFY_BUTTON }} {% else %} {{ settings.REGISTER_BUTTON }} {% endif%}</button></td>
             </tr>
             {% endfor %}
             
           </tbody>
         </table>
       </div>
-      <form id="send_project"  method="post" action="/asign_project/"   > {% csrf_token %}
+      {%  if request.session.role == 'ROOT'  %}
+      <form id="send_project"  method="post" action="/modify_project_root/"   > {% csrf_token %}
+
+      {% else %}
+        <form id="send_project"  method="post" action="/asign_project/"   > {% csrf_token %}
+      {% endif%}
+     
         <input type="hidden" id="project_id" name="project_id" />
-        </form>
+      </form>
       </div>
     </div>
    

@@ -58,7 +58,9 @@ urlpatterns = [
     path('add_like_dislike/',assignment.add_like_dislike,name='add_like_dislike'),
     path('create_scorings/',assignment.create_scorings,name='create_scorings'),
     path('create_time_restriction/',time_restriction.time_restriction,name='create_time_restriction'),
-    path('process_time_restriction/',time_restriction.process_time_restriction,name='process_time_restriction')
+    path('process_time_restriction/',time_restriction.process_time_restriction,name='process_time_restriction'),
+    path('modify_project_root/',project.modify_project_root,name='modify_project_root'),
+    path('process_modify_project/',project.process_modify_project,name='process_modify_project')
 ]
 
 

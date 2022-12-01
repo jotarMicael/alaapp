@@ -87,24 +87,7 @@
             </ul>
           </li>
 
-          <li class="nav-item">
-            <a href="#" class="nav-link">
-              <i class="fas fa-stopwatch nav-icon"></i>
-              <p>
-                Restricción de tiempo
-                <i class="right fas fa-angle-left"></i>
-              </p>
-            </a>
-            <ul class="nav nav-treeview" style="display: {{ nav|default_if_none:'none' }}">
-              <li class="nav-item">
-                <a href="/create_time_restriction/" class="nav-link {{ create_time_restriction|default_if_none:'' }}">
-                  <i class="fas fa-hourglass nav-icon"></i>
-                  <p>{{ settings.CREATE_TIME_RESTRICTION }}</p>
-                </a>
-              </li>
-              
-            </ul>
-          </li>
+          
                  
         </ul>
       </nav>

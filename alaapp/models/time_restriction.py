@@ -8,7 +8,7 @@ class TimeRestriction(models.Model):
     hour_from=models.CharField(blank=True,null=True,max_length=10)
     hour_to=models.CharField(blank=True,null=True,max_length=10)
     days=models.ManyToManyField('alaapp.day')
-    creator=models.ForeignKey('alaapp.user',null=True,blank=True, on_delete=models.CASCADE)
+    
   
     class Meta:
         verbose_name='TimeRestriction'
@@ -44,3 +44,5 @@ class TimeRestriction(models.Model):
             self.hour_from = hf
             self.hour_to = ht
         self.save()
+    def get_id(self):
+        return self.id
