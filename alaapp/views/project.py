@@ -60,7 +60,7 @@ def edit_project(request):
                 project=Project.objects.get(id__exact=request.POST['id'])
                
                 project.modify(request.POST['name'],request.POST['description'],request.POST.get('checkbox')) 
-                if request.FILES.get('area'):                                 
+                if request.FILES.get('area'):                               
                     df = gpd.read_file(request.FILES.get('area'), driver='GeoJSON')   
                     area=json.loads(df.to_json())
                     p_area= ProjectArea(name=area['type'])

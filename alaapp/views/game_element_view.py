@@ -27,7 +27,7 @@ class GameElementView(TemplateView):
                 project=Project.objects.get(id=int(request.POST['id']))      
                 for i in project.time_restriction.all().order_by('id'):
                     data_time_restriction.append({'id': i.id, 'name': i.name})          
-                data_area.append({'id': i.id, 'name': project.area.name})
+                data_area.append({'id': project.area.id, 'name': project.area.name})
                 
                 for subarea in project.area.projectsubarea_set.all():
                     data_subarea.append({'id': subarea.id,'number':subarea.number, 'subarea': json.loads(subarea.sub_area)['geometry']['coordinates'] })

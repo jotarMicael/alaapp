@@ -6,7 +6,7 @@ import json
 
 
 class ProjectSubArea(models.Model):
-    area=models.ForeignKey(ProjectArea,null=False,blank=False, on_delete=models.CASCADE)
+    area=models.ForeignKey(ProjectArea,null=False,blank=False, on_delete=models.DO_NOTHING)
     sub_area=models.TextField(blank=False,null=False, max_length=800)
     number=models.IntegerField(blank=True,null=True)
 

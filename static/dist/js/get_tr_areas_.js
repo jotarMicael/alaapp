@@ -1,4 +1,4 @@
-   
+console.log($('#id_project').val())
         $.ajax({
             url: /game_element_view/,
             type: 'POST',
@@ -7,6 +7,7 @@
                 'id': $('#id_project').val()
             },
             dataType: 'json',
+            
         }).done(function (data) {
             $.each(data[2], function (key, value) {
                 let opt = document.createElement('option');

@@ -14,13 +14,12 @@ crossorigin=""/>
 {% block content %}
 <div class="col-md-6"> 
     <div class="card card-primary">
-      <input type='hidden' class="form-control" id='id_project' name='id_project' value="{{ project.id }}"></input>
-     
+         
         <div class="card-header">
         <h3 class="card-title">Modificar {{ project.name }}</h3>
         </div>
         
-        
+        <input type='hidden' class="form-control" id='id_project' name='id_project' value="{{ project.id }}">
         <form action="/edit_project/" id="send" method="post" enctype="multipart/form-data"> {% csrf_token %}
         <div class="card-body">
         <div class="form-group ">

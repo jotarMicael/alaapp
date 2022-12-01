@@ -12,7 +12,7 @@ class Project(models.Model):
     image=models.ImageField(upload_to='alaapp/static/project_image/',default='alaapp/static/project_image/rio.jpg',null=False,blank=False)
     avaliable=models.BooleanField(default=False,blank=False,null=False)
     admins=models.ManyToManyField(User, related_name='admins')
-    area=models.ForeignKey(ProjectArea,blank=True,null=True,on_delete=models.CASCADE)
+    area=models.ForeignKey(ProjectArea,blank=True,null=True,on_delete=models.DO_NOTHING)
     time_restriction=models.ManyToManyField(TimeRestriction)
     
 
