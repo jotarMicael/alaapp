@@ -21,7 +21,8 @@
           <thead class="table-primary" > 
             <tr >
               <th style="width: 10px">#</th>
-              <th>Nombre</th>
+              <th style="width: 80px">Nombre</th>
+              <th style="width: 15px" >Opciones</th>
             </tr>
           </thead>
           <tbody>
@@ -31,13 +32,17 @@
               
               <td class="table-success">{{ project.id }}</td>
               <td><a href="javascript:;" onclick="showModal('{{ project.name }}','{{ project.description }}','{{ project.image.url }}','{{ project.id }}')">{{ project.name }}</a></td>
-              
+              <td><button  onclick="send_project_id('{{ project.id }}');" class="btn btn-block bg-gradient-danger btn-xs">{{ settings.DISJOIN_BUTTON }}</button></td>
             </tr>
             {% endfor %}
             
           </tbody>
         </table>
       </div>
+
+      <form id="send_project"  method="post" action="/disjoin_project/"   > {% csrf_token %}    
+          <input type="hidden" id="project_id" name="project_id" />
+        </form>
       
       </div>
     </div>
@@ -64,6 +69,6 @@
     <script src="{% static '/dist/js/show_project_modal.js' %}"></script>
     <script src="{% static 'dist/js/sweetalert2.all.min.js' %}"></script>
     <script src="{% static '/dist/js/showconfirmation.js' %}"></script>
-    
+    <script src="{% static '/dist/js/send_project_id.js' %}"></script>
 
 {% endblock %}

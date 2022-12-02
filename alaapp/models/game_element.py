@@ -65,6 +65,9 @@ class GameElement(models.Model):
     def get_name(self):
         return self.name
 
+    def get_id(self):
+        return self.id
+
     def get_goal(self):
         return self.goal
     

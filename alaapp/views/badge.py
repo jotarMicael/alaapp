@@ -18,8 +18,9 @@ from alaapp.forms import BadgeForm
 def badge(request):
     if System.is_logged(request):
           if System.is_admin(request):
-              return render(request, 'alaapp/game_elements/create_badge.html',{'nav':'block','create_badge':System.get_navbar_color,'badges':Badge.objects.all(),'projects':Project.objects.all()})
-
+              return render(request, 'alaapp/game_elements/create_badge.html',{'nav':'block','create_badge':System.get_navbar_color,'badges':Badge.objects.all(),'projects':Project.objects.filter(admins=request.session['id'])})
+          return redirect('home')  
+    return redirect('index') 
 
 def process_badge(request):
     if System.is_logged(request):

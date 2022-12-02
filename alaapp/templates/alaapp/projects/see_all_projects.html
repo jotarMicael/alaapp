@@ -21,8 +21,13 @@
           <thead class="table-primary">
             <tr>
               <th style="width: 10px">#</th>
-              <th>Nombre</th>
-              <th style="width: 10px">Asignar</th>
+              <th style="width: 100px">Nombre</th>
+              {%  if request.session.role == 'ROOT'  %}
+              <th style="width: 100px">Administradores</th>
+              {% endif  %}
+              <th style="width: 10px">{%  if request.session.role != 'ROOT'  %}Asignar{% else  %}
+                Opciones
+                {% endif  %}</th>
             </tr>
           </thead>
           <tbody>
@@ -31,7 +36,16 @@
             <tr >
               
               <td class="table-success">{{ project.id }}</td>
+              {%  if request.session.role != 'ROOT'  %}
+              
               <td><a href="javascript:;" onclick="showModal('{{ project.name }}','{{ project.description }}','{{ project.image.url }}','{{ project.id }}')">{{ project.name }}</a></td>
+              {% else  %}
+              <td><a >{{ project.name }}</a></td>
+              
+              <td><a >{% for p in project.admins.all %}
+                {{ p.complete_name|add:"," }}
+                {% endfor %}</a></td>
+              {% endif  %}
               <td><button  onclick="send_project_id('{{ project.id }}');" class="btn btn-block bg-gradient-info btn-xs">{%  if request.session.role == 'ROOT'  %}{{ settings.MODIFY_BUTTON }} {% else %} {{ settings.REGISTER_BUTTON }} {% endif%}</button></td>
             </tr>
             {% endfor %}

@@ -67,7 +67,7 @@ crossorigin=""/>
           {% endif %}
             <div class="form-group">
               <label class="valid-feedback d-block">{% for message in messages %}{% if message.tags == 'success' %}*{{ message }}{% endif %}{% endfor %}</label>
-              <label>Restricciones de tiempo actuales</label>
+              <label>Restricciones de tiempo actuales</label>&nbsp;&nbsp;&nbsp;<a href="#" onclick="send_project_time_restriction_id();"  class="btn-sm btn-warning">Crear RT</a>
               <select  id="" name="time_restriction[]" class="form-control select2 select2-info" data-dropdown-css-class="select2-info" multiple="multiple" data-placeholder="Seleccionar restricciones de tiempo" style="width: 100%;" >          
                 {% for time_restriction in time_restrictions %}
                 <option selected value='{{ time_restriction.id }}' {% is_my_time_restriction project time_restriction.id as bool  %} {% if bool  %} selected {% endif %}>{{ time_restriction.name }}</option>
@@ -88,17 +88,16 @@ crossorigin=""/>
        
           <label for="exampleFormControlFile1">¿Público?</label>
         </div>
+        <input type='hidden' class="form-control" id='bool' name='bool' value=""></input>
       </form>
-        <form  id="send_project" method="post" action="/create_time_restriction/"   > {% csrf_token %}
-          <input type='hidden' class="form-control" id='project_id' name='project_id' value="{{ project.id }}"></input>
-        </form>
+        
         
         </div>
       
       
         <div class="card-footer">        
         <button onclick="$.confirmation(send);"  class="btn btn-primary">Guardar cambios</button>
-        <button onclick="send_project_id('{{ project.id }}');"  class="btn btn-primary">Crear RT</button>
+       
         </div>
 
         
@@ -119,4 +118,11 @@ crossorigin=""/>
 <script src="{% static 'dist/js/sweetalert2.all.min.js' %}"></script>
     <script src="{% static '/dist/js/showconfirmation.js' %}"></script>
     <script src="{% static '/dist/js/send_project_id.js' %}"></script>
+
+    <script>function send_project_time_restriction_id() {  
+
+      $("#bool").val('true');
+      $.confirmation('#send');      
+    }</script>
+    
 {% endblock %}

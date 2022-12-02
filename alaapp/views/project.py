@@ -48,17 +48,12 @@ def modify_project(request):
 
 
 def edit_project(request):
-
      if System.is_logged(request):
-          if System.is_admin(request): 
-                              
+          if System.is_admin(request):                              
                 if not request.POST.get('name') or not request.POST.get('description')  :
                      messages.error(request,'Debe ingresar todos los campos')
-                     return modify_project(request)
-
-                
-                project=Project.objects.get(id__exact=request.POST['id'])
-               
+                     return modify_project(request)              
+                project=Project.objects.get(id__exact=request.POST['id'])              
                 project.modify(request.POST['name'],request.POST['description'],request.POST.get('checkbox')) 
                 if request.FILES.get('area'):                               
                     df = gpd.read_file(request.FILES.get('area'), driver='GeoJSON')   
@@ -66,12 +61,15 @@ def edit_project(request):
                     p_area= ProjectArea(name=area['type'])
                     p_area.save()
                     p_area.add_subareas(area['features'])
-                    project.add_area(p_area)   
-            
+                    project.add_area(p_area)              
                 project.add_time_restrictions(request.POST.getlist('time_restriction[]'))
                 project.save()           
                 form = ProjectForm(data=request.POST, files=request.FILES, instance=project)
                 form.procces(project.get_image_path())
+                if request.POST['bool'] == 'true':
+                    request.session['bool']=request.POST['id']
+                    return redirect ('create_time_restriction')
+                messages.success(request,'Proyecto %s modificado con éxito ' % (project.get_name()))
           return redirect('home') 
      return redirect('index')
 
@@ -92,6 +90,7 @@ def see_all_projects(request):
           if System.is_player(request):         
                return render (request,'alaapp/projects/see_all_projects.html',{'nav':'block','see_all_projects':System.get_navbar_color, 'projects':Project.objects.filter(avaliable=True).exclude(user__id=request.session['id']) } )  
           elif System.is_root(request):
+
                return render (request,'alaapp/projects/see_all_projects.html',{'nav':'block','see_all_projects':System.get_navbar_color, 'projects':Project.objects.all() } )  
           return redirect('home') 
      return redirect('index')
@@ -103,6 +102,16 @@ def asign_project(request):
                User.objects.get(id=request.session['id']).add_project(project)
                messages.success(request,'¡Proyecto %s añadido exitosamente!' % (project.get_name()))  
                return see_all_projects(request) 
+          return redirect('home') 
+     return redirect('index')
+
+def disjoin_project(request):
+     if System.is_logged(request):
+          if System.is_player(request): 
+              project=Project.objects.get(id=request.POST['project_id'])   
+              User.objects.get(id=request.session['id']).disjoin_project(project)
+              messages.success(request,'¡Proyecto %s eliminado exitosamente!' % (project.get_name()))  
+              return redirect ('my_projects')
           return redirect('home') 
      return redirect('index')
 

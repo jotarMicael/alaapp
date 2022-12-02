@@ -21,8 +21,7 @@ class User(models.Model):
         verbose_name_plural="Users"
         db_table='user'
 
-    
-    
+   
     def add_gamelement_active(self,challenge):
         self.gameelement_actives.add(challenge)
         self.save()
@@ -44,7 +43,15 @@ class User(models.Model):
 
     def add_project(self,project):
         self.projects.add(project)
+        self.save()
 
     def change_verified(self):
         self.verified=True
+        self.save()
+
+    def disjoin_project(self,project):       
+        for ge in self.gameelement_actives.filter(project=project):
+            self.assignment_set.get(game_element_id=ge.get_id()).delete()  
+            self.gameelement_actives.remove(ge)
+        self.projects.remove(project)
         self.save()

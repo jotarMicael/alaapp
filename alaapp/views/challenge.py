@@ -14,9 +14,8 @@ from django.contrib import messages
 
 def challenge(request):
     if System.is_logged(request):
-          if System.is_admin(request):
-                       
-              return render(request, 'alaapp/game_elements/create_challenge.html',{'nav':'block','create_challenge':System.get_navbar_color,'projects':Project.objects.all()})
+          if System.is_admin(request):     
+              return render(request, 'alaapp/game_elements/create_challenge.html',{'nav':'block','create_challenge':System.get_navbar_color,'projects':Project.objects.filter(admins=request.session['id'])})
           return redirect('home')  
     return redirect('index')     
     

@@ -2,6 +2,7 @@ from django.shortcuts import redirect, render
 from alaapp.models.time_restriction import TimeRestriction
 from alaapp.models.day import Day
 from alaapp.models.project import Project
+from alaapp.views.project import edit_project
 from alaapp.models.user import User
 from alaapp.utils.System import System
 from django.contrib import messages
@@ -12,6 +13,7 @@ from django.contrib import messages
 def time_restriction(request):
     if System.is_logged(request):
         if System.is_admin(request):
+
              
              if request.method == 'POST':
                 return render(request, 'alaapp/time_restriction/create_time_restriction.html',{'nav':'block','create_time_restriction':System.get_navbar_color, 'days':Day.objects.all(), 'project': Project.objects.get(id=request.POST['project_id'])})
