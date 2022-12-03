@@ -44,6 +44,9 @@ class User(models.Model):
     def add_project(self,project):
         self.projects.add(project)
         self.save()
+    
+    def get_complete_name(self):
+        return self.complete_name
 
     def change_verified(self):
         self.verified=True
