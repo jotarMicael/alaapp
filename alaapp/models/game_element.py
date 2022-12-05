@@ -10,7 +10,6 @@ class GameElement(models.Model):
     objects = InheritanceManager() 
     name=models.CharField(blank=False,unique=True,null=False,max_length=150)
     goal=models.IntegerField(blank=True,null=True)
-    owner=models.ForeignKey(User,null=True,blank=True,on_delete=models.DO_NOTHING)
     rate=models.FloatField(blank=True,null=True)
     project=models.ForeignKey(Project,blank=False,null=False,on_delete=models.DO_NOTHING,related_name='%(class)s')
     area=models.ForeignKey(ProjectSubArea,null=True,blank=True,on_delete=models.DO_NOTHING)
@@ -74,6 +73,13 @@ class GameElement(models.Model):
     def get_checkins(self):
         return self.checkin
 
+    def add_area(self,area):
+        self.area=area
+        self.save()
+
+    def get_area(self):
+        return self.area
+
     def change_state(self):
         if self.public:
             self.public=False
@@ -104,3 +110,13 @@ class GameElement(models.Model):
         if self.public:
             return 'Restaurado'
         return 'Borrado'
+    
+    def add_time_restriction(self,time_restriction):
+        self.time_restriction=time_restriction
+
+    def get_time_restriction(self):
+        return self.time_restriction
+
+    def add_player(self,player):
+        self.user_actives.add(player)
+        self.save()

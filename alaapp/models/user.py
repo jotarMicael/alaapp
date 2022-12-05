@@ -48,6 +48,18 @@ class User(models.Model):
     def get_complete_name(self):
         return self.complete_name
 
+    def get_username(self):
+        return self.username
+
+    def get_email(self):
+        return self.email 
+
+    def get_id(self):
+        return self.id
+
+    def get_projects(self):
+        return self.projects.all()
+
     def change_verified(self):
         self.verified=True
         self.save()

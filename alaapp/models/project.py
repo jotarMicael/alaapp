@@ -77,6 +77,15 @@ class Project(models.Model):
     def get_id(self):
         return self.id
 
+    def get_area(self):
+        return self.area
+
+    def add_admin(self,admin):
+        self.admins.add(admin)
+
+    def add_time_restriction(self,time_restriction):
+        self.time_restriction.add(time_restriction)
+
     def is_my_admin(self,admin_id):     
         return self.admins.filter(id=admin_id).exists()
 
@@ -88,3 +97,9 @@ class Project(models.Model):
     def is_my_time_restriction(self,time_restriction_id):
         return self.time_restriction.filter(id=time_restriction_id).exists()
         
+    def set_avaliable(self,avaliable_):
+        self.avaliable=avaliable_
+        self.save()
+
+    def get_avaliable(self):
+        return self.avaliable

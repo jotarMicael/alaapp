@@ -44,5 +44,6 @@ class TimeRestriction(models.Model):
             self.hour_from = hf
             self.hour_to = ht
         self.save()
+        
     def get_id(self):
         return self.id
