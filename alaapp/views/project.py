@@ -67,7 +67,7 @@ def edit_project(request):
                 form = ProjectForm(data=request.POST, files=request.FILES, instance=project)
                 form.procces(project.get_image_path())
                 if request.POST['bool'] == 'true':
-                    request.session['bool']=request.POST['id']
+                    request.session['project_id']=request.POST['id']
                     return redirect ('create_time_restriction')
                 messages.success(request,'Proyecto %s modificado con éxito ' % (project.get_name()))
           return redirect('home') 

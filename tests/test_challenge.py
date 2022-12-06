@@ -4,18 +4,21 @@ from tests.factories.challenge_factory import ChallengeFactory
 from tests.factories.area_factory import ProjectSubAreaFactory,OtherProjectSubAreaFactory
 from tests.factories.time_restriction_factory import TimeRestrictionFactory,OtherTimeRestrictionFactory
 from tests.factories.user_factory import UserPlayerFactory
-
-
+from tests.factories.checkin_factory import CheckinFactory
+from tests.factories.assignment_factory import AssignmentFactory
+from tests.factories.day_factory import MondayDayFactory,TuesdayDayFactory
 class ChallengeTestCase(TestCase):
     def setUp(self):
         self.challenge=ChallengeFactory.create()
         self.area=ProjectSubAreaFactory.create()
         self.other_area=OtherProjectSubAreaFactory.create()
-        self.time_restriction=TimeRestrictionFactory.create()
+        self.monday_day=MondayDayFactory.create()
+        self.tuesday_day=TuesdayDayFactory.create()
+        self.time_restriction=TimeRestrictionFactory.create(days=(self.monday_day,self.tuesday_day))
         self.other_time_restriction=OtherTimeRestrictionFactory.create()
         self.first_player=UserPlayerFactory.create()
-
-
+        self.checkin=CheckinFactory.create()
+        self.assignment=AssignmentFactory.create()
 
     def test_challenge_create(self):
         self.assertEqual(self.challenge.get_name(),'challenge_test')
@@ -53,3 +56,13 @@ class ChallengeTestCase(TestCase):
         self.assertEqual(self.challenge.get_area(),self.other_area)
         self.assertEqual(self.challenge.get_time_restriction(),self.other_time_restriction)
 
+    def test_challenge_add_checkin(self):
+        self.challenge.add_area(self.area)
+        self.challenge.add_time_restriction(self.time_restriction)
+        self.challenge.add_player(self.first_player)
+        
+        
+        self.assertTrue(self.challenge.add_checkin(self.checkin,self.first_player.get_id()))
+        
+        
+        

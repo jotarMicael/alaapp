@@ -9,6 +9,7 @@ from alaapp.models.time_restriction import TimeRestriction
 class GameElement(models.Model):
     objects = InheritanceManager() 
     name=models.CharField(blank=False,unique=True,null=False,max_length=150)
+    owner=models.ForeignKey(User,null=True,blank=True,on_delete=models.DO_NOTHING)
     goal=models.IntegerField(blank=True,null=True)
     rate=models.FloatField(blank=True,null=True)
     project=models.ForeignKey(Project,blank=False,null=False,on_delete=models.DO_NOTHING,related_name='%(class)s')
@@ -39,8 +40,9 @@ class GameElement(models.Model):
         
     def get_progress_user(self,user_id_):
  
-      assignment_ge=self.assignment_set.get(user_id=user_id_)
+      assignment_ge=self.assignment_set.get(user_id=user_id_)     
       return assignment_ge.get_progress()
+      
     
     def is_valued(self,user_id_):
         

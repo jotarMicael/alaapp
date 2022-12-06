@@ -6,7 +6,7 @@ from tests.factories.project_factory import ProjectFactory
 class ChallengeFactory(factory.django.DjangoModelFactory):
     class Meta:
         model = Challenge
-    id=1
+        django_get_or_create = ('name','project','goal')
     name='challenge_test'
     project=factory.SubFactory(ProjectFactory)
     goal=5

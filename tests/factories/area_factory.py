@@ -12,7 +12,7 @@ class ProjectAreaFactory(factory.django.DjangoModelFactory):
 class ProjectSubAreaFactory(factory.django.DjangoModelFactory):
     class Meta:
         model = ProjectSubArea
-    id=1
+    
     area=factory.SubFactory(ProjectAreaFactory)
     sub_area='test_subarea'  
     number=1
@@ -20,7 +20,7 @@ class ProjectSubAreaFactory(factory.django.DjangoModelFactory):
 class OtherProjectSubAreaFactory(factory.django.DjangoModelFactory):
     class Meta:
         model = ProjectSubArea
-    id=2
+    
     area=factory.SubFactory(ProjectAreaFactory)
     sub_area='other_test_subarea'  
     number=2

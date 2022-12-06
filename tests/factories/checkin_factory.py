@@ -1,4 +1,5 @@
 import factory
+import datetime
 
 from alaapp.models.check_in import CheckIn
 
@@ -9,10 +10,10 @@ class CheckinFactory(factory.django.DjangoModelFactory):
     class Meta:
         model = CheckIn
 
-    id=1
+    
     user=factory.SubFactory(UserPlayerFactory)
     project=factory.SubFactory(ProjectFactory)
     latitude='-36'
     longitude='-76'
-    datetime='2022-10-11'
+    datetime= '2022-10-20 15:26:10'
 

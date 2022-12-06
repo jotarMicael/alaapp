@@ -7,7 +7,8 @@ from tests.factories.challenge_factory import ChallengeFactory
 class AssignmentFactory(factory.django.DjangoModelFactory):
     class Meta:
         model = Assignment
-    id=1
+        django_get_or_create = ('user','game_element')
+    
     user=factory.SubFactory(UserPlayerFactory)
     game_element=factory.SubFactory(ChallengeFactory)
 
