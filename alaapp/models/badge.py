@@ -25,8 +25,8 @@ class Badge(GameElement):
     def get_progress_user(self,user_id_):
         return super().get_progress_user(user_id_)
 
-    def add_checkin(self,checkin_,user_id):
-        return super().add_checkin(checkin_,user_id)
+    def add_checkin(self,checkin_,user_id):       
+        return (super().add_checkin(checkin_,user_id) and self.validate_badge(user_id))
     
     def change_state(self):
         return super().change_state()
@@ -47,5 +47,14 @@ class Badge(GameElement):
     def update(self,name,area,time_restriction,goal,id_parent):
        self.add_parent(id_parent)
        super().update(name,area,time_restriction,goal)
+
+    def validate_badge(self,user_id):
+        if self.parent is None:
+            return True
+        elif self.parent.get_progress_user(self,user_id)<100:    
+            return False
+        return True
+
+        
        
         

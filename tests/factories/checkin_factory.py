@@ -17,3 +17,13 @@ class CheckinFactory(factory.django.DjangoModelFactory):
     longitude='-76'
     datetime= '2022-10-20 15:26:10'
 
+class InvalidCheckinFactory(factory.django.DjangoModelFactory):
+    class Meta:
+        model = CheckIn
+
+    
+    user=factory.SubFactory(UserPlayerFactory)
+    project=factory.SubFactory(ProjectFactory)
+    latitude='-42'
+    longitude='-66'
+    datetime= '2022-10-01 11:21:37'
