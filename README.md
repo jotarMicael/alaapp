@@ -6,7 +6,7 @@
 ```
 -Instalar un entorno virtual para Python 3.8
 
--Se debe crear un archivo .env con las siguientes variables para configurar el entorno:
+-Se debe crear un archivo .env con las variables para configurar el entorno.
 ```
 ...
 ### Instalación 🔧
@@ -67,6 +67,12 @@ PLAYER_MY_PROJECTS='Mis proyectos'
 
 #TIME_RESTRICTION
 CREATE_TIME_RESTRICTION='Crear RT'
+#
+
+#BUTTON
+REGISTER_BUTTON='Unirme'
+MODIFY_BUTTON='Modificar'
+DISJOIN_BUTTON='Dar Baja'
 #
 ```
 
