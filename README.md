@@ -1,4 +1,4 @@
-# Proyecto de ciencia creativa
+# Proyecto del sistema ALA (Abstracción de Ludificación Adaptativa)
 
 
 ### Pre-requisitos 📋
@@ -80,9 +80,14 @@ DISJOIN_BUTTON='Dar Baja'
 ```
 Python: python3 manage.py runserver
 ```
+## Ejecución de tests 🔧
+```
+Python: python3 manage.py test
+```
+
 ## Autores ✒️
 
-* **Micael Jotar** - *Trabajo Completo* - [jotarMicael](https://github.com/jotarMicael)
-
+* **Micael Jotar** - *Trabajo Completo* - [jotarMicael](https://github.com/jotarMicael).
+* **Valentin Gallardo Ucero** - *Trabajo Completo*.
 
   
