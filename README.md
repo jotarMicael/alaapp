@@ -4,7 +4,7 @@
 ### Pre-requisitos 📋
 
 ```
--Instalar un entorno virtual para Python 3.8
+-Python 3.8 (Se recomienda utilizar un entorno virtual)
 
 -Se debe crear un archivo .env con las variables para configurar el entorno.
 ```
