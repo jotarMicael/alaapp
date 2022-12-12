@@ -4,18 +4,19 @@
 ## Pre-requisitos 📋
 
 ```
--**Python 3.8** (Se recomienda utilizar un entorno virtual)
+-Python 3.8 (Se recomienda utilizar un entorno virtual)
 
 -Se debe crear un archivo .env con las variables para configurar el entorno.
 ```
 ## Instalación 🔧
 ```
-Para la instalación de todas las dependencias necesarias para el correcto funcionamiento del sistema se debe ejecutar 
+-Para la instalación de todas las dependencias necesarias para el correcto funcionamiento del sistema se debe ejecutar 
 el siguiente comando: pip install -r requirements.txt
 
-Una vez instalada las dependencias se debe configurar el fichero .env (Base de datos a utilizar, dominio, nombres en los botones) que se encuentra dentro del proyecto
+-Ejecutar el siguiente comando para cargar información (Usuarios, días, criterios de valoración) en la base de datos: 
+python3 manage.py loaddata data.json
 
-.env:
+-Configurar el fichero .env (Base de datos a utilizar, dominio, nombres en los botones) que se encuentra dentro del proyecto:
 
 #DB
 MYSQL_HOST='valor'
@@ -34,9 +35,6 @@ EMAIL_HOST_PASSWORD='valor'
   
 #DOMAINS
 DEFAULT_DOMAIN = 'http://localhost:8000'
-
-#SET DEFAULT DATA
-#python manage.py loaddata data.json
 
 #NAVBAR_COLOR
 NAVBAR_COLOR = 'bg-info'
