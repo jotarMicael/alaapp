@@ -1,19 +1,22 @@
-# Proyecto de ciencia creativa
+# Proyecto del sistema ALA (Abstracción de Ludificación Adaptativa)
 
 
-### Pre-requisitos 📋
+## Pre-requisitos 📋
 
 ```
--Instalar un entorno virtual para Python 3.8
+-Python 3.8 (Se recomienda utilizar un entorno virtual)
 
--Se debe crear un archivo .env con las siguientes variables para configurar el entorno:
+-Se debe crear un archivo .env con las variables para configurar el entorno.
 ```
-...
-### Instalación 🔧
+## Instalación 🔧
 ```
-pip install -r requirements.txt
+-Para la instalación de todas las dependencias necesarias para el correcto funcionamiento del sistema se debe ejecutar 
+el siguiente comando: pip install -r requirements.txt
 
-.env:
+-Ejecutar el siguiente comando para cargar información (Usuarios, días, criterios de valoración) en la base de datos: 
+python3 manage.py loaddata data.json
+
+-Configurar el fichero .env (Base de datos a utilizar, dominio, nombres en los botones) que se encuentra dentro del proyecto:
 
 #DB
 MYSQL_HOST='valor'
@@ -33,9 +36,6 @@ EMAIL_HOST_PASSWORD='valor'
 #DOMAINS
 DEFAULT_DOMAIN = 'http://localhost:8000'
 
-#SET DEFAULT DATA
-#python manage.py loaddata data.json
-
 #NAVBAR_COLOR
 NAVBAR_COLOR = 'bg-info'
 
@@ -50,7 +50,6 @@ ROOT_HEADER='Como Root tiene acceso a crear projectos y asignarselos a los usuar
 
 #PROJECT_TITLE
 PROJECT_TITLE='ALA'
-
 #
 
 #ADMIN_NAVBAR
@@ -68,15 +67,26 @@ PLAYER_MY_PROJECTS='Mis proyectos'
 #TIME_RESTRICTION
 CREATE_TIME_RESTRICTION='Crear RT'
 #
+
+#BUTTON
+REGISTER_BUTTON='Unirme'
+MODIFY_BUTTON='Modificar'
+DISJOIN_BUTTON='Dar Baja'
+#
 ```
 
-## Despliegue 📦
+## Despliegue de la aplicación 📦
 ```
-Python: python3 manage.py runserver
+python3 manage.py runserver
 ```
+## Ejecución de los tests 🔧
+```
+python3 manage.py test
+```
+
 ## Autores ✒️
 
-* **Micael Jotar** - *Trabajo Completo* - [jotarMicael](https://github.com/jotarMicael)
-
+* **Micael Jotar** - *Trabajo Completo* - [jotarMicael](https://github.com/jotarMicael).
+* **Valentin Gallardo Ucero** - *Trabajo Completo*.
 
   
