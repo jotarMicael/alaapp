@@ -75,13 +75,13 @@ DISJOIN_BUTTON='Dar Baja'
 #
 ```
 
-## Despliegue 📦
+## Despliegue de la aplicación 📦
 ```
-Python: python3 manage.py runserver
+python3 manage.py runserver
 ```
-## Ejecución de tests 🔧
+## Ejecución de los tests 🔧
 ```
-Python: python3 manage.py test
+python3 manage.py test
 ```
 
 ## Autores ✒️
