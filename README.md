@@ -50,7 +50,6 @@ ROOT_HEADER='Como Root tiene acceso a crear projectos y asignarselos a los usuar
 
 #PROJECT_TITLE
 PROJECT_TITLE='ALA'
-
 #
 
 #ADMIN_NAVBAR
