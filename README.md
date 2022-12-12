@@ -1,15 +1,14 @@
 # Proyecto del sistema ALA (Abstracción de Ludificación Adaptativa)
 
 
-### Pre-requisitos 📋
+## Pre-requisitos 📋
 
 ```
 -**Python 3.8** (Se recomienda utilizar un entorno virtual)
 
 -Se debe crear un archivo .env con las variables para configurar el entorno.
 ```
-...
-### Instalación 🔧
+## Instalación 🔧
 ```
 Para la instalación de todas las dependencias necesarias para el correcto funcionamiento del sistema se debe ejecutar 
 el siguiente comando: pip install -r requirements.txt
