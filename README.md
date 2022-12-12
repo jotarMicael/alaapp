@@ -4,16 +4,19 @@
 ### Pre-requisitos 📋
 
 ```
--Python 3.8 (Se recomienda utilizar un entorno virtual)
+-**Python 3.8** (Se recomienda utilizar un entorno virtual)
 
--Se debe crear un archivo .env con las variables para configurar el entorno.
+-Se debe crear un archivo **.env** con las variables para configurar el entorno.
 ```
 ...
 ### Instalación 🔧
 ```
-pip install -r requirements.txt
+Para la instalación de todas las dependencias necesarias para el correcto funcionamiento del sistema se debe ejecutar 
+el siguiente comando: **pip install -r requirements.txt**
 
-.env:
+Una vez instalada las dependencias se debe configurar el fichero **.env** (Base de datos a utilizar, dominio, nombres en los botones) que se encuentra dentro del proyecto
+
+**.env:**
 
 #DB
 MYSQL_HOST='valor'
