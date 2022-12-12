@@ -14,7 +14,7 @@ class ProjectSubAreaFactory(factory.django.DjangoModelFactory):
         model = ProjectSubArea
     
     area=factory.SubFactory(ProjectAreaFactory)
-    sub_area='test_subarea'  
+    sub_area='{"id": "0", "type": "Feature", "properties": {"Ciudad": "La Plata", "AreaAInterceptar": "Bosque de la Plata"}, "geometry": {"type": "Polygon", "coordinates": [[[-57.9414, -34.9119], [-57.9276, -34.9119], [-57.9276, -34.9062], [-57.9414, -34.9062], [-57.9414, -34.9119]]]}}'  
     number=1
 
 class OtherProjectSubAreaFactory(factory.django.DjangoModelFactory):
@@ -22,5 +22,5 @@ class OtherProjectSubAreaFactory(factory.django.DjangoModelFactory):
         model = ProjectSubArea
     
     area=factory.SubFactory(ProjectAreaFactory)
-    sub_area='other_test_subarea'  
+    sub_area='{"id": "0", "type": "Feature", "properties": {"Ciudad": "La Plata", "AreaAInterceptar": "Bosque de la Plata"}, "geometry": {"type": "Polygon", "coordinates": [[[-57.9414, -34.9119], [-57.9276, -34.9119], [-57.9276, -34.9062], [-57.9414, -34.9062], [-57.9414, -34.9119]]]}}'  
     number=2

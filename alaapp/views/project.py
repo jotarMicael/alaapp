@@ -5,7 +5,6 @@ from alaapp.models.project import Project
 from alaapp.models.user import User
 from alaapp.models.role import Role
 from alaapp.models.project_area import ProjectArea
-from alaapp.models.time_restriction import TimeRestriction
 from alaapp.models.challenge import Challenge
 from alaapp.models.badge import Badge
 from alaapp.utils.System import System

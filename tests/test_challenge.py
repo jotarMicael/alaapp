@@ -6,15 +6,14 @@ from tests.factories.time_restriction_factory import TimeRestrictionFactory,Othe
 from tests.factories.user_factory import UserPlayerFactory
 from tests.factories.checkin_factory import CheckinFactory,InvalidCheckinFactory
 from tests.factories.assignment_factory import AssignmentFactory
-from tests.factories.day_factory import MondayDayFactory,TuesdayDayFactory
+from tests.factories.day_factory import MondayDayFactory,TuesdayDayFactory,WednesdayDayFactory,ThursdayDayFactory,FridayDayFactory,SaturdayDayFactory,SundayDayFactory
+
 class ChallengeTestCase(TestCase):
     def setUp(self):
         self.challenge=ChallengeFactory.create()
         self.area=ProjectSubAreaFactory.create()
         self.other_area=OtherProjectSubAreaFactory.create()
-        self.monday_day=MondayDayFactory.create()
-        self.tuesday_day=TuesdayDayFactory.create()
-        self.time_restriction=TimeRestrictionFactory.create(days=(self.monday_day,self.tuesday_day))
+        self.time_restriction=TimeRestrictionFactory.create(days=(MondayDayFactory.create(),TuesdayDayFactory.create(),WednesdayDayFactory.create(),ThursdayDayFactory.create(),FridayDayFactory.create(),SaturdayDayFactory.create(),SundayDayFactory.create()))
         self.other_time_restriction=OtherTimeRestrictionFactory.create()
         self.first_player=UserPlayerFactory.create()
         self.checkin=CheckinFactory.create()

@@ -1,3 +1,4 @@
+
 import factory
 
 from alaapp.models.challenge import Challenge
@@ -10,3 +11,9 @@ class ChallengeFactory(factory.django.DjangoModelFactory):
     name='challenge_test'
     project=factory.SubFactory(ProjectFactory)
     goal=5
+
+
+
+
+
+    

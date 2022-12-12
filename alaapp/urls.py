@@ -61,8 +61,8 @@ urlpatterns = [
     path('process_time_restriction/',time_restriction.process_time_restriction,name='process_time_restriction'),
     path('modify_project_root/',project.modify_project_root,name='modify_project_root'),
     path('process_modify_project/',project.process_modify_project,name='process_modify_project'),
-    path('disjoin_project/',project.disjoin_project,name='disjoin_project')
+    path('disjoin_project/',project.disjoin_project,name='disjoin_project'),
+
+
 ]
-
-
 

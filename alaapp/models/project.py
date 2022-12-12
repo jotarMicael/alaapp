@@ -4,7 +4,7 @@ from django.contrib import messages
 from alaapp.models.project_area  import ProjectArea
 from alaapp.models.time_restriction  import TimeRestriction
 from alaapp.models.user import User
-from django.utils.safestring import mark_safe
+
 
 class Project(models.Model):
     name=models.CharField(max_length=30,blank=False,null=False)
@@ -25,9 +25,10 @@ class Project(models.Model):
         db_table='project'
 
     def add_checkin(self,checkin_,request): 
+        from alaapp.models.game_element import GameElement
         s_gr=''
-        for ge in self.get_game_elements():         
-            if ge.add_checkin(checkin_,request.session['id']):
+        for ge in self.get_game_elements():                  
+            if GameElement.objects.get_subclass(id=ge.get_id()).add_checkin(checkin_,request.session['id']):               
                 s_gr= s_gr + ge.get_name() + '<br/>'
         messages.success(request,'Progreso actualizado en los Elementos de juego: %s'  % (s_gr))                
         self.save()
