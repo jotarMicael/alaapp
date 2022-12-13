@@ -29,8 +29,8 @@ class Project(models.Model):
         s_gr=''
         for ge in self.get_game_elements():     
             g=GameElement.objects.get_subclass(id=ge.get_id())             
-            if g.add_checkin(checkin_,request.session['id']):     
-                g.checkin.add(checkin_)
+            if g.is_valid_checkin(checkin_,request.session['id']):     
+                g.add_checkin(checkin_)
                 g.increment_progress(request.session['id'])          
                 s_gr= s_gr + g.get_name() + '<br/>'
         messages.success(request,'Progreso actualizado en los Elementos de juego: %s'  % (s_gr))                

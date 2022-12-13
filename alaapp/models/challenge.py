@@ -20,16 +20,12 @@ class Challenge(GameElement):
         
         return super().increment_progress(user_id_)
 
-    def is_challenge(self):
-        return True
-
-
     def get_progress_user(self,user_id_):
       return super().get_progress_user(user_id_)
 
 
-    def add_checkin(self,checkin_,user_id):
-        return super().add_checkin(checkin_,user_id)
+    def is_valid_checkin(self,checkin_,user_id):
+        return super().is_valid_checkin(checkin_,user_id)
 
     def change_state(self):
         return super().change_state()
@@ -40,3 +36,6 @@ class Challenge(GameElement):
     def update(self,name,area,time_restriction,goal):
        super().update(name,area,time_restriction,goal)
        self.save()
+
+    def add_checkin(self,checkin):
+        return super().add_checkin(checkin)

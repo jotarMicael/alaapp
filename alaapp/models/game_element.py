@@ -29,7 +29,7 @@ class GameElement(models.Model):
     def __str__(self):
         return f'{self.name},{self.goal},{self.owner},{self.rate},{self.project}'     
 
-    def add_checkin(self,checkin_,user_id):
+    def is_valid_checkin(self,checkin_,user_id):
         return (self.is_my_user_active(user_id) and self.time_restriction.is_valid_time(checkin_.get_date()) and self.area.is_valid_area(checkin_.get_latitude(),checkin_.get_longitude()) and self.public and self.get_progress_user(user_id) < 100.0)
 
       
@@ -116,3 +116,6 @@ class GameElement(models.Model):
     def add_player(self,player):
         self.user_actives.add(player)
         self.save()
+
+    def add_checkin(self,checkin):
+        self.checkin.add(checkin)
