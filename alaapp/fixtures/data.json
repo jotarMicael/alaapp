@@ -26,8 +26,8 @@
         "fields": {
             "complete_name": "Admin",
             "username": "admin",
-            "email": "unemail@gmail.com",
-            "password": "sha256$eVxG7RHu1a$ac32f95f9fab40e744380d640c82609fdb73bf8625db281ee2376cdec93761e5",
+            "email": "admin@gmail.com",
+            "password": "sha256$iZs25fzPnF$83b1e78e66922efd7e20fd4bfc20e829dd99d26da7b690c84623287aa4aeaf0b",
             "role_id_id": 2,
             "verified": 1
         }
@@ -38,8 +38,8 @@
         "fields": {
             "complete_name": "Root",
             "username": "root",
-            "email": "unemail2@gmail.com",
-            "password": "sha256$eVxG7RHu1a$ac32f95f9fab40e744380d640c82609fdb73bf8625db281ee2376cdec93761e5",
+            "email": "root@gmail.com",
+            "password": "sha256$iZs25fzPnF$83b1e78e66922efd7e20fd4bfc20e829dd99d26da7b690c84623287aa4aeaf0b",
             "role_id_id": 1,
             "verified": 1
         }
@@ -50,8 +50,8 @@
         "fields": {
             "complete_name": "Player",
             "username": "player",
-            "email": "unemail3@gmail.com",
-            "password": "sha256$eVxG7RHu1a$ac32f95f9fab40e744380d640c82609fdb73bf8625db281ee2376cdec93761e5",
+            "email": "player@gmail.com",
+            "password": "sha256$iZs25fzPnF$83b1e78e66922efd7e20fd4bfc20e829dd99d26da7b690c84623287aa4aeaf0b",
             "role_id_id": 3,
             "verified": 1
         }

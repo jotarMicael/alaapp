@@ -42,7 +42,11 @@ class Badge(GameElement):
 
     def get_path_image(self):       
         return self.image.path
-
+    
+    def can_add(self,user_id):
+        if self.parent == None:
+            return True
+        return self.parent.get_assignment_set().filter(user_id=user_id).exists()
 
     def update(self,name,area,time_restriction,goal,id_parent):
        self.add_parent(id_parent)
@@ -54,6 +58,10 @@ class Badge(GameElement):
         elif self.parent.get_progress_user(user_id)<100.0:    
             return False
         return True
+    
+         
+        
+        
 
         
        

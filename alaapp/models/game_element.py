@@ -39,19 +39,19 @@ class GameElement(models.Model):
         
         
     def get_progress_user(self,user_id_):
-        assignment_ge=self.assignment_set.get(user_id=user_id_)     
+        assignment_ge=self.get_assignment_set().get(user_id=user_id_)     
         return assignment_ge.get_progress()
       
       
     
     def is_valued(self,user_id_):
         
-        if self.assignment_set.get(user_id=user_id_).get_like_dislike() is None:
+        if self.get_assignment_set().get(user_id=user_id_).get_like_dislike() is None:
             return False
         return True
 
     def get_assignment_id(self,user_id_):
-        return self.assignment_set.get(user_id=user_id_).get_id()
+        return self.get_assignment_set().get(user_id=user_id_).get_id()
 
 
     def is_my_user_active(self,user_id):
@@ -90,9 +90,12 @@ class GameElement(models.Model):
             self.public=True
         self.save()
 
+    def get_assignment_set(self):
+        return self.assignment_set
+
     def increment_progress(self,user_id_):
         
-        progress=self.assignment_set.get(user_id=user_id_)
+        progress=self.get_assignment_set().get(user_id=user_id_)
         progress.increment_progress(self.get_goal(),self.get_checkins().filter(user_id=user_id_).count())
 
     
@@ -104,7 +107,7 @@ class GameElement(models.Model):
        self.save()
        
     def scoried(self,user_id):
-        if self.assignment_set.get(user_id=user_id).scoring_set.count() == 0:
+        if self.get_assignment_set().get(user_id=user_id).scoring_set.count() == 0:
             return False
         return True
 

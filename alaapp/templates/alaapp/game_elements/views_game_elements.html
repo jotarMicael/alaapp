@@ -1,5 +1,5 @@
 {% extends 'alaapp/base/base.html' %}
-
+{% load game_element_extras %}
 {% load static %}
 
 {% block title %}
@@ -75,10 +75,11 @@
           </thead>
           <tbody>
             {% for badge in badges %}
+            {% can_add badge request.session.id as is_valid %}
             <tr>
               <td class="table-success">{{ badge.id }}</td>
               <td>{{ badge.name }}</td>
-              <td><button  onclick="send_game_element_id('{{ badge.id }}','#send_badge');" class="btn btn-block bg-gradient-success btn-xs">Asignar</button></td>
+              <td><button  onclick="send_game_element_id('{{ badge.id }}','#send_badge');" {% if not is_valid  %}disabled data-toggle="tooltip" title="Requiere insignia previa" class="btn btn-block bg-gradient-danger btn-xs" {% else %} class="btn btn-block bg-gradient-success btn-xs" {% endif %}  >Asignar</button></td>
             </tr>
             {% endfor %}
             
