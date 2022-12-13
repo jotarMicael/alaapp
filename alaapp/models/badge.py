@@ -40,7 +40,7 @@ class Badge(GameElement):
         else:
             self.parent=None
 
-    def get_path_image(self):
+    def get_path_image(self):       
         return self.image.path
 
 
