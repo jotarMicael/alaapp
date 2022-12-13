@@ -20,15 +20,10 @@ class TimeRestriction(models.Model):
 
 
     def is_valid_time(self,date):  
-        print(date)
-        print(self.date_from.strftime("%Y-%m-%d")) 
-        print(self.date_to.strftime("%Y-%m-%d"))  
-        print(date>= (self.date_from.strftime("%Y-%m-%d")+ ' ' + self.hour_from) and date  <= (self.date_to.strftime("%Y-%m-%d") + ' ' + self.hour_to))
         return ( date>= (self.date_from.strftime("%Y-%m-%d")+ ' ' + self.hour_from) and date  <= (self.date_to.strftime("%Y-%m-%d") + ' ' + self.hour_to) and self.is_valid_day())
     
     def is_valid_day(self):
         from alaapp.models.day import Day  
-        print(self.days.all().contains(Day.objects.get(id=datetime.today().isoweekday())))
         return self.days.all().contains(Day.objects.get(id=datetime.today().isoweekday()))
         
         #for day in Day.objects.all():
