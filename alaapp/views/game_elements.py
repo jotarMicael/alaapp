@@ -40,7 +40,7 @@ def modify(request,ok=False):
             id_=request.POST['id']
           ge=GameElement.objects.get_subclass(id=id_)
           areas=ge.get_project().get_area().projectsubarea_set.all()
-          time_restrictions=ge.get_project().get_time_restriction().all()
+          time_restrictions=ge.get_project().get_time_restrictions().all()
           if isinstance(ge, Challenge):
             return render(request, 'alaapp/game_elements/modify_challenge.html',{'nav':'block','modify_challenge':System.get_navbar_color,'challenge':ge, 'areas':areas,'time_restrictions':time_restrictions})   
           return render(request, 'alaapp/game_elements/modify_badge.html',{'nav':'block','modify_badge':System.get_navbar_color,'badge':ge,'areas':areas,'time_restrictions':time_restrictions,'badges':Badge.objects.filter(project_id=ge.get_id_project()).all()}) 

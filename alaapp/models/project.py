@@ -27,9 +27,10 @@ class Project(models.Model):
     def add_checkin(self,checkin_,request): 
         from alaapp.models.game_element import GameElement
         s_gr=''
-        for ge in self.get_game_elements():                  
-            if GameElement.objects.get_subclass(id=ge.get_id()).add_checkin(checkin_,request.session['id']):               
-                s_gr= s_gr + ge.get_name() + '<br/>'
+        for ge in self.get_game_elements():     
+            g=GameElement.objects.get_subclass(id=ge.get_id())             
+            if g.add_checkin(checkin_,request.session['id']):               
+                s_gr= s_gr + g.get_name() + '<br/>'
         messages.success(request,'Progreso actualizado en los Elementos de juego: %s'  % (s_gr))                
         self.save()
 

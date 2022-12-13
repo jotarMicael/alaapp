@@ -1,7 +1,7 @@
 from django.db import models
 from alaapp.models.project import Project
 from alaapp.models.user  import User
-
+from datetime import datetime
 
 
 class CheckIn(models.Model):
@@ -22,8 +22,8 @@ class CheckIn(models.Model):
         return f'{self.user},{self.project},{self.latitude},{self.longitude},{self.datetime}'
 
 
-    def get_date(self):
-        return self.datetime[:16]
+    def get_date(self):       
+        return self.datetime
     
     def get_latitude(self):
         return self.latitude
