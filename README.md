@@ -13,6 +13,10 @@
 -Para la instalación de todas las dependencias necesarias para el correcto funcionamiento del sistema se debe ejecutar 
 el siguiente comando: pip install -r requirements.txt
 
+-Ejecutar los siguientes comandos para realizar las migraciones de las tablas a la base de datos: 
+python3 manage.py makemigrations
+python3 manage.py migrate
+
 -Ejecutar el siguiente comando para cargar información (Usuarios, días, criterios de valoración) en la base de datos: 
 python3 manage.py loaddata data.json
 
