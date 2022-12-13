@@ -36,7 +36,7 @@ def home(request):
         if System.is_admin(request):
             projects=Project.objects.filter(admins__id=request.session['id']).order_by('-id')
         else:
-            projects=User.objects.get(id=request.session['id']).projects.all()
+            projects=User.objects.get(id=request.session['id']).get_projects().all()
         return render(request, 'alaapp/home.html',{'projects':projects})    
     return redirect('index')
     
@@ -51,7 +51,7 @@ def login(request):
             user=User.objects.get( email__iexact=request.POST['email'])
         else:
             user=User.objects.get( username__iexact=request.POST['email'])    
-        if not check_password_hash(user.password,request.POST['password']):
+        if not check_password_hash(user.get_password(),request.POST['password']):
            raise ObjectDoesNotExist 
     except ObjectDoesNotExist:
 
@@ -62,7 +62,7 @@ def login(request):
 
 def user_verificate(request,ok=False,user=False):  
     try:
-        if not user.verified:  
+        if not user.is_verified():
             if ok:  
                 System.f_send_mail(user)               
             return redirect('verificate')
@@ -80,7 +80,7 @@ def register_user(request):
         return redirect('home')       
     if User.objects.filter(email__exact=request.POST['email']).exists() or  User.objects.filter(username__exact=request.POST['username']).exists():
         messages.error(request,'Nombre de usuario/email ya utilizado')
-        System.logout
+        logout(request)
         return redirect('register')
     if not request.POST['email'] or not request.POST['username'] or not request.POST['password'] or not request.POST['repeat_password'] or not request.POST['name'] or (request.POST['password'] != request.POST['repeat_password']):
         if (request.POST['password'] != request.POST['repeat_password']):
@@ -98,7 +98,7 @@ def verificate(request):
     return render (request,'alaapp/verificate/verificate.html')
 
 def activate_account(request):       
-    user_id=System.decode_token(request.GET.get('token')[:15],request.GET.get('token')[15:len(request.GET.get('token'))])
+    user_id=System.decode_token(request.GET.get('token'))
     if user_id:
         user=User.objects.get(id=user_id)
         user.change_verified()

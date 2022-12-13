@@ -104,3 +104,6 @@ class Project(models.Model):
 
     def get_avaliable(self):
         return self.avaliable
+    
+    def get_time_restrictions(self):
+        return self.time_restriction

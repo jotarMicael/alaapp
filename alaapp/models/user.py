@@ -50,6 +50,9 @@ class User(models.Model):
 
     def get_username(self):
         return self.username
+    
+    def get_password(self):
+        return self.password
 
     def get_email(self):
         return self.email 
@@ -60,6 +63,12 @@ class User(models.Model):
     def get_projects(self):
         return self.projects.all()
 
+    def is_verified(self):
+        return self.verified
+
+    def get_role(self):
+        return self.role_id
+        
     def change_verified(self):
         self.verified=True
         self.save()

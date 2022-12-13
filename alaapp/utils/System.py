@@ -24,7 +24,7 @@ class System(object):
     @staticmethod
     def f_send_mail(user):
         token = System.generate_token()
-        encript = generate_password_hash(str(user.id), 'sha256', 5)
+        encript = generate_password_hash(str(user.get_id()), 'sha256', 5)
         t=Token(user_id=user,token=token)
         t.save()
         message_ = render_to_string(
@@ -34,7 +34,7 @@ class System(object):
         subject="Bienvenido/a a ALA"
         message=''
         email_from=settings.EMAIL_HOST_USER
-        recipient_list=[user.email]
+        recipient_list=[user.get_email()]
         html_message=message_
         send_mail(
             subject=subject, 
@@ -48,15 +48,16 @@ class System(object):
     @staticmethod
     def set_session(request,user):
         try:
-            request.session['profile_image'] = user.profile_image.url   
+            request.session['profile_image'] = user.get_profile_image().url   
         except ValueError:
             pass
         finally:
-            request.session['id'] = user.id 
-            request.session['username'] = user.username 
-            request.session['email'] = user.email
-            request.session['complete_name'] = user.complete_name 
-            request.session['role'] = user.role_id.name
+            request.session['id'] = user.get_id()
+            request.session['username'] = user.get_username()
+            request.session['email'] = user.get_email()
+            request.session['complete_name'] = user.get_complete_name() 
+            request.session['role'] = user.get_role().get_name()
+
     @staticmethod
     def logout(request):
         
@@ -77,9 +78,9 @@ class System(object):
         token = sha1.hexdigest()
         return token[:length]   
 
-    def decode_token(token,user_id):
-        object_token=Token.objects.get(token__iexact=token)  
-        return object_token.user_equal(user_id)
+    def decode_token(token):
+        object_token=Token.objects.get(token__iexact=token[:15])  
+        return object_token.user_equal(token)
         
     def is_admin(request):
         return (request.session['role']=='ADMIN')

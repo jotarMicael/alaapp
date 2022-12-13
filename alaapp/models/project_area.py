@@ -6,6 +6,7 @@ import json
 
 class ProjectArea(models.Model):
     name=models.CharField(blank=False,null=False,max_length=200)
+    
     class Meta:
         verbose_name='ProjectArea'
         verbose_name_plural="ProjectAreas"

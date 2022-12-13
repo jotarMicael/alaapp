@@ -17,6 +17,6 @@ class Token(models.Model):
         return self.user_id
 
     def user_equal(self,user_id):
-        if check_password_hash(user_id,str(self.get_user().get_id())):           
+        if check_password_hash(user_id[15:len(user_id)],str(self.get_user().get_id())):           
             return self.get_user().get_id()
         return None

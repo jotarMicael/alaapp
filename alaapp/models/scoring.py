@@ -14,7 +14,7 @@ class Scoring(models.Model):
         verbose_name_plural="Scorings"
         db_table='scoring'
 
-
+ 
 
     def __str__(self):
         return f'{self.assignment},{self.criteria},{self.assessment}'     

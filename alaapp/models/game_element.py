@@ -39,9 +39,9 @@ class GameElement(models.Model):
         
         
     def get_progress_user(self,user_id_):
- 
-      assignment_ge=self.assignment_set.get(user_id=user_id_)     
-      return assignment_ge.get_progress()
+        assignment_ge=self.assignment_set.get(user_id=user_id_)     
+        return assignment_ge.get_progress()
+      
       
     
     def is_valued(self,user_id_):
@@ -74,6 +74,9 @@ class GameElement(models.Model):
     
     def get_checkins(self):
         return self.checkin
+
+    def get_project(self):
+        return self.project
 
     def add_area(self,area):
         self.area=area

@@ -70,11 +70,9 @@ def modify_badge(request):
                     return game_elements.modify(request,True)       
                 else: 
                     badge_=Badge.objects.get(id__exact=request.POST['id'])
-                    badge_.update(request.POST['name'],ProjectSubArea.objects.get(id__exact=request.POST['area']),TimeRestriction.objects.get(id__exact=request.POST['time_restriction']),request.POST['goal'],int(request.POST['select']))  
-            
+                    badge_.update(request.POST['name'],ProjectSubArea.objects.get(id__exact=request.POST['area']),TimeRestriction.objects.get(id__exact=request.POST['time_restriction']),request.POST['goal'],int(request.POST['select']))             
                     form = BadgeForm(data=request.POST, files=request.FILES, instance=badge_)
                     form.procces(badge_.get_path_image())
-
                     messages.success(request,'Insignia modificada correctamente')
                 return game_elements.modify(request,True)     
           return redirect('home')  

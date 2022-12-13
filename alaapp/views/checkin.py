@@ -24,9 +24,7 @@ def process_checkin(request):
                 checkin_.save()                  
                 project = Project.objects.get(id__exact=request.POST['project'])
                 messages.success(request,'CheckIn realizado correctamente')
-                project.add_checkin(checkin_,request)
-                
-                             
+                project.add_checkin(checkin_,request)                          
             return checkin(request) 
         redirect('home')
     return redirect('index')  

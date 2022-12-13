@@ -14,3 +14,5 @@ class Role(models.Model):
         verbose_name_plural="Roles"
         db_table='role'
 
+    def get_name(self):
+        return self.name
