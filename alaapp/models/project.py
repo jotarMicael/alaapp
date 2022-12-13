@@ -29,7 +29,9 @@ class Project(models.Model):
         s_gr=''
         for ge in self.get_game_elements():     
             g=GameElement.objects.get_subclass(id=ge.get_id())             
-            if g.add_checkin(checkin_,request.session['id']):               
+            if g.add_checkin(checkin_,request.session['id']):     
+                g.checkin.add(checkin_)
+                g.increment_progress(request.session['id'])          
                 s_gr= s_gr + g.get_name() + '<br/>'
         messages.success(request,'Progreso actualizado en los Elementos de juego: %s'  % (s_gr))                
         self.save()
@@ -58,8 +60,7 @@ class Project(models.Model):
         self.save()
 
 
-    def add_time_restriction(self,id_time_restriction):
-        
+    def add_time_restriction(self,id_time_restriction):       
         self.time_restriction.add(TimeRestriction.objects.get(id=id_time_restriction))
         self.save()
 

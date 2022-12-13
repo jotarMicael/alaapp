@@ -5,6 +5,8 @@ from django.views.generic import TemplateView
 from django.utils.decorators import method_decorator
 from alaapp.models.project import Project
 import json
+
+
 class GameElementView(TemplateView):
     template_name = 'create_challenge.html'
 

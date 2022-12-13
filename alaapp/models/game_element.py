@@ -30,22 +30,15 @@ class GameElement(models.Model):
         return f'{self.name},{self.goal},{self.owner},{self.rate},{self.project}'     
 
     def add_checkin(self,checkin_,user_id):
-        if(self.is_my_user_active(user_id) and self.time_restriction.is_valid_time(checkin_.get_date()) and self.area.is_valid_area(checkin_.get_latitude(),checkin_.get_longitude()) and self.public and self.get_progress_user(user_id) < 100.0):
-        #if(self.time_restriction.is_valid_time(checkin_.get_date()) and self.is_my_user_active(user_id) and self.public and self.get_progress_user(user_id) < 100.0):
-            self.checkin.add(checkin_)
-            self.increment_progress(user_id)
-            return True
-        return False
-        
-        
+        return (self.is_my_user_active(user_id) and self.time_restriction.is_valid_time(checkin_.get_date()) and self.area.is_valid_area(checkin_.get_latitude(),checkin_.get_longitude()) and self.public and self.get_progress_user(user_id) < 100.0)
+
+      
     def get_progress_user(self,user_id_):
         assignment_ge=self.get_assignment_set().get(user_id=user_id_)     
         return assignment_ge.get_progress()
       
-      
-    
-    def is_valued(self,user_id_):
-        
+         
+    def is_valued(self,user_id_):      
         if self.get_assignment_set().get(user_id=user_id_).get_like_dislike() is None:
             return False
         return True
@@ -84,10 +77,7 @@ class GameElement(models.Model):
         return self.area
 
     def change_state(self):
-        if self.public:
-            self.public=False
-        else:
-            self.public=True
+        self.public = (not self.public)
         self.save()
 
     def get_assignment_set(self):
