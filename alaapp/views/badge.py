@@ -44,7 +44,6 @@ def process_badge(request):
 def asign_badge(request):
     if System.is_logged(request):
           if System.is_player(request):
-
             badge= Badge.objects.get(id=request.POST['badge_id'])
             user = User.objects.get(id=request.session['id'])
             user.add_gamelement_active(badge)

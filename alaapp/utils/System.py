@@ -1,8 +1,5 @@
 from django.core.mail import send_mail
 from django.conf import settings
-from django.shortcuts import render
-from django.contrib.sites.shortcuts import get_current_site
-from django.contrib.auth import logout
 from django.template.loader import render_to_string
 from alaapp.models.token import Token
 from werkzeug.security import generate_password_hash,check_password_hash
@@ -81,12 +78,9 @@ class System(object):
         return token[:length]   
 
     def decode_token(token,user_id):
-        object_token=Token.objects.get(token__iexact=token)
-       
-        if check_password_hash(user_id,str(object_token.user_id.id)):
-            #check_password_hash(user.password,request.POST['password'])
-            return object_token.user_id.id
-        return None
+        object_token=Token.objects.get(token__iexact=token)  
+        return object_token.user_equal(user_id)
+        
     def is_admin(request):
         return (request.session['role']=='ADMIN')
 

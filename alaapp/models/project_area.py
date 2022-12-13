@@ -13,10 +13,7 @@ class ProjectArea(models.Model):
 
     def __str__(self):
         return f'{self.name}'  
-
-    def is_valid_area(self,lat,lon):
-        #return (lat and lon between polygon)
-        return True
+   
 
     def add_subareas(self,areas):
         from alaapp.models.project_subarea import ProjectSubArea

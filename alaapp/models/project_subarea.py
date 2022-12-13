@@ -23,9 +23,7 @@ class ProjectSubArea(models.Model):
         coords = []
         for coor in a['geometry']['coordinates'][0]:
             coords.append((coor[1],coor[0]))        
-        #p1 = Point(-36.655022950488615, -69.72561322652085)  
         p1 = Point(float(lat), float(lon) )   
-        poly = Polygon(coords) 
-        #cent=poly.centroid      
+        poly = Polygon(coords)   
         return p1.within(poly)
 

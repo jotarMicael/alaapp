@@ -27,6 +27,11 @@ class TimeRestriction(models.Model):
         from alaapp.models.day import Day  
         return self.days.all().contains(Day.objects.get(id=datetime.today().isoweekday()))
         
+        #for day in Day.objects.all():
+        #   if day.is_my_day(datetime.today().isoweekday()) 
+        #       return True
+        #return False        
+        
 
 
     def add_days(self,days):       

@@ -17,3 +17,5 @@ class Day(models.Model):
 
     def get_id(self):
         return str(self.id)
+
+    
