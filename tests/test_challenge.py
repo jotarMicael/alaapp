@@ -56,13 +56,13 @@ class ChallengeTestCase(TestCase):
         self.assertEqual(self.challenge.get_area(),self.other_area)
         self.assertEqual(self.challenge.get_time_restriction(),self.other_time_restriction)
 
-    def test_challenge_add_checkin(self):
+    def test_challenge_is_valid_checkin(self):
         self.challenge.add_area(self.area)
         self.challenge.add_time_restriction(self.time_restriction)
         self.challenge.add_player(self.first_player)
         
-        self.assertFalse(self.challenge.add_checkin(self.invalid_checkin,self.first_player.get_id()))
-        self.assertTrue(self.challenge.add_checkin(self.checkin,self.first_player.get_id()))
+        self.assertFalse(self.challenge.is_valid_checkin(self.invalid_checkin,self.first_player.get_id()))
+        self.assertTrue(self.challenge.is_valid_checkin(self.checkin,self.first_player.get_id()))
         
         
         
