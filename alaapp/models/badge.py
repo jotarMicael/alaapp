@@ -14,22 +14,9 @@ class Badge(GameElement):
     def __str__(self):
         return f'{self.image},{self.parent}'
 
-    def increment_progress(self,user_id_):
-        
-        return super().increment_progress(user_id_)
-
-    def get_progress_user(self,user_id_):
-        return super().get_progress_user(user_id_)
-
     def is_valid_checkin(self,checkin_,user_id):       
         return (self.validate_badge(user_id) and super().is_valid_checkin(checkin_,user_id))
     
-    def change_state(self):
-        return super().change_state()
-
-    def get_state(self):
-        return super().get_state()
-
     def add_parent(self,id_parent):
         if id_parent !=0:
             self.parent=Badge.objects.get(id__exact=id_parent)
@@ -55,8 +42,7 @@ class Badge(GameElement):
             return False
         return True
     
-    def add_checkin(self,checkin):
-        return super().add_checkin(checkin)
+    
     
          
         

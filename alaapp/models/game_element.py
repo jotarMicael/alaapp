@@ -25,19 +25,16 @@ class GameElement(models.Model):
         db_table='game_element'
 
 
-
     def __str__(self):
         return f'{self.name},{self.goal},{self.owner},{self.rate},{self.project}'     
 
     def is_valid_checkin(self,checkin_,user_id):
         return (self.is_my_user_active(user_id) and self.time_restriction.is_valid_time(checkin_.get_date()) and self.area.is_valid_area(checkin_.get_latitude(),checkin_.get_longitude()) and self.public and self.get_progress_user(user_id) < 100.0)
-
-      
+     
     def get_progress_user(self,user_id_):
         assignment_ge=self.get_assignment_set().get(user_id=user_id_)     
         return assignment_ge.get_progress()
-      
-         
+             
     def is_valued(self,user_id_):      
         if self.get_assignment_set().get(user_id=user_id_).get_like_dislike() is None:
             return False
@@ -46,11 +43,9 @@ class GameElement(models.Model):
     def get_assignment_id(self,user_id_):
         return self.get_assignment_set().get(user_id=user_id_).get_id()
 
-
     def is_my_user_active(self,user_id):
          return (self.user_actives.filter(id=user_id).exists())
-       
-           
+                 
     def get_id_project(self):
         return self.project.get_id()
 
@@ -83,8 +78,7 @@ class GameElement(models.Model):
     def get_assignment_set(self):
         return self.assignment_set
 
-    def increment_progress(self,user_id_):
-        
+    def increment_progress(self,user_id_):        
         progress=self.get_assignment_set().get(user_id=user_id_)
         progress.increment_progress(self.get_goal(),self.get_checkins().filter(user_id=user_id_).count())
 
